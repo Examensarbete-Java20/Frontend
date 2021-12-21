@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './Header';
-import Test from './TopTen';
-import Test2 from './Movie';
+import TopTen from './TopTen';
+import Content from './Content';
 
 const App = () => {
   return (
@@ -11,8 +11,8 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          <Route path='/' exac element={<Test />} />
-          <Route path='/content/:id' exac element={<Test2 />} />
+          <Route path='/' exac element={<TopTen />} />
+          <Route path='/content/:id' exac element={<Content />} />
         </Routes>
       </Router>
     </div>
