@@ -20,7 +20,7 @@ const SearchBox = ({ searchResult, showList, content, setSearchQuery }) => {
           <Link
             className='linkItem'
             key={result.id}
-            to={`/${content}/${result.imdb_id}`}
+            to={`/show/${content}/${result.imdb_id}`}
           >
             {result.title}
           </Link>

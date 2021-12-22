@@ -9,7 +9,7 @@ import SearchBox from './SearchBox';
 
 const Header = () => {
   const [searchResult, setSearchResult] = useState([]);
-  const [content, setContent] = useState('Movie');
+  const [content, setContent] = useState('movie');
   const [searchQuery, setSearchQuery] = useState('');
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [debounceQuery, setDebounceQuery] = useState(searchQuery);
@@ -86,8 +86,8 @@ const Header = () => {
             className='ui compact selection dropdown'
             onChange={(e) => setContent(e.target.value)}
           >
-            <option value='Movie'>Filmer</option>
-            <option value='Serie'>Serier</option>
+            <option value='movie'>Filmer</option>
+            <option value='series'>Serier</option>
           </select>
           <div
             className='ui icon button'
