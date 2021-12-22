@@ -1,16 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logo from '../img/pedb.png';
 import '../styles/header.css';
 
 import * as helper from '../helpers/header';
+import SearchBox from './SearchBox';
 
 const Header = () => {
-  const [searchResult, setSearchResult] = useState([{ title: 'Nothing here' }]);
-  const [content, setContent] = useState('Movies');
+  const [searchResult, setSearchResult] = useState([]);
+  const [content, setContent] = useState('Movie');
   const [searchQuery, setSearchQuery] = useState('');
-  console.log(searchResult);
+  const [showSearchResult, setShowSearchResult] = useState(false);
+  const [debounceQuery, setDebounceQuery] = useState(searchQuery);
+  let navigate = useNavigate();
 
   const inputHandler = (event) => {
     setSearchQuery(event.target.value);
@@ -18,31 +21,73 @@ const Header = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log('submit');
-    helper.getMovieTitle(searchQuery).then((data) => setSearchResult(data));
+    if (searchQuery) {
+      if (event.target.children[1]) {
+        event.target.children[0].children[0].blur();
+      }
+      navigate(`/find/${content}/${searchQuery}`);
+      setSearchQuery('');
+      setSearchResult([]);
+    }
+  };
+
+  useEffect(() => {
+    if (searchQuery || !searchQuery) {
+      const timerId = setTimeout(() => {
+        setDebounceQuery(searchQuery);
+      }, 250);
+
+      return () => {
+        clearTimeout(timerId);
+      };
+    }
+  }, [searchQuery]);
+
+  useEffect(() => {
+    if (!debounceQuery) setSearchResult([]);
+    else
+      helper.getMovieTitle(debounceQuery).then((data) => setSearchResult(data));
+  }, [debounceQuery]);
+
+  const onFocusHandler = () => {
+    if (!searchQuery) {
+      setSearchResult([]);
+    }
+    setShowSearchResult(true);
+  };
+
+  // TODO: Fixa en bättre funktionalitet för att stänga ner sök rutan
+  const onBlurHelper = () => {
+    setTimeout(() => {
+      setShowSearchResult(false);
+    }, 200);
   };
 
   return (
     <div className='header'>
-      <div style={{ paddingTop: '0.25rem' }}>
+      <div style={{ paddingTop: '0.3rem' }} className='header-div'>
         <Link to='/'>
-          <img src={logo} alt='PEDB' height={41} />
+          <img className='header-img' src={logo} alt='PEDB' height={41} />
         </Link>
       </div>
-      <form onSubmit={(e) => onSubmit(e)}>
+      <form className='header-div' onSubmit={(e) => onSubmit(e)}>
         <div className='ui action input header-input'>
           <input
+            list='search'
             type='text'
             placeholder='Butman...'
             value={searchQuery}
             onChange={(e) => inputHandler(e)}
+            onFocus={() => onFocusHandler()}
+            onBlur={() => onBlurHelper()}
           />
+
           <select
             className='ui compact selection dropdown'
             onChange={(e) => setContent(e.target.value)}
           >
-            <option value='Movies'>Filmer</option>
-            <option value='Series'>Serier</option>
+            <option value='Movie'>Filmer</option>
+            <option value='Serie'>Serier</option>
           </select>
           <div
             className='ui icon button'
@@ -52,8 +97,14 @@ const Header = () => {
             <i className='search icon' />
           </div>
         </div>
+        <SearchBox
+          searchResult={searchResult}
+          showList={showSearchResult}
+          content={content}
+          setSearchQuery={setSearchQuery}
+        />
       </form>
-      <div style={{ paddingTop: '0.25rem' }}>
+      <div className='header-div'>
         <button className='ui google plus button'>
           <i className='google icon'></i>
           Logga in

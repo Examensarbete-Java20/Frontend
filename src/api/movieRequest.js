@@ -8,6 +8,6 @@ export const search = async (title) => {
       return response.data;
     }
   } catch (error) {
-    return [{ title: 'Nothing here' }];
+    return [];
   }
 };

@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export class Test extends Component {
-  render() {
-    return <div>EN FILM ELLER SERIE</div>;
-  }
-}
+const Content = () => {
+  return <div>EN FILM ELLER SERIE</div>;
+};
 
-export default Test;
+export default Content;

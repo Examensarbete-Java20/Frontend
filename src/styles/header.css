@@ -8,7 +8,7 @@
   height: 52px;
 }
 
-.header img {
+.header-img {
   border-radius: 5px;
 }
 
@@ -16,14 +16,8 @@
   width: 36rem;
 }
 
-.header div,
-form {
+.header-div {
   height: 41px;
   text-align: center;
-  padding-top: 0.2rem;
-}
-
-.header button {
-  text-align: center;
-  height: 41px;
+  padding-top: 0.4rem;
 }
