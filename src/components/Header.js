@@ -25,7 +25,7 @@ const Header = () => {
       if (event.target.children[1]) {
         event.target.children[0].children[0].blur();
       }
-      navigate(`/find/${content}/${searchQuery}`);
+      navigate(`/find/${searchQuery}`);
       setSearchQuery('');
       setSearchResult([]);
     }
@@ -46,8 +46,10 @@ const Header = () => {
   useEffect(() => {
     if (!debounceQuery) setSearchResult([]);
     else
-      helper.getMovieTitle(debounceQuery).then((data) => setSearchResult(data));
-  }, [debounceQuery]);
+      helper
+        .getTitles(debounceQuery, content)
+        .then((data) => setSearchResult(data));
+  }, [debounceQuery, content]);
 
   const onFocusHandler = () => {
     if (!searchQuery) {

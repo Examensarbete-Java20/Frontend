@@ -14,7 +14,7 @@ const App = () => {
         <Routes>
           <Route path='/' exac element={<TopTen />} />
           <Route path='/show/:content/:id' exac element={<Content />} />
-          <Route path='/find/:content/:title' exac element={<SearchList />} />
+          <Route path='/find/:title' exac element={<SearchList />} />
         </Routes>
       </Router>
     </div>

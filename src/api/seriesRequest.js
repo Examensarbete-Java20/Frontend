@@ -1,7 +1,13 @@
 import axios from './axios';
 
 export const search = async (title) => {
-  const response = await axios.get(`/series/title/${title}`);
+  try {
+    const response = await axios.get(`/series/title/${title}`);
 
-  console.log(response);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return [];
+  }
 };
