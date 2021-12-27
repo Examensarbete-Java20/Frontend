@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import logo from '../img/pedb.png';
+import logo from '../styles/img/pedb.png';
 import '../styles/header.css';
 
 import { search } from '../redux/actions';
-import * as helper from '../helpers/header';
+import * as helper from './helpers/header';
 import SearchBox from './SearchBox';
 
 const Header = (props) => {

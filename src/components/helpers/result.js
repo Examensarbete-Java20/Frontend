@@ -1,4 +1,4 @@
-import * as request from '../api/request';
+import * as request from '../../api/request';
 
 export const searchResult = (title) => {
   if (title) {

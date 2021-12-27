@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import * as helper from '../helpers/result';
+import * as helper from './helpers/result';
 import SearchResultList from './SearchResultList';
 
 const SearchResultPage = (props) => {
