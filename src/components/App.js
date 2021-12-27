@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './Header';
-import TopTen from './TopTen';
+import IndexPage from './IndexPage';
 import Content from './Content';
-import SearchList from './SearchList';
+import SearchResultPage from './SearchResultPage';
 
 const App = () => {
   return (
@@ -12,9 +12,9 @@ const App = () => {
       <Router>
         <Header />
         <Routes>
-          <Route path='/' exac element={<TopTen />} />
+          <Route path='/' exac element={<IndexPage />} />
           <Route path='/show/:content/:id' exac element={<Content />} />
-          <Route path='/find/:title' exac element={<SearchList />} />
+          <Route path='/find/:title' exac element={<SearchResultPage />} />
         </Routes>
       </Router>
     </div>

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
 import * as helper from '../helpers/result';
+import SearchResultList from './SearchResultList';
 
-const SearchList = (props) => {
+const SearchResultPage = (props) => {
   const [result, setResult] = useState([]);
   const [title, setTitle] = useState('');
   console.log(props);
@@ -26,6 +27,10 @@ const SearchList = (props) => {
   return (
     <div>
       Resultat från söket: <h1>{title}</h1>
+      <h2>Filmer</h2>
+      <SearchResultList />
+      <h2>Serier</h2>
+      <SearchResultList />
     </div>
   );
 };
@@ -34,4 +39,4 @@ const mapStateToProps = (state) => {
   return { title: state.searchTerm };
 };
 
-export default connect(mapStateToProps)(SearchList);
+export default connect(mapStateToProps)(SearchResultPage);
