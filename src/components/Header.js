@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import logo from '../img/pedb.png';
 import '../styles/header.css';
 
+import { search } from '../redux/actions';
 import * as helper from '../helpers/header';
 import SearchBox from './SearchBox';
 
-const Header = () => {
+const Header = (props) => {
   const [searchResult, setSearchResult] = useState([]);
   const [content, setContent] = useState('movie');
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,6 +27,7 @@ const Header = () => {
       if (event.target.children[1]) {
         event.target.children[0].children[0].blur();
       }
+      props.search(searchQuery);
       navigate(`/find/${searchQuery}`);
       setSearchQuery('');
       setSearchResult([]);
@@ -116,4 +119,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect(null, { search })(Header);
