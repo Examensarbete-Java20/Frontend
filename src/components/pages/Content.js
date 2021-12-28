@@ -34,6 +34,8 @@ const Content = ({ contentType, contentId }) => {
   }, [contentId]);
 
   useEffect(() => {
+    //TODO: Fixa så man hämtar content om man uppdaterar sidan En ny use effect för imdbid????
+    //TODO: Fixa så den renderar filmen med en bra design
     console.log(content);
   }, [content]);
 
