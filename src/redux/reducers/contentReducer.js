@@ -1,10 +1,10 @@
-import { SEARCH } from '../actions/actionTypes';
+import { CONTENT_CHANGE } from '../actions/actionTypes';
 
-const INTIAL_STATE = null;
+const INTIAL_STATE = { type: null, imdbid: null };
 
 export default (state = INTIAL_STATE, action) => {
   switch (action.type) {
-    case SEARCH:
+    case CONTENT_CHANGE:
       return action.payload;
 
     default:

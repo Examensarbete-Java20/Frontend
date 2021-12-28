@@ -3,29 +3,39 @@ import { Link } from 'react-router-dom';
 
 import '../styles/searchBox.css';
 
-const SearchBox = ({ searchResult, showList, content, setSearchQuery }) => {
-  const onClickHelper = (event) => {
-    event.preventDefault();
+const SearchBox = ({
+  searchResult,
+  showList,
+  content,
+  setSearchQuery,
+  contentAction,
+}) => {
+  const onClickHelper = (imdbId) => {
+    console.log('onclick: ' + imdbId);
+    contentAction(imdbId, content);
     setSearchQuery('');
   };
 
   const renderSearchOptions = () => {
     if (!searchResult.length) {
-      return <p className='listItem'>Inget hittades</p>;
+      return (
+        <>
+          <p className='divider' />
+          <p className='listItem'>Inget hittades</p>
+        </>
+      );
     }
 
     return searchResult.map((result, index) => (
-      <div className='linkRow'>
-        <div className='listItem' onClick={(e) => onClickHelper(e)}>
-          <Link
-            className='linkItem'
-            key={result.id}
-            to={`/show/${content}/${result.imdb_id}`}
-          >
-            {result.title}
-          </Link>
-        </div>
-        {index === searchResult.length - 1 ? '' : <p className='divider' />}
+      <div className='linkRow' key={index}>
+        <p className='divider' />
+        <Link
+          className='listItem'
+          to={`/show/${content}/${result.imdb_id}`}
+          onClick={() => onClickHelper(result.imdb_id)}
+        >
+          {result.title}
+        </Link>
       </div>
     ));
   };

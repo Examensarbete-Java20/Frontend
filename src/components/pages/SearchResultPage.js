@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import * as helper from './helpers/result';
-import SearchResultList from './SearchResultList';
+import * as helper from '../helpers/result';
+import SearchResultList from '../SearchResultList';
 
-const SearchResultPage = (props) => {
+const SearchResultPage = ({ searchTitle }) => {
   const [result, setResult] = useState([]);
   const [title, setTitle] = useState('');
-  console.log(props);
+  console.log(searchTitle);
   console.log(title);
   console.log(result);
 
   useEffect(() => {
     setTitle(
-      props.title ? props.title : window.location.pathname.replace('/find/', '')
+      searchTitle ? searchTitle : window.location.pathname.replace('/find/', '')
     );
-  }, [props.title]);
+  }, [searchTitle]);
 
   useEffect(() => {
     const temp = helper.searchResult(title);
@@ -36,7 +36,7 @@ const SearchResultPage = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { title: state.searchTerm };
+  return { searchTitle: state.searchTerm };
 };
 
 export default connect(mapStateToProps)(SearchResultPage);

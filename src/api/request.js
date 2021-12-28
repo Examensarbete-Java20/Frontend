@@ -22,3 +22,14 @@ export const searchResult = async (title) => {
     return [];
   }
 };
+
+export const getContent = async (endpoint) => {
+  try {
+    const response = await axios.get(endpoint);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return {};
+  }
+};

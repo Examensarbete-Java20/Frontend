@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 import logo from '../styles/img/pedb.png';
 import '../styles/header.css';
 
-import { search } from '../redux/actions';
+import { contentAction, searchAction } from '../redux/actions';
 import * as helper from './helpers/header';
 import SearchBox from './SearchBox';
 
-const Header = (props) => {
+const Header = ({ contentAction, searchAction }) => {
   const [searchResult, setSearchResult] = useState([]);
   const [content, setContent] = useState('movie');
   const [searchQuery, setSearchQuery] = useState('');
@@ -27,7 +27,7 @@ const Header = (props) => {
       if (event.target.children[1]) {
         event.target.children[0].children[0].blur();
       }
-      props.search(searchQuery);
+      searchAction(searchQuery);
       navigate(`/find/${searchQuery}`);
       setSearchQuery('');
       setSearchResult([]);
@@ -107,6 +107,8 @@ const Header = (props) => {
           showList={showSearchResult}
           content={content}
           setSearchQuery={setSearchQuery}
+          setContentAction={contentAction}
+          contentAction={contentAction}
         />
       </form>
       <div className='header-div'>
@@ -119,4 +121,4 @@ const Header = (props) => {
   );
 };
 
-export default connect(null, { search })(Header);
+export default connect(null, { searchAction, contentAction })(Header);

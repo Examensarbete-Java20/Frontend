@@ -1,5 +1,6 @@
 .searchList {
   background-color: white;
+  position: absolute;
 
   text-align: left;
   border-bottom-left-radius: 5px;

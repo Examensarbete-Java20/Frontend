@@ -2,9 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './Header';
-import IndexPage from './IndexPage';
-import Content from './Content';
-import SearchResultPage from './SearchResultPage';
+import IndexPage from './pages/IndexPage';
+import Content from './pages/Content';
+import SearchResultPage from './pages/SearchResultPage';
 
 const App = () => {
   return (
