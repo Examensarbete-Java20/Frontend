@@ -1,0 +1,25 @@
+.header {
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  background-image: url(./img/header.jpg);
+  height: 52px;
+
+  z-index: 99;
+}
+
+.header-img {
+  border-radius: 5px;
+}
+
+.header-input {
+  width: 36rem;
+}
+
+.header-div {
+  height: 41px;
+  text-align: center;
+  padding-top: 0.4rem;
+}
