@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import * as helper from '../helpers/content';
+import * as helper from '../helpers/contentHelper';
+import '../../styles/content.css';
 
 const Content = ({ contentType, contentId }) => {
   const [imdbId, setImdbId] = useState('');
   const [type, setType] = useState('');
   const [content, setContent] = useState('');
+  const [renderedContent, setRenderedContent] = useState('');
 
   useEffect(() => {
     setType(
@@ -36,18 +38,11 @@ const Content = ({ contentType, contentId }) => {
   }, [imdbId]);
 
   useEffect(() => {
-    //TODO: Fixa så man hämtar content om man uppdaterar sidan En ny use effect för imdbid????
     //TODO: Fixa så den renderar filmen med en bra design
-    console.log(content);
+    setRenderedContent(helper.renderContent(content));
   }, [content]);
 
-  return (
-    <div>
-      <h1>{content.title}</h1>
-      <div>{imdbId}</div>
-      <div>{type}</div>
-    </div>
-  );
+  return <div className='contentContainer'>{renderedContent}</div>;
 };
 
 const mapStateToProps = (state) => {

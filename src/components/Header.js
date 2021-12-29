@@ -6,7 +6,7 @@ import logo from '../styles/img/pedb.png';
 import '../styles/header.css';
 
 import { contentAction, searchAction } from '../redux/actions';
-import * as helper from './helpers/header';
+import * as helper from './helpers/headerHelper';
 import SearchBox from './SearchBox';
 
 const Header = ({ contentAction, searchAction }) => {
