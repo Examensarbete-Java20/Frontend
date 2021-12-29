@@ -7,8 +7,25 @@
   margin-right: 10%;
 }
 
-.test {
+.content {
+  padding-left: 1rem;
   border-radius: 5px;
   background-color: rgb(37, 37, 37);
   color: pink;
+  padding-bottom: 1rem;
+}
+
+.content img {
+  height: 20rem;
+  border-radius: 10px;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 0.5fr 2fr;
+  margin-right: 1rem;
+}
+
+.contentText {
+  margin-left: 1rem;
 }

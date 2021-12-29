@@ -4,37 +4,30 @@ import { connect } from 'react-redux';
 import * as helper from '../helpers/contentHelper';
 import '../../styles/content.css';
 
-const Content = ({ contentType, contentId }) => {
+const Content = ({ contentId }) => {
   const [imdbId, setImdbId] = useState('');
-  const [type, setType] = useState('');
   const [content, setContent] = useState('');
   const [renderedContent, setRenderedContent] = useState('');
 
+  window.onpopstate = () => {
+    setImdbId(window.location.pathname.split('/').pop());
+  };
+
   useEffect(() => {
-    setType(
-      contentType
-        ? contentType
-        : () => {
-            if (window.location.pathname.includes('movie')) return 'movie';
-            return 'series';
-          }
-    );
     setImdbId(
-      contentId
-        ? contentId
-        : window.location.pathname.includes('movie')
-        ? window.location.pathname.replace(`/show/movie/`, '')
-        : window.location.pathname.replace(`/show/series/`, '')
+      contentId ? contentId : window.location.pathname.split('/').pop()
     );
   }, [contentId]);
 
   useEffect(() => {
-    helper
-      .getContent(
-        contentId ? contentId : imdbId,
-        contentType ? contentType : type
-      )
-      .then((data) => setContent(data));
+    let tempType = 'movie';
+    if (!window.location.pathname.includes(tempType)) tempType = 'series';
+
+    if (imdbId) {
+      helper
+        .getContent(imdbId ? imdbId : contentId, tempType)
+        .then((data) => setContent(data));
+    }
   }, [imdbId]);
 
   useEffect(() => {
@@ -47,7 +40,6 @@ const Content = ({ contentType, contentId }) => {
 
 const mapStateToProps = (state) => {
   return {
-    contentType: state.content.type,
     contentId: state.content.imdbid,
   };
 };
