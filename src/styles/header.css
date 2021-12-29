@@ -4,11 +4,13 @@
   display: grid;
   width: 100%;
   grid-template-columns: 0.5fr 2fr 0.5fr;
-
+  background-image: url(./img/header.jpg);
   height: 52px;
+
+  z-index: 99;
 }
 
-.header img {
+.header-img {
   border-radius: 5px;
 }
 
@@ -16,12 +18,8 @@
   width: 36rem;
 }
 
-.header div {
+.header-div {
   height: 41px;
   text-align: center;
-  padding-top: 0.2rem;
-}
-.header button {
-  text-align: center;
-  height: 41px;
+  padding-top: 0.4rem;
 }
