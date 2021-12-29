@@ -24,14 +24,16 @@ const Content = ({ contentType, contentId }) => {
         ? window.location.pathname.replace(`/show/movie/`, '')
         : window.location.pathname.replace(`/show/series/`, '')
     );
+  }, [contentId]);
 
+  useEffect(() => {
     helper
       .getContent(
         contentId ? contentId : imdbId,
         contentType ? contentType : type
       )
       .then((data) => setContent(data));
-  }, [contentId]);
+  }, [imdbId]);
 
   useEffect(() => {
     //TODO: Fixa så man hämtar content om man uppdaterar sidan En ny use effect för imdbid????
