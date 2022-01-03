@@ -8,3 +8,7 @@ export const renderContent = (content) => {
   console.log(content);
   return <div className='test'>HEEEj</div>;
 };
+
+export const getTopTen = (type) => {
+  return request.getContent(`/${type}/topTen`)
+}
