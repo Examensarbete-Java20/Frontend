@@ -17,7 +17,7 @@ const Modal = ({ show, endpoint, onDismiss }) => {
     <div
       onClick={disMissAndPause}
       className={`ui dimmer modals${toggleClass}`}
-      // style={{background: 'black'}}
+      // style={{ background: 'rgba(0, 0, 0, 0.96)' }}
     >
       <div
         onClick={(e) => e.stopPropagation()}

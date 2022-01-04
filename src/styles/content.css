@@ -3,16 +3,13 @@
   border-radius: 5px;
 
   margin-top: 1%;
-  margin-left: 10%;
-  margin-right: 10%;
-  margin-bottom: 10rem;
 }
 
 .content {
   padding-left: 1rem;
   border-radius: 5px;
   background-color: rgb(37, 37, 37);
-  color: pink;
+  color: rgb(255, 192, 203);
   padding-bottom: 1rem;
 }
 
@@ -30,7 +27,7 @@
 
 .contentGrid {
   display: grid;
-  grid-template-columns: 0.5fr 2fr;
+  grid-template-columns: 0.3fr 2fr;
   margin-right: 1rem;
 }
 

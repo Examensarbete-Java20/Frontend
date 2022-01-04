@@ -32,15 +32,13 @@ const Content = ({ contentId }) => {
         .then((data) => setContent(data));
     }
   }, [imdbId]);
-  console.log(content);
-  console.log(content.trailer);
   return (
     <div className='contentContainer'>
       {content && (
         <div className='content'>
           <div className='titleGrid'>
             <h1 className='contentTitle'>{content.title}</h1>
-            {content.trailer.includes('youtube') && (
+            {content.trailer.includes('') && (
               <>
                 <TrailerModal
                   show={showTrailer}
@@ -78,8 +76,12 @@ const Content = ({ contentId }) => {
             <div className='contentText'>
               <h2>Description</h2>
               <DesctriptionReadMore className='' text={content.description} />
-              <div>Length: {content.movie_length} min</div>
-              <div>Release Date: {content.release}</div>
+              <div style={{ marginTop: '1rem' }}>
+                Length: {content.movie_length} min
+              </div>
+              <div style={{ marginTop: '1rem' }}>
+                Release Date: {content.release}
+              </div>
             </div>
           </div>
           {content.exist ? (
