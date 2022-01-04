@@ -4,11 +4,13 @@
 }
 
 .readMoreBtn {
-  color: blueviolet;
+  color: rgb(255, 255, 255);
   cursor: pointer;
 }
 
 .readMore {
-  height: 60px;
-  background-color: rgb(39, 39, 39);
+}
+
+.ratingPedb {
+  cursor: pointer;
 }

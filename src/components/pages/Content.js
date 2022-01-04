@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 
 import * as helper from '../helpers/contentHelper';
 import '../../styles/content.css';
+import Rating from '../Rating';
+import DesctriptionReadMore from '../DesctriptionReadMore';
+import TrailerModal from '../TrailerModal';
 
 const Content = ({ contentId }) => {
   const [imdbId, setImdbId] = useState('');
   const [content, setContent] = useState('');
-  const [renderedContent, setRenderedContent] = useState('');
+  const [showTrailer, setShowTrailer] = useState(false);
 
   window.onpopstate = () => {
     setImdbId(window.location.pathname.split('/').pop());
@@ -29,13 +32,67 @@ const Content = ({ contentId }) => {
         .then((data) => setContent(data));
     }
   }, [imdbId]);
-
-  useEffect(() => {
-    //TODO: Fixa så den renderar filmen med en bra design
-    setRenderedContent(helper.renderContent(content));
-  }, [content]);
-
-  return <div className='contentContainer'>{renderedContent}</div>;
+  console.log(content);
+  console.log(content.trailer);
+  return (
+    <div className='contentContainer'>
+      {content && (
+        <div className='content'>
+          <div className='titleGrid'>
+            <h1 className='contentTitle'>{content.title}</h1>
+            {content.trailer.includes('youtube') && (
+              <>
+                <TrailerModal
+                  show={showTrailer}
+                  endpoint={content.trailer}
+                  onDismiss={() => setShowTrailer(false)}
+                />
+                <div className='trailer' onClick={() => setShowTrailer(true)}>
+                  <img
+                    className='trailerImg'
+                    src={`http://img.youtube.com/vi/${content.trailer
+                      .split('/')
+                      .pop()}/0.jpg`}
+                    alt='Trailer'
+                  />
+                </div>
+              </>
+            )}
+          </div>
+          <div className='contentGrid'>
+            <div>
+              <img
+                className='posterImg'
+                src={content.image_url}
+                alt={content.title}
+              />
+              <Rating title='IMDB' color='yellow' rating={content.rating} />
+              <Rating
+                title='PEDB'
+                color='yellow'
+                rating={content.ownRating}
+                votes={content.totalOfVoters}
+                PEDB
+              />
+            </div>
+            <div className='contentText'>
+              <h2>Description</h2>
+              <DesctriptionReadMore className='' text={content.description} />
+              <div>Length: {content.movie_length} min</div>
+              <div>Release Date: {content.release}</div>
+            </div>
+          </div>
+          {content.exist ? (
+            ''
+          ) : (
+            <div className='contentBtn'>
+              <button className=' ui button '>Save to db</button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => {
