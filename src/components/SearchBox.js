@@ -29,6 +29,7 @@ const SearchBox = ({
     return searchResult.map((result, index) => (
       <div className='linkRow' key={index}>
         <p className='divider' />
+
         <Link
           className='listItem'
           to={`/show/${content}/${result.imdb_id}`}

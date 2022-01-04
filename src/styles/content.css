@@ -3,12 +3,64 @@
   border-radius: 5px;
 
   margin-top: 1%;
-  margin-left: 10%;
-  margin-right: 10%;
 }
 
-.test {
+.content {
+  padding-left: 1rem;
   border-radius: 5px;
   background-color: rgb(37, 37, 37);
-  color: pink;
+  color: rgb(255, 192, 203);
+  padding-bottom: 1rem;
+}
+
+.posterImg {
+  height: 20rem;
+  border-radius: 10px;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+.titleGrid {
+  display: grid;
+  grid-template-columns: 2fr 0.3fr;
+  margin-right: 1rem;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 0.3fr 2fr;
+  margin-right: 1rem;
+}
+
+.contentTitle {
+  margin-top: 0.65rem;
+  font-size: xx-large;
+}
+
+.contentText {
+  margin-left: 1rem;
+}
+
+.contentDescription {
+  color: red;
+  background-color: black;
+}
+
+.contentBtn {
+  text-align: end;
+  margin-right: 0.65rem;
+  margin-top: 0rem;
+}
+
+.trailer {
+  text-align: end;
+  cursor: pointer;
+}
+
+.trailerImg {
+  position: relative;
+  border: 1px solid rgb(255, 255, 255);
+  height: 6rem;
+  border-radius: 10px;
+  margin-bottom: -3rem;
+  margin-top: 0.5rem;
 }
