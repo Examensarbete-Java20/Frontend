@@ -1,13 +1,11 @@
-import React from 'react';
-import TopTen from '../TopTen';
+import React from "react";
+import TopTen from "../TopTen";
 
 const IndexPage = () => {
   return (
     <div>
-      <h1>    Film</h1>
-      <TopTen type="movie"/>
-      <h1>    Serier</h1>
-      <TopTen type="series"/>
+      <TopTen type="movie" title="Top Ten Movies" />
+      <TopTen type="series" title="Top Ten Series" />
     </div>
   );
 };
