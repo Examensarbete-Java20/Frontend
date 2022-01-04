@@ -1,16 +1,32 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import "../styles/topTen.css";
+import contentHelper, { getTopTen } from './helpers/contentHelper';
 
-const TopTen = ({title, plot, image_url}) => {
+const TopTen = (props) => {
+  
+  const [results, setResults] = useState([]);
+
+  const genTopTen = async () => {
+    const data = await getTopTen(props.type);
+    setResults(data);
+  }
+
+  useEffect(() => {
+    genTopTen()
+  }, [])
 
   return (
-    <div className='card'>
-        <h1 className='title'>{title}</h1>
-        <div className='imageWrapper'>
-          <img className='image' src={image_url} alt="" />
-        </div>
-        <p className='plot'>{plot}</p>
+    <div>
+      {results.map(result => (
+          <div key={result.id} className="card">
+            <div className="imageWrapper">
+              <img src={result.image_url} className="image"/>
+              <h3 className="title">{result.title}</h3>
+            </div>
+          </div>
+      ))}
     </div>
-  )};
+  );
+}
 
 export default TopTen;
