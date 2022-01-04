@@ -9,6 +9,10 @@ export const renderContent = (content) => {
   return <div className='test'>HEEEj</div>;
 };
 
-export const getTopTen = (type) => {
-  return request.getContent(`/${type}/topTen`)
+export const getTopTenMovie = () => {
+  return request.getContent(`/movie/topTen`)
+}
+
+export const getTopTenSerie = () => {
+  return request.getContent(`/series/topTen`)
 }

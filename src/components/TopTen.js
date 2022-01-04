@@ -1,15 +1,15 @@
 import React from 'react';
-import style from "../styles/topTen.module.css";
+import "../styles/topTen.css";
 
 const TopTen = ({title, plot, image_url}) => {
 
   return (
-    <div className={style.card}>
-        <h1 className={style.title}>{title}</h1>
-        <div className={style.imageWrapper}>
-          <img className={style.image} src={image_url} alt="" />
+    <div className='card'>
+        <h1 className='title'>{title}</h1>
+        <div className='imageWrapper'>
+          <img className='image' src={image_url} alt="" />
         </div>
-        <p className={style.plot}>{plot}</p>
+        <p className='plot'>{plot}</p>
     </div>
   )};
 

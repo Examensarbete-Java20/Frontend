@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getTopTen } from "./helpers/contentHelper";
+import { getTopTen, getTopTenMovie } from "./helpers/contentHelper";
 import TopTen from "./TopTen";
 
 const TopTenMovie = () => {
@@ -7,7 +7,7 @@ const TopTenMovie = () => {
     const [result, setResult] = useState([]);
 
     const genTopTen = async () => {
-      const data = await getTopTen("movie");
+      const data = await getTopTenMovie();
       setResult(data);
     }
   
