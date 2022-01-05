@@ -39,7 +39,7 @@ const Content = ({ contentId }) => {
         <div className='content'>
           <div className='titleGrid'>
             <h1 className='contentTitle'>{content.title}</h1>
-            {content.trailer.includes('') && (
+            {content.trailer.includes('youtube') && (
               <>
                 <TrailerModal
                   show={showTrailer}
