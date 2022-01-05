@@ -11,6 +11,7 @@ const Content = ({ contentId }) => {
   const [imdbId, setImdbId] = useState('');
   const [content, setContent] = useState('');
   const [showTrailer, setShowTrailer] = useState(false);
+  const [type, setType] = useState('movie');
 
   window.onpopstate = () => {
     setImdbId(window.location.pathname.split('/').pop());
@@ -25,7 +26,7 @@ const Content = ({ contentId }) => {
   useEffect(() => {
     let tempType = 'movie';
     if (!window.location.pathname.includes(tempType)) tempType = 'series';
-
+    setType(tempType);
     if (imdbId) {
       helper
         .getContent(imdbId ? imdbId : contentId, tempType)
@@ -38,7 +39,7 @@ const Content = ({ contentId }) => {
         <div className='content'>
           <div className='titleGrid'>
             <h1 className='contentTitle'>{content.title}</h1>
-            {content.trailer.includes('') && (
+            {content.trailer.includes('youtube') && (
               <>
                 <TrailerModal
                   show={showTrailer}
@@ -70,6 +71,9 @@ const Content = ({ contentId }) => {
                 color='yellow'
                 rating={content.ownRating}
                 votes={content.totalOfVoters}
+                content={content}
+                setContent={setContent}
+                type={type}
                 PEDB
               />
             </div>
