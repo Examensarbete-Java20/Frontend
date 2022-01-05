@@ -4,8 +4,6 @@
   background-color: rgb(37, 37, 37);
   border-radius: 5px;
   margin-top: 1%;
-  margin-left: 10%;
-  margin-right: 10%;
   margin-bottom: 1rem;
 }
 
@@ -45,5 +43,14 @@
   padding-left: 2rem;
   align-content: center;
   margin-top: -0.3rem;
+  color: rgb(255, 192, 203);
+}
+
+.ranking {
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  right: 17.8%;
+  margin-right: 0%;
   color: rgb(255, 192, 203);
 }
