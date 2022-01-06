@@ -11,7 +11,6 @@ const SearchBox = ({
   contentAction,
 }) => {
   const onClickHelper = (imdbId) => {
-    console.log('onclick: ' + imdbId);
     contentAction(imdbId, content);
     setSearchQuery('');
   };

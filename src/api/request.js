@@ -33,3 +33,14 @@ export const getContent = async (endpoint) => {
     return {};
   }
 };
+
+export const updateRating = async (type, content, rating) => {
+  try {
+    const response = await axios.post(`/${type}/update/${rating}`, content);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return {};
+  }
+};
