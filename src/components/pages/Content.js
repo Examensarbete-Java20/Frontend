@@ -6,12 +6,14 @@ import '../../styles/content.css';
 import Rating from '../Rating';
 import DesctriptionReadMore from '../DesctriptionReadMore';
 import TrailerModal from '../TrailerModal';
+import PageNotFound from './PageNotFound';
 
 const Content = ({ contentId }) => {
   const [imdbId, setImdbId] = useState('');
   const [content, setContent] = useState('');
   const [showTrailer, setShowTrailer] = useState(false);
   const [type, setType] = useState('movie');
+  const [isLoading, setIsLoading] = useState(true);
 
   window.onpopstate = () => {
     setImdbId(window.location.pathname.split('/').pop());
@@ -30,6 +32,7 @@ const Content = ({ contentId }) => {
     if (imdbId) {
       helper.getContent(imdbId, tempType).then((data) => setContent(data));
     }
+
     return () => {
       setContent('');
     };
@@ -37,11 +40,11 @@ const Content = ({ contentId }) => {
 
   return (
     <div className='contentContainer'>
-      {content && (
+      {content ? (
         <div className='content'>
           <div className='titleGrid'>
             <h1 className='contentTitle'>{content.title}</h1>
-            {content.trailer.includes('youtube') && (
+            {content.trailer && content.trailer.includes('youtube') && (
               <>
                 <TrailerModal
                   show={showTrailer}
@@ -98,6 +101,8 @@ const Content = ({ contentId }) => {
             </div>
           )}
         </div>
+      ) : (
+        <PageNotFound />
       )}
     </div>
   );

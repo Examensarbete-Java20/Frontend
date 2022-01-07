@@ -7,8 +7,8 @@ const DesctriptionReadMore = ({ text, className }) => {
   };
   return (
     <div className={`readMore ${className}`}>
-      {isReadMore ? text.slice(0, 300) : text}
-      {text.length > 300 ? (
+      {isReadMore && text ? text.slice(0, 300) : text}
+      {text && text.length > 300 ? (
         <span className='readMoreBtn' onClick={toggleReadMore}>
           {isReadMore ? ' -->' : ' <--'}
         </span>

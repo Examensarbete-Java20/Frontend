@@ -30,7 +30,7 @@ export const getContent = async (endpoint) => {
       return response.data;
     }
   } catch (error) {
-    return {};
+    return '';
   }
 };
 
