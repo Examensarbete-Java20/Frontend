@@ -30,11 +30,13 @@ const Content = ({ contentId }) => {
     if (!window.location.pathname.includes(tempType)) tempType = 'series';
     setType(tempType);
     if (imdbId) {
-      helper.getContent(imdbId, tempType).then((data) => setContent(data));
+      helper
+        .getContent(imdbId ? imdbId : contentId, tempType)
+        .then((data) => setContent(data));
     }
-
     return () => {
       setContent('');
+      setImdbId('');
     };
   }, [imdbId]);
 
