@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+
 import '../styles/topTen.css';
 import { getTopTen } from './helpers/contentHelper';
 import Rating from './Rating';
 
-const TopTen = (props) => {
+const TopTen = ({ type, title, contentAction }) => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
-    getTopTen(props.type).then((data) => setResults(data));
-  }, [props.type]);
+    getTopTen(type).then((data) => setResults(data));
+  }, [type]);
 
   return (
     <div className='contentContainer'>
-      <h1 className='topTitle'>{props.title}</h1>
+      <h1 className='topTitle'>{title}</h1>
       {results.map((result) => (
         <div key={result.id} className='card'>
           <div className='imageWrapper'>
             <Link
+              onClick={() => contentAction(result.imdb_id)}
               className='linkGrid'
-              to={`/show/${props.type}/${result.imdb_id}`}
+              to={`/show/${type}/${result.imdb_id}`}
             >
               <img src={result.image_url} className='image' alt='No Image' />
               <h3 className='title'>
