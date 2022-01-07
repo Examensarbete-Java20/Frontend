@@ -1,6 +1,6 @@
 import axios from './axios';
 
-export const search = async (title, type) => {
+export const search = async (type, title) => {
   try {
     const response = await axios.get(`/${type}/title/${title}`);
 
@@ -12,9 +12,9 @@ export const search = async (title, type) => {
   }
 };
 
-export const searchResult = async (title) => {
+export const searchResult = async (type, title) => {
   try {
-    const response = await axios.get(`/all/title/${title}`);
+    const response = await axios.get(`/${type}/all/${title}`);
     if (response.status === 200) {
       return response.data;
     }

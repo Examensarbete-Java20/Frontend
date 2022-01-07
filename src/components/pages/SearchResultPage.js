@@ -17,20 +17,22 @@ const SearchResultPage = ({ searchTitle }) => {
     );
   }, [searchTitle]);
 
-  useEffect(() => {
-    const temp = helper.searchResult(title);
-    if (temp) {
-      temp.then((data) => setResult(data));
-    }
-  }, [title]);
-
   return (
     <div>
-      Resultat från söket: <h1>{title}</h1>
-      <h2>Filmer</h2>
-      <SearchResultList />
-      <h2>Serier</h2>
-      <SearchResultList />
+      <div>
+        <SearchResultList
+          title={`Movie result for: ${title}`}
+          search={title}
+          type='movie'
+          content={result[0]}
+        />
+        <SearchResultList
+          title={`Series result for: ${title}`}
+          search={title}
+          type='series'
+          content={result[1]}
+        />
+      </div>
     </div>
   );
 };

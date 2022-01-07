@@ -50,7 +50,7 @@ const Header = ({ contentAction, searchAction }) => {
     if (!debounceQuery) setSearchResult([]);
     else
       helper
-        .getTitles(debounceQuery, content)
+        .getTitles(content, debounceQuery)
         .then((data) => setSearchResult(data));
   }, [debounceQuery, content]);
 
