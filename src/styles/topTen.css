@@ -12,6 +12,8 @@
 }
 
 .card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   border-radius: 3px;
   border: 1.5px solid;
 
@@ -40,17 +42,17 @@
 }
 
 .title {
-  padding-left: 2rem;
-  align-content: center;
-  margin-top: -0.3rem;
+  margin: 1rem;
   color: rgb(255, 192, 203);
 }
 
 .ranking {
-  justify-content: flex-start;
-  align-items: flex-start;
-  position: absolute;
-  right: 17.8%;
-  margin-right: 0%;
+  margin: 0.5rem;
+  text-align: end;
   color: rgb(255, 192, 203);
+}
+
+.linkGrid {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr;
 }

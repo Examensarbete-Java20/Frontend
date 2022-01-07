@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/topTen.css';
-import contentHelper, { getTopTen } from './helpers/contentHelper';
+import { getTopTen } from './helpers/contentHelper';
 import Rating from './Rating';
 
 const TopTen = (props) => {
@@ -9,31 +9,34 @@ const TopTen = (props) => {
 
   useEffect(() => {
     getTopTen(props.type).then((data) => setResults(data));
-  }, []);
+  }, [props.type]);
 
   return (
     <div className='contentContainer'>
       <h1 className='topTitle'>{props.title}</h1>
       {results.map((result) => (
         <div key={result.id} className='card'>
-          <Link to={`/show/${props.type}/${result.imdb_id}`}>
-            <div className='imageWrapper'>
-              <img src={result.image_url} className='image' />
+          <div className='imageWrapper'>
+            <Link
+              className='linkGrid'
+              to={`/show/${props.type}/${result.imdb_id}`}
+            >
+              <img src={result.image_url} className='image' alt='No Image' />
               <h3 className='title'>
                 {result.title} ({result.release.substring(0, 4)})
               </h3>
-              <p className='ranking'>
-                {/* <Rating title="IMDB" color="yellow" rating={result.rating} /> */}
-                <Rating
-                  title='PEDB'
-                  color='yellow'
-                  rating={result.ownRating}
-                  votes={result.totalOfVoters}
-                  PEDB
-                />
-              </p>
-            </div>
-          </Link>
+            </Link>
+          </div>
+          <div className='ranking'>
+            {/* <Rating title="IMDB" color="yellow" rating={result.rating} /> */}
+            <Rating
+              title='PEDB'
+              color='yellow'
+              rating={result.ownRating}
+              votes={result.totalOfVoters}
+              showVotes
+            />
+          </div>
         </div>
       ))}
     </div>

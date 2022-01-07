@@ -11,6 +11,7 @@ const Rating = ({
   PEDB,
   content,
   setContent,
+  showVotes,
 }) => {
   const onRatingChange = (index) => {
     if (PEDB) {
@@ -24,7 +25,7 @@ const Rating = ({
 
   const renderRating = () => {
     const array = [];
-    const amountOfFullStars = PEDB ? rating : rating / 2;
+    const amountOfFullStars = PEDB || showVotes ? rating : rating / 2;
     for (let i = 0; i < amountOfFullStars; i++) {
       array.push(
         <i
@@ -53,7 +54,7 @@ const Rating = ({
   return (
     <div style={{ marginTop: '4px' }}>
       {title} Rating: {renderRating()}
-      {PEDB ? <div>Votes: {votes}</div> : ''}
+      {PEDB || showVotes ? <div>Votes: {votes}</div> : ''}
     </div>
   );
 };
