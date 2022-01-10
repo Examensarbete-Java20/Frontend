@@ -11,6 +11,7 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
 
   useEffect(() => {
     if (search) {
+      setRendred(<div>LOADING..</div>);
       setCounter(5);
       searchResult2(type, search, 0).then((data) => {
         setRendred(renderResult(data));
@@ -33,8 +34,6 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
       setRendred(array);
     });
   };
-  console.log(counter === rendred.length);
-  console.log(rendred.length);
 
   const renderResult = (content) => {
     return content.map((result) => (

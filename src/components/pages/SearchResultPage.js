@@ -3,13 +3,11 @@ import { connect } from 'react-redux';
 
 import * as helper from '../helpers/resultHelper';
 import SearchResultList from '../SearchResultList';
+import { contentAction } from '../../redux/actions';
 
-const SearchResultPage = ({ searchTitle }) => {
+const SearchResultPage = ({ searchTitle, contentAction }) => {
   const [result, setResult] = useState([]);
   const [title, setTitle] = useState('');
-  console.log(searchTitle);
-  console.log(title);
-  console.log(result);
 
   useEffect(() => {
     setTitle(
@@ -25,12 +23,14 @@ const SearchResultPage = ({ searchTitle }) => {
           search={title}
           type='movie'
           content={result[0]}
+          contentAction={contentAction}
         />
         <SearchResultList
           title={`Series result for: ${title}`}
           search={title}
           type='series'
           content={result[1]}
+          contentAction={contentAction}
         />
       </div>
     </div>
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => {
   return { searchTitle: state.searchTerm };
 };
 
-export default connect(mapStateToProps)(SearchResultPage);
+export default connect(mapStateToProps, { contentAction })(SearchResultPage);
