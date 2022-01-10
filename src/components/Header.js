@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import GoogleLogin from 'react-google-login';
 
 import logo from '../styles/img/pedb.png';
 import '../styles/header.css';
@@ -69,11 +68,6 @@ const Header = ({ contentAction, searchAction }) => {
       setShowSearchResult(false);
     }, 200);
   };
-
-  const responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
-  }
 
   return (
     <div className='header'>
