@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
-import GoogleLogin from 'react-google-login';
 
 import logo from '../styles/img/pedb.png';
 import '../styles/header.css';
@@ -70,11 +69,6 @@ const Header = ({ contentAction, searchAction }) => {
     }, 200);
   };
 
-  const responseGoogle = (response) => {
-    console.log(response);
-    console.log(response.profileObj);
-  }
-
   return (
     <div className='header'>
       <div style={{ paddingTop: '0.3rem' }} className='header-div'>
@@ -120,20 +114,6 @@ const Header = ({ contentAction, searchAction }) => {
       </form>
       <div className='header-div'>
         <GoogleLoginComponent />
-        
-        {/*
-      <GoogleLogin 
-          clientId='566743030946-d4fg1mdki91spoqtv99qbl3ke0i7a3e2.apps.googleusercontent.com'
-          buttonText='Login'
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={'single_host_origin'} />
-        
-        
-          <button className='ui google plus button'>
-          <i className='google icon'></i>
-          Logga in
-        </button>  */}
       </div>
     </div>
   );
