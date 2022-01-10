@@ -1,18 +1,40 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { searchResult } from '../api/request';
+import { searchResult, searchResult2 } from '../api/request';
 import { getTitles } from './helpers/headerHelper';
 import Rating from './Rating';
 
 const SearchResultList = ({ title, search, contentAction, type }) => {
   const [rendred, setRendred] = useState([]);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     if (search) {
-      searchResult(type, search).then((data) => setRendred(renderResult(data)));
+      setCounter(5);
+      searchResult2(type, search, 0).then((data) => {
+        setRendred(renderResult(data));
+      });
     }
   }, [search]);
+
+  const readMoreHandler = () => {
+    setCounter(counter + 5);
+    searchResult2(type, search, counter).then((data) => {
+      const array = [];
+
+      rendred.forEach((element) => {
+        array.push(element);
+      });
+
+      renderResult(data).forEach((element) => {
+        array.push(element);
+      });
+      setRendred(array);
+    });
+  };
+  console.log(counter === rendred.length);
+  console.log(rendred.length);
 
   const renderResult = (content) => {
     return content.map((result) => (
@@ -48,6 +70,14 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
     <div className='contentContainer'>
       <h1 className='topTitle'>{title}</h1>
       {rendred}
+      <button
+        style={{
+          display: counter === rendred.length ? 'inline-block' : 'none',
+        }}
+        onClick={readMoreHandler}
+      >
+        view more
+      </button>
     </div>
   );
 };
