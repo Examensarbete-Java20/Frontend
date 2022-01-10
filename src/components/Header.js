@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import GoogleLogin from 'react-google-login';
 
 import logo from '../styles/img/pedb.png';
 import '../styles/header.css';
@@ -8,6 +9,7 @@ import '../styles/header.css';
 import { contentAction, searchAction } from '../redux/actions';
 import * as helper from './helpers/headerHelper';
 import SearchBox from './SearchBox';
+import GoogleLoginComponent from './GoogleLoginButton';
 
 const Header = ({ contentAction, searchAction }) => {
   const [searchResult, setSearchResult] = useState([]);
@@ -68,6 +70,11 @@ const Header = ({ contentAction, searchAction }) => {
     }, 200);
   };
 
+  const responseGoogle = (response) => {
+    console.log(response);
+    console.log(response.profileObj);
+  }
+
   return (
     <div className='header'>
       <div style={{ paddingTop: '0.3rem' }} className='header-div'>
@@ -112,10 +119,21 @@ const Header = ({ contentAction, searchAction }) => {
         />
       </form>
       <div className='header-div'>
-        <button className='ui google plus button'>
+        <GoogleLoginComponent />
+        
+        {/*
+      <GoogleLogin 
+          clientId='566743030946-d4fg1mdki91spoqtv99qbl3ke0i7a3e2.apps.googleusercontent.com'
+          buttonText='Login'
+          onSuccess={this.responseGoogle}
+          onFailure={this.responseGoogle}
+          cookiePolicy={'single_host_origin'} />
+        
+        
+          <button className='ui google plus button'>
           <i className='google icon'></i>
           Logga in
-        </button>
+        </button>  */}
       </div>
     </div>
   );
