@@ -7,8 +7,6 @@ import '../styles/googleLogin.css';
 import { signIn, signOut } from '../redux/actions/index';
 
 class GoogleLoginComponent extends Component {
-  // reference to state has been removed
-
   componentDidMount() {
     window.gapi.load('auth2', () => {
       window.gapi.auth2
@@ -17,17 +15,13 @@ class GoogleLoginComponent extends Component {
           scope: 'email',
         })
         .then(() => {
-          // create auth variable
           this.auth = window.gapi.auth2.getAuthInstance();
-          // can now use logic of onAuthChange for initial render
           this.onAuthChange(this.auth.isSignedIn.get());
-          // listen for changes to authentication status
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
   }
 
-  // triggered when authentication status changes
   onAuthChange = (isSignedIn) => {
     if (isSignedIn) {
       this.props.signIn();
@@ -36,7 +30,6 @@ class GoogleLoginComponent extends Component {
     }
   };
 
-  // manually trigger GAPI auth change
   onSignInClick = () => {
     this.auth.signIn();
   };
@@ -45,7 +38,6 @@ class GoogleLoginComponent extends Component {
     this.auth.signOut();
   };
 
-  // helper function
   renderAuthButton() {
     if (this.props.isSignedIn === null) {
       return null;
