@@ -20,6 +20,8 @@
 
 .header-div {
   height: 41px;
+  display: flex;
   text-align: center;
+  justify-self: right;
   padding-top: 0.4rem;
 }
