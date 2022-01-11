@@ -3,7 +3,7 @@
   border-radius: 5px;
   display: grid;
   width: 100%;
-  grid-template-columns: 0.5fr 2fr 1fr;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
   background-image: url(./img/header.jpg);
   height: 52px;
 
@@ -20,9 +20,6 @@
 
 .header-div {
   height: 41px;
-  display: flex;
   text-align: center;
-  justify-self: right;
   padding-top: 0.4rem;
-  margin-right: 0.2rem;
 }

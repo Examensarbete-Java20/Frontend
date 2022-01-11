@@ -112,7 +112,7 @@ const Header = ({ contentAction, searchAction }) => {
           contentAction={contentAction}
         />
       </form>
-      <div className='header-div'>
+      <div style={{ paddingTop: '0.3rem' }} className='header-div'>
         <GoogleLoginComponent />
       </div>
     </div>
