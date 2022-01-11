@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import '../styles/googleLogin.css';
 import { signIn, signOut } from '../redux/actions/index';
 
-class GoogleLoginComponent extends Component {
+class GoogleLogin extends Component {
   componentDidMount() {
     window.gapi.load('auth2', () => {
       window.gapi.auth2
@@ -77,6 +76,4 @@ const mapStateToProps = (state) => {
   return { isSignedIn: state.auth.isSignedIn };
 };
 
-export default connect(mapStateToProps, { signIn, signOut })(
-  GoogleLoginComponent
-);
+export default connect(mapStateToProps, { signIn, signOut })(GoogleLogin);

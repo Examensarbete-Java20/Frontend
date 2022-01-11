@@ -8,7 +8,7 @@ import '../styles/header.css';
 import { contentAction, searchAction } from '../redux/actions';
 import * as helper from './helpers/headerHelper';
 import SearchBox from './SearchBox';
-import GoogleLoginComponent from './GoogleLoginButton';
+import GoogleLogin from './GoogleLogin';
 
 const Header = ({ contentAction, searchAction }) => {
   const [searchResult, setSearchResult] = useState([]);
@@ -113,7 +113,7 @@ const Header = ({ contentAction, searchAction }) => {
         />
       </form>
       <div style={{ paddingTop: '0.3rem' }} className='header-div'>
-        <GoogleLoginComponent />
+        <GoogleLogin />
       </div>
     </div>
   );
