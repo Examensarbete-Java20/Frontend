@@ -1,12 +1,17 @@
-.login-div{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
+.login-div {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .login-text-style {
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    letter-spacing: 1px;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  letter-spacing: 1px;
+}
+
+.googleButton {
+  width: 147px;
+  height: 41px;
 }
