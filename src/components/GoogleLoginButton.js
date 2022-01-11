@@ -1,17 +1,20 @@
 import React, { Component } from "react";
 import {GoogleLogin, GoogleLogout} from 'react-google-login'
+import {connect} from 'react-redux';
+
+import {signIn, signOut} from '../redux/actions'
 import '../styles/googleLogin.css';
 
 class GoogleLoginComponent extends Component{
     constructor() {
         super();
-        this.state = {
+         this.state = {
             isLoggedIn: false,
             userInfo: {
                 name: "",
                 emailId: "",
             },
-        };
+        }; 
     }
 
     clientId = process.env.REACT_APP_CLIENT_ID
@@ -37,6 +40,15 @@ class GoogleLoginComponent extends Component{
         this.setState({userInfo, isLoggedIn: false});
     };
 
+    onAuthChange = (isLoggedIn) => {
+        if(isLoggedIn){
+            this.props.signIn()
+        }
+        else{
+            this.props.signOut()
+        }
+    }
+
     render() {
         return(
                 <div className="login-div">
@@ -46,7 +58,7 @@ class GoogleLoginComponent extends Component{
                         <div>
                             
 
-                            <GoogleLogout
+                            <GoogleLogout   
                                 clientId={this.clientId}
                                 buttonText={"Logout"}
                                 onLogoutSuccess={this.logout}
@@ -68,4 +80,4 @@ class GoogleLoginComponent extends Component{
     }
 }
 
-export default GoogleLoginComponent;
+export default connect(null, { signIn, signOut }) (GoogleLoginComponent);

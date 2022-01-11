@@ -7,3 +7,15 @@ export const searchAction = (title) => {
 export const contentAction = (imdbid, content) => {
   return { type: CONTENT_CHANGE, payload: { imdbid, type: content } };
 };
+
+export const signIn = () => {
+  return {
+    type: "SIGN_IN",
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: "SIGN_OUT",
+  };
+};
