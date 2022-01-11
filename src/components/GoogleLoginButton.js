@@ -4,6 +4,8 @@ import { setUser, unsetUser } from "../redux/actions";
 import { connect } from 'react-redux';
 import { useStore } from "react-redux";
 
+import '../styles/googleLogin.css'
+
 
 function GoogleLoginButton() {
 
@@ -29,7 +31,14 @@ function GoogleLoginButton() {
   return (
     <div>
       {!isLoggedIn ? (
-        <GoogleLogin
+        <GoogleLogin render={(renderProps) => (
+          <button
+            onClick={renderProps.onClick}
+            className="login-btn"
+          >
+            This is my custom Google button
+          </button>
+        )}
           clientId={clientId}
           buttonText='Login'
           onSuccess={onSuccessLogin}
