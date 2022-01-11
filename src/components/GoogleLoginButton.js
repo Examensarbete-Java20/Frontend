@@ -1,83 +1,54 @@
-import React, { Component } from "react";
-import {GoogleLogin, GoogleLogout} from 'react-google-login'
-import {connect} from 'react-redux';
+import { useState } from "react";
+import GoogleLogin, { GoogleLogout } from "react-google-login";
+import { setUser, unsetUser } from "../redux/actions";
+import { connect } from 'react-redux';
+import { useStore } from "react-redux";
 
-import {signIn, signOut} from '../redux/actions'
-import '../styles/googleLogin.css';
 
-class GoogleLoginComponent extends Component{
-    constructor() {
-        super();
-         this.state = {
-            isLoggedIn: false,
-            userInfo: {
-                name: "",
-                emailId: "",
-            },
-        }; 
-    }
+function GoogleLoginButton() {
 
-    clientId = process.env.REACT_APP_CLIENT_ID
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const store = useStore();
+  const clientId = process.env.REACT_APP_CLIENT_ID
 
-    responseGoogleSuccess = (response) => {
-        let userInfo = {
-            name: response.profileObj.name,
-            emailId: response.profileObj.email,
-        };
-        this.setState({userInfo, isLoggedIn: true});
-    };
+  const onSuccessLogin = (resp) => {
+    store.dispatch(setUser(resp.profileObj));
+    setIsLoggedIn(true);
+  };
 
-    responseGoogleError = (response) => {
-        console.log(response)
-    };
+  const onFailureLogin = (resp) => {
+    alert({resp})
+    console.log("Response: ", { resp });
+  };
 
-    logout = (response) => {
-        console.log(response)
-        let userInfo = {
-            name: "",
-            emailId: "",
-        };
-        this.setState({userInfo, isLoggedIn: false});
-    };
+  const onSuccessLogout = () => {
+    store.dispatch(unsetUser());
+    setIsLoggedIn(false);
+  };
 
-    onAuthChange = (isLoggedIn) => {
-        if(isLoggedIn){
-            this.props.signIn()
-        }
-        else{
-            this.props.signOut()
-        }
-    }
-
-    render() {
-        return(
-                <div className="login-div">
-                    <div><h5 className="login-text-style">{this.state.userInfo.name}</h5></div>
-                    <div>
-                    {this.state.isLoggedIn ? (
-                        <div>
-                            
-
-                            <GoogleLogout   
-                                clientId={this.clientId}
-                                buttonText={"Logout"}
-                                onLogoutSuccess={this.logout}
-                            />
-                        </div>
-                    ) : (
-                            <GoogleLogin
-                                clientId={this.clientId}
-                                buttonText="Login"
-                                onSuccess={this.responseGoogleSuccess}
-                                onFailure={this.responseGoogleError}
-                                isSignedIn={true}
-                                cookiePolicy={'single_host_origin'}
-                            />
-                        )}
-                    </div>
-                </div>
-        );
-    }
+  return (
+    <div>
+      {!isLoggedIn ? (
+        <GoogleLogin
+          clientId={clientId}
+          buttonText='Login'
+          onSuccess={onSuccessLogin}
+          onFailure={onFailureLogin}
+          cookiePolicy={"single_host_origin"}
+        />
+      ) : (
+        <GoogleLogout
+          clientId={clientId}
+          buttonText='Logout'
+          onLogoutSuccess={onSuccessLogout}
+        />
+      )}
+    </div>
+  );
 }
 
-export default connect(null, { signIn, signOut }) (GoogleLoginComponent);
+const mapStateToProps = (state) => {
+    return { user: state.user };
+  };
+
+export default connect(mapStateToProps, { setUser, unsetUser }) (GoogleLoginButton);
