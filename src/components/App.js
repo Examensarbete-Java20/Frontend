@@ -5,7 +5,6 @@ import Header from './Header';
 import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
-import TopTen from './TopTen';
 
 const App = () => {
   return (

@@ -12,7 +12,6 @@ export const contentAction = (imdbid, content) => {
 export const setUser = (payload) => async (dispatch) => {
   let user = { googleId: payload.googleId, email: payload.email };
   await logIn(payload.googleId).then((data) => {
-    console.log(data);
     if (data) {
       user = data;
     }

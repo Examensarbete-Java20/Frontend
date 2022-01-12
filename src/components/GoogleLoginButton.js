@@ -9,12 +9,10 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
 
   const onSuccessLogin = (resp) => {
-    console.log(resp.profileObj);
     setUser(resp.profileObj);
   };
 
   const onFailureLogin = (resp) => {
-    alert({ resp });
     console.log('Response: ', { resp });
   };
 
@@ -28,13 +26,8 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
         <GoogleLogin
           render={(renderProps) => (
             <button onClick={renderProps.onClick} className='btnGoogle'>
-              <i className='google plus icon'>
-                <i
-                  className='fa fa-google-plus'
-                  style={{ marginLeft: '5px' }}
-                />{' '}
-              </i>
-              <span>&nbsp;&nbsp;Sign In with Google</span>
+              <i className='google icon' />
+              <span style={{ marginLeft: '5px' }}>Sign In with Google</span>
             </button>
           )}
           clientId={clientId}
@@ -47,13 +40,8 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
         <GoogleLogout
           render={(renderProps) => (
             <button onClick={renderProps.onClick} className='btnGoogle'>
-              <i className='google plus icon'>
-                <i
-                  className='fa fa-google-plus'
-                  style={{ marginLeft: '5px' }}
-                />{' '}
-              </i>
-              <span>&nbsp;&nbsp;Sign out</span>
+              <i className='google icon' />
+              <span style={{ marginLeft: '5px' }}>Sign out</span>
             </button>
           )}
           clientId={clientId}
