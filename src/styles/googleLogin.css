@@ -1,17 +1,25 @@
 .login-div{
-    display: flex;
-    width: 100%;
-    justify-content: space-around;
-    align-items: center;
+    text-align: right;
 }
 
-.login-text-style {
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    letter-spacing: 1px;
-}
+.btnGoogle { 
+    margin:0.5px 15px 5px 5px;
+    width: 165px;
+    height:35px;
+    border-radius: 4px;
+    background: #db3236;
+    color:white;
+    border:0px transparent;
+    text-align: center;
+  }
 
-.login-btn {
-    background-color: black;
-    color: white;
-}
+  .btnGoogle:hover {
+    background: #db3236;
+    opacity: 0.75;
+  }
+
+  @media only screen and (max-width : 399px) {
+    .btnGoogle{
+      width: 100%
+    }
+  }

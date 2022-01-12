@@ -1,8 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import GoogleLogin, { GoogleLogout } from "react-google-login";
 import { setUser, unsetUser } from "../redux/actions";
-import { connect } from 'react-redux';
-import { useStore } from "react-redux";
+import { connect, useStore } from 'react-redux';
 
 import '../styles/googleLogin.css'
 
@@ -15,6 +14,7 @@ function GoogleLoginButton() {
 
   const onSuccessLogin = (resp) => {
     store.dispatch(setUser(resp.profileObj));
+    console.log(resp.profileObj)
     setIsLoggedIn(true);
   };
 
@@ -29,14 +29,18 @@ function GoogleLoginButton() {
   };
 
   return (
-    <div>
+    <div className="login-div">
       {!isLoggedIn ? (
-        <GoogleLogin render={(renderProps) => (
+        <GoogleLogin 
+        render={(renderProps) => (
           <button
             onClick={renderProps.onClick}
-            className="login-btn"
+            className="btnGoogle"
           >
-            This is my custom Google button
+            <i className="google plus icon">
+            <i className="fa fa-google-plus" style={{ marginLeft: 
+            '5px' }}/> </i>
+            <span>&nbsp;&nbsp;Sign In with Google</span> 
           </button>
         )}
           clientId={clientId}
@@ -47,6 +51,17 @@ function GoogleLoginButton() {
         />
       ) : (
         <GoogleLogout
+        render={(renderProps) => (
+          <button
+            onClick={renderProps.onClick}
+            className="btnGoogle"
+          >
+            <i className="google plus icon">
+            <i className="fa fa-google-plus" style={{ marginLeft: 
+            '5px' }}/> </i>
+            <span>&nbsp;&nbsp;Sign out</span> 
+          </button>
+        )}
           clientId={clientId}
           buttonText='Logout'
           onLogoutSuccess={onSuccessLogout}
