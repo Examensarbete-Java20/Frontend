@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 
 import { updateRating } from '../api/request';
+import GeneralModal from './modals/GeneralModal';
+import GoogleLoginButton from './GoogleLoginButton';
 
 const Rating = ({
   title,
@@ -12,16 +15,26 @@ const Rating = ({
   content,
   setContent,
   showVotes,
+  isLoggedIn,
 }) => {
+  const [showModal, setShowModal] = useState(false);
   const onRatingChange = (index) => {
-    if (PEDB) {
+    if (PEDB && isLoggedIn) {
       const newContent = updateRating(type, content, index);
       if (newContent)
         newContent.then((data) => {
           if (data) setContent(data);
         });
+    } else if (PEDB && !isLoggedIn) {
+      setShowModal(true);
     }
   };
+
+  useEffect(() => {
+    if (showModal) {
+      setShowModal(false);
+    }
+  }, [isLoggedIn]);
 
   const renderRating = () => {
     const array = [];
@@ -53,10 +66,18 @@ const Rating = ({
 
   return (
     <div style={{ marginTop: '4px' }}>
+      <GeneralModal show={showModal} onDismiss={() => setShowModal(false)}>
+        <h1>You need to log in to rate this {type}</h1>
+        <GoogleLoginButton />
+      </GeneralModal>
       {title} Rating: {renderRating()}
       {PEDB || showVotes ? <div>Votes: {votes}</div> : ''}
     </div>
   );
 };
 
-export default Rating;
+const mapStateToProps = (state) => {
+  return { isLoggedIn: state.user.isLoggedIn };
+};
+
+export default connect(mapStateToProps)(Rating);
