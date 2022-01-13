@@ -44,3 +44,14 @@ export const updateRating = async (type, content, rating) => {
     return {};
   }
 };
+
+export const logIn = async (googleId) => {
+  try {
+    const response = await axios.get(`/user/${googleId}`);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return {};
+  }
+};

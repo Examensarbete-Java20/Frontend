@@ -8,6 +8,7 @@ import '../styles/header.css';
 import { contentAction, searchAction } from '../redux/actions';
 import * as helper from './helpers/headerHelper';
 import SearchBox from './SearchBox';
+import GoogleLoginButton from './GoogleLoginButton';
 
 const Header = ({ contentAction, searchAction }) => {
   const [searchResult, setSearchResult] = useState([]);
@@ -112,10 +113,7 @@ const Header = ({ contentAction, searchAction }) => {
         />
       </form>
       <div className='header-div'>
-        <button className='ui google plus button'>
-          <i className='google icon'></i>
-          Logga in
-        </button>
+        <GoogleLoginButton />
       </div>
     </div>
   );

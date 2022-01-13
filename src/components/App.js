@@ -5,7 +5,10 @@ import Header from './Header';
 import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
+<<<<<<< HEAD
 import GoToTopButton from './GoToTopButton';
+=======
+>>>>>>> b618f2187d437f9130cf25a120d93a12938c5934
 
 const App = () => {
   const refScrollUp = useRef();
