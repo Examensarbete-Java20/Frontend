@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom';
 const Modal = ({ show, endpoint, onDismiss }) => {
   const toggleClass = show ? ' visible active' : '';
   const player = document.querySelector('#player');
-  const playerMessageOne =
-    '{"event":"command","func":"' + 'pauseVideo' + '","args":""}';
-  const playerMessageTwo = '*';
+
   const disMissAndPause = () => {
     onDismiss();
-    player.contentWindow.postMessage(playerMessageOne, playerMessageTwo);
+    player.contentWindow.postMessage(
+      '{"event":"command","func":"' + 'pauseVideo' + '","args":""}',
+      '*'
+    );
   };
 
   return ReactDOM.createPortal(
