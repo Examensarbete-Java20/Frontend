@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { searchResult } from '../api/request';
 import ContentList from './ContentList';
-import Rating from './Rating';
 
 const SearchResultList = ({ title, search, contentAction, type }) => {
   const [content, setContent] = useState([]);
@@ -17,7 +15,7 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
         setContent(data);
       });
     }
-  }, [search]);
+  }, [search, type]);
 
   const readMoreHandler = () => {
     setCounter(counter + 5);
@@ -53,7 +51,7 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
     <div className='contentContainer'>
       <h1 className='topTitle'>{title}</h1>
       {renderResult()}
-      {content.length == counter && (
+      {content.length === counter && (
         <div className='viewMore'>
           <i
             className='arrow down icon viewMoreButton'

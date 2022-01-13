@@ -31,10 +31,10 @@ const Rating = ({
   };
 
   useEffect(() => {
-    if (showModal) {
+    if (showModal && isLoggedIn) {
       setShowModal(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, showModal]);
 
   const renderRating = () => {
     const array = [];
