@@ -5,7 +5,7 @@ import * as helper from '../helpers/contentHelper';
 import '../../styles/content.css';
 import Rating from '../Rating';
 import DesctriptionReadMore from '../DesctriptionReadMore';
-import TrailerModal from '../TrailerModal';
+import TrailerModal from '../modals/TrailerModal';
 import PageNotFound from './PageNotFound';
 
 const Content = ({ contentId }) => {

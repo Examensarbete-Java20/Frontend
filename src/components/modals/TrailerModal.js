@@ -60,7 +60,7 @@ const Modal = ({ show, endpoint, onDismiss }) => {
         />
       </div>
     </div>,
-    document.querySelector('#modal')
+    document.querySelector('#trailerModal')
   );
 };
 

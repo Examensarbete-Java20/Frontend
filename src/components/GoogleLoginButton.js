@@ -21,7 +21,7 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
   };
 
   return (
-    <div className='login-div'>
+    <>
       {!isLoggedIn ? (
         <GoogleLogin
           render={(renderProps) => (
@@ -49,7 +49,7 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
           onLogoutSuccess={onSuccessLogout}
         />
       )}
-    </div>
+    </>
   );
 };
 
