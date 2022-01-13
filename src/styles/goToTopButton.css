@@ -1,0 +1,26 @@
+.goTopHidden {
+  display: none;
+}
+
+.goTop {
+  display: block;
+  position: fixed;
+  background: rgba(97, 96, 96, 0.8);
+  box-shadow: 1.5px 1.5px 3px rgb(36, 34, 34);
+  width: 33px;
+  height: 33px;
+  border-radius: 25px;
+  bottom: 5%;
+  left: 90%;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.goTop:hover {
+  width: 34px;
+  height: 34px;
+  opacity: 0.7;
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 0 5px 15px rgba(255, 251, 0, 0.4);
+  cursor: pointer;
+}
