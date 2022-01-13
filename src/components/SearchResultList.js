@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { searchResult, searchResult2 } from '../api/request';
-import { getTitles } from './helpers/headerHelper';
+import { searchResult } from '../api/request';
 import Rating from './Rating';
 
 const SearchResultList = ({ title, search, contentAction, type }) => {
@@ -13,7 +12,7 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
     if (search) {
       setRendred(<div>LOADING..</div>);
       setCounter(5);
-      searchResult2(type, search, 0).then((data) => {
+      searchResult(type, search, 0).then((data) => {
         setRendred(renderResult(data));
       });
     }
@@ -21,7 +20,7 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
 
   const readMoreHandler = () => {
     setCounter(counter + 5);
-    searchResult2(type, search, counter).then((data) => {
+    searchResult(type, search, counter).then((data) => {
       const array = [];
 
       rendred.forEach((element) => {
@@ -69,14 +68,12 @@ const SearchResultList = ({ title, search, contentAction, type }) => {
     <div className='contentContainer'>
       <h1 className='topTitle'>{title}</h1>
       {rendred}
-      <button
-        style={{
-          display: counter === rendred.length ? 'inline-block' : 'none',
-        }}
-        onClick={readMoreHandler}
-      >
-        view more
-      </button>
+      <div className='viewMore'>
+        <i
+          className='arrow down icon viewMoreButton'
+          onClick={readMoreHandler}
+        ></i>
+      </div>
     </div>
   );
 };

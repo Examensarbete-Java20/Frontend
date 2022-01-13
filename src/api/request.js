@@ -12,18 +12,7 @@ export const search = async (type, title) => {
   }
 };
 
-export const searchResult = async (type, title) => {
-  try {
-    const response = await axios.get(`/${type}/all/${title}`);
-    if (response.status === 200) {
-      return response.data;
-    }
-  } catch (error) {
-    return [];
-  }
-};
-
-export const searchResult2 = async (type, title, counter) => {
+export const searchResult = async (type, title, counter) => {
   try {
     const response = await axios.get(`/${type}/all/${title}/${counter}`);
     if (response.status === 200) {
