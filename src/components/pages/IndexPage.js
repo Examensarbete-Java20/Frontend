@@ -1,15 +1,24 @@
 import React from 'react';
-import TopTen from '../TopTen';
+import { connect } from 'react-redux';
 
-const IndexPage = () => {
+import TopTen from '../TopTen';
+import { contentAction } from '../../redux/actions';
+
+const IndexPage = ({ contentAction }) => {
   return (
     <div>
-      <h1>Film</h1>
-      <TopTen />
-      <h1>Serier</h1>
-      <TopTen />
+      <TopTen
+        type='movie'
+        title='Top Ten Movies'
+        contentAction={contentAction}
+      />
+      <TopTen
+        type='series'
+        title='Top Ten Series'
+        contentAction={contentAction}
+      />
     </div>
   );
 };
 
-export default IndexPage;
+export default connect(null, { contentAction })(IndexPage);
