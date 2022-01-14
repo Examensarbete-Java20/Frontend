@@ -13,7 +13,7 @@ const Content = ({ contentId }) => {
   const [content, setContent] = useState('');
   const [showTrailer, setShowTrailer] = useState(false);
   const [type, setType] = useState('movie');
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
 
   window.onpopstate = () => {
     setImdbId(window.location.pathname.split('/').pop());
@@ -23,9 +23,7 @@ const Content = ({ contentId }) => {
     setImdbId(
       contentId ? contentId : window.location.pathname.split('/').pop()
     );
-  }, [contentId]);
 
-  useEffect(() => {
     let tempType = 'movie';
     if (!window.location.pathname.includes(tempType)) tempType = 'series';
     setType(tempType);
@@ -38,7 +36,7 @@ const Content = ({ contentId }) => {
       setContent('');
       setImdbId('');
     };
-  }, [imdbId]);
+  }, [imdbId, contentId]);
 
   return (
     <div className='contentContainer'>
