@@ -7,6 +7,7 @@ const SearchBox = ({
   searchResult,
   showList,
   content,
+  searchQuery,
   setSearchQuery,
   contentAction,
 }) => {
@@ -14,13 +15,14 @@ const SearchBox = ({
     contentAction(imdbId, content);
     setSearchQuery('');
   };
-
   const renderSearchOptions = () => {
     if (!searchResult.length) {
       return (
         <>
           <p className='divider' />
-          <p className='listItem'>Inget hittades</p>
+          <p className='listItem'>
+            Found nothing{searchQuery ? ` on ${searchQuery}` : ''}
+          </p>
         </>
       );
     }

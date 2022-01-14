@@ -107,8 +107,8 @@ const Header = ({ contentAction, searchAction }) => {
           searchResult={searchResult}
           showList={showSearchResult}
           content={content}
+          searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          setContentAction={contentAction}
           contentAction={contentAction}
         />
       </form>
