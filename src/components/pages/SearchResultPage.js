@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import * as helper from '../helpers/resultHelper';
 import SearchResultList from '../SearchResultList';
 import { contentAction } from '../../redux/actions';
 
