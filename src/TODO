@@ -3,4 +3,4 @@ TODO: Skapa funktionalitet för spara knappen.
 TODO: fixa nå bättre för index ifall backend är offline.
 TODO: Bryt ut topten/sökresultat till egen componenet.(Renderingen av film/serie är samma) (Något stämmer inte)
 TODO: Ändra alt i img taggen på contentList
-TODO: Fixa så fall man backar till en söksida från en ny söksida att den ändrar till rätt sökresultat.
+TODO: Fixa så fall man backar till en söksida från en ny söksida att den ändrar till rätt sökresultat
