@@ -92,8 +92,8 @@ const Header = ({ contentAction, searchAction }) => {
             className='ui compact selection dropdown'
             onChange={(e) => setContent(e.target.value)}
           >
-            <option value='movie'>Filmer</option>
-            <option value='series'>Serier</option>
+            <option value='movie'>Movies</option>
+            <option value='series'>Series</option>
           </select>
           <div
             className='ui icon button'
@@ -107,8 +107,8 @@ const Header = ({ contentAction, searchAction }) => {
           searchResult={searchResult}
           showList={showSearchResult}
           content={content}
+          searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          setContentAction={contentAction}
           contentAction={contentAction}
         />
       </form>

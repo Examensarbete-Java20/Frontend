@@ -54,7 +54,7 @@ const Content = ({ contentId }) => {
                 <div className='trailer' onClick={() => setShowTrailer(true)}>
                   <img
                     className='trailerImg'
-                    src={`http://img.youtube.com/vi/${content.trailer
+                    src={`https://img.youtube.com/vi/${content.trailer
                       .split('/')
                       .pop()}/0.jpg`}
                     alt='Trailer'
