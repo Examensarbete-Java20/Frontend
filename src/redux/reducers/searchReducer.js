@@ -2,7 +2,7 @@ import { SEARCH } from '../actions/actionTypes';
 
 const INTIAL_STATE = null;
 
-export default (state = INTIAL_STATE, action) => {
+const searchReducer = (state = INTIAL_STATE, action) => {
   switch (action.type) {
     case SEARCH:
       return action.payload;
@@ -11,3 +11,5 @@ export default (state = INTIAL_STATE, action) => {
       return state;
   }
 };
+
+export default searchReducer;

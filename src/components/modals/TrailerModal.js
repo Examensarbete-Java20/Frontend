@@ -8,7 +8,7 @@ const Modal = ({ show, endpoint, onDismiss }) => {
   const disMissAndPause = () => {
     onDismiss();
     player.contentWindow.postMessage(
-      '{"event":"command","func":"' + 'pauseVideo' + '","args":""}',
+      `{"event":"command","func":"pauseVideo","args":""}`,
       '*'
     );
   };

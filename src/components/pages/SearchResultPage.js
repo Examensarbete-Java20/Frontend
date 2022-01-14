@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import * as helper from '../helpers/resultHelper';
 import SearchResultList from '../SearchResultList';
 import { contentAction } from '../../redux/actions';
 
 const SearchResultPage = ({ searchTitle, contentAction }) => {
-  const [result, setResult] = useState([]);
   const [title, setTitle] = useState('');
 
   useEffect(() => {
@@ -22,14 +20,12 @@ const SearchResultPage = ({ searchTitle, contentAction }) => {
           title={`Movie result for: ${title}`}
           search={title}
           type='movie'
-          content={result[0]}
           contentAction={contentAction}
         />
         <SearchResultList
           title={`Series result for: ${title}`}
           search={title}
           type='series'
-          content={result[1]}
           contentAction={contentAction}
         />
       </div>

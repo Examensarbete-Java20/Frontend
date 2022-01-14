@@ -12,7 +12,7 @@ const ContentList = ({ content, type, contentAction }) => {
           className='linkGrid'
           to={`/show/${type}/${result.imdb_id}`}
         >
-          <img src={result.image_url} className='image' alt='No Image' />
+          <img src={result.image_url} className='image' alt='No Img' />
           <h3 className='title'>
             {result.title} ({result.release.substring(0, 4)})
           </h3>
