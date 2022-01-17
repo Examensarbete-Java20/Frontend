@@ -16,11 +16,12 @@ const Rating = ({
   setContent,
   showVotes,
   isLoggedIn,
+  userId,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const onRatingChange = (index) => {
     if (PEDB && isLoggedIn) {
-      const newContent = updateRating(type, content, index);
+      const newContent = updateRating(type, content, userId, index);
       if (newContent)
         newContent.then((data) => {
           if (data) setContent(data);
@@ -31,10 +32,10 @@ const Rating = ({
   };
 
   useEffect(() => {
-    if (showModal) {
+    if (showModal && isLoggedIn) {
       setShowModal(false);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, showModal]);
 
   const renderRating = () => {
     const array = [];
@@ -77,7 +78,10 @@ const Rating = ({
 };
 
 const mapStateToProps = (state) => {
-  return { isLoggedIn: state.user.isLoggedIn };
+  return {
+    isLoggedIn: state.user.isLoggedIn,
+    userId: state.user.user.googleId,
+  };
 };
 
 export default connect(mapStateToProps)(Rating);
