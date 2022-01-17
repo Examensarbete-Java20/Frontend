@@ -9,9 +9,12 @@ export const contentAction = (imdbid, content) => {
   return { type: CONTENT_CHANGE, payload: { imdbid, type: content } };
 };
 
-export const setUser = (payload) => async (dispatch) => {
-  let user = { googleId: payload.googleId, email: payload.email };
-  await logIn(payload.googleId).then((data) => {
+export const setUser = (userInfo) => async (dispatch) => {
+  let user = {
+    googleId: userInfo.profileObj.googleId,
+    email: userInfo.profileObj.email,
+  };
+  await logIn(userInfo.googleId).then((data) => {
     if (data) {
       user = data;
     }
