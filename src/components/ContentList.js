@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Rating from './Rating';
 
 const ContentList = ({ content, type, contentAction }) => {
+  console.log(content);
   return content.map((result) => (
     <div key={result.imdb_id} className='card'>
       <div className='imageWrapper'>
@@ -14,7 +15,8 @@ const ContentList = ({ content, type, contentAction }) => {
         >
           <img src={result.image_url} className='image' alt='No Img' />
           <h3 className='title'>
-            {result.title} ({result.release.substring(0, 4)})
+            {result.title}
+            {result.release && ` (${result.release.substring(0, 4)})`}
           </h3>
         </Link>
       </div>
