@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
+import notFoundImg from '../../styles/img/noimagefound.jpg';
+
 import * as helper from '../helpers/contentHelper';
 import '../../styles/content.css';
 import Rating from '../Rating';
@@ -69,6 +71,10 @@ const Content = ({ contentId }) => {
                 className='posterImg'
                 src={content.image_url}
                 alt={content.title}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = notFoundImg;
+                }}
               />
               <Rating title='IMDB' color='yellow' rating={content.rating} />
               <Rating
