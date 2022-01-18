@@ -12,39 +12,38 @@
 
 @media only screen and (max-width: 1200px) {
   .searchList {
-    width: 67%;
+    width: 48%;
     margin-left: 16.5%;
   }
 }
 
 @media only screen and (max-width: 991px) {
   .searchList {
-    width: 68.7%;
+    width: 47%;
     margin-left: 15%;
   }
 }
 
 @media only screen and (max-width: 751px) {
   .searchList {
-    width: 69%;
+    width: 47.3%;
     margin-left: 15%;
   }
 }
 
 @media only screen and (max-width: 699px) {
   .searchList {
-    width: 75%;
+    width: 50%;
     margin-left: 15%;
   }
 }
 
 @media only screen and (max-width: 678px) {
   .searchList {
-    width: 60%;
-    margin-left: 22.7%;
+    width: 55%;
+    margin-left: 10%;
   }
 }
-
 
 .listItem {
   margin-top: 4px;
