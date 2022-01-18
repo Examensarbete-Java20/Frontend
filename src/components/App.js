@@ -6,6 +6,7 @@ import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
 import GoToTopButton from './GoToTopButton';
+import ProfilePage from './pages/ProfilePage';
 
 const App = () => {
   const refScrollUp = useRef();
@@ -39,6 +40,7 @@ const App = () => {
           <Route path='/' exac element={<IndexPage />} />
           <Route path='/show/:content/:id' exac element={<Content />} />
           <Route path='/find/:title' exac element={<SearchResultPage />} />
+          <Route path='/user' exac element={<ProfilePage />} />
         </Routes>
       </Router>
     </div>

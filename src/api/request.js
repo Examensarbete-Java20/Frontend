@@ -55,3 +55,14 @@ export const logIn = async (googleId) => {
     return {};
   }
 };
+
+export const getUserWatchlist = async (googleId) => {
+  try {
+    const response = await axios.get(`/watchlist/${googleId}`);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return [];
+  }
+};

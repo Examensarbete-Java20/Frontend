@@ -1,0 +1,37 @@
+.profileContainer {
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  margin-top: 1%;
+}
+
+.userInformation {
+  padding-left: 1rem;
+  border-radius: 5px;
+  background-color: rgb(37, 37, 37);
+  color: rgb(255, 192, 203);
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+}
+
+.profileImage {
+  margin: 1rem 2rem 2rem 2rem;
+  height: 15rem;
+  min-height: 20px;
+  min-width: 10px;
+  border-radius: 10%;
+  border: 1px solid rgb(255, 255, 255);
+  justify-content: left;
+  display: left;
+}
+
+.userName {
+  padding-top: 1rem;
+  padding-left: 2rem;
+  font-size: xx-large;
+}
+
+.userInput {
+  display: flex;
+  justify-content: center;
+  justify-self: center;
+}

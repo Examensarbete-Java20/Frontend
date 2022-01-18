@@ -2,10 +2,15 @@ import React from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { connect } from 'react-redux';
 
-import { setUser, unsetUser } from '../redux/actions';
+import { setUser, unsetUser, emptyWatchList } from '../redux/actions';
 import '../styles/googleLogin.css';
 
-const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
+const GoogleLoginButton = ({
+  isLoggedIn,
+  setUser,
+  unsetUser,
+  emptyWatchList,
+}) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
 
   const onSuccessLogin = (resp) => {
@@ -18,6 +23,7 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
 
   const onSuccessLogout = () => {
     unsetUser();
+    emptyWatchList();
   };
 
   return (
@@ -57,6 +63,6 @@ const mapStateToProps = (state) => {
   return { user: state.user, isLoggedIn: state.user.isLoggedIn };
 };
 
-export default connect(mapStateToProps, { setUser, unsetUser })(
+export default connect(mapStateToProps, { setUser, unsetUser, emptyWatchList })(
   GoogleLoginButton
 );
