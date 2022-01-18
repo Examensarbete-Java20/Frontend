@@ -16,10 +16,19 @@ export const contentAction = (imdbid, content) => {
   return { type: CONTENT_CHANGE, payload: { imdbid, type: content } };
 };
 
+<<<<<<< HEAD
 export const setUser = (payload) => async (dispatch) => {
   let user = { googleId: payload.googleId, email: payload.email };
   await logIn(payload.googleId).then((data) => {
     console.log(data);
+=======
+export const setUser = (userInfo) => async (dispatch) => {
+  let user = {
+    googleId: userInfo.profileObj.googleId,
+    email: userInfo.profileObj.email,
+  };
+  await logIn(userInfo.googleId).then((data) => {
+>>>>>>> 8afca9d2d55a28494ee06ac173ff729de78782d9
     if (data) {
       user = data;
       console.log(user);

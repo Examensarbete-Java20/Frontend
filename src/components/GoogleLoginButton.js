@@ -14,7 +14,7 @@ const GoogleLoginButton = ({
   const clientId = process.env.REACT_APP_CLIENT_ID;
 
   const onSuccessLogin = (resp) => {
-    setUser(resp.profileObj);
+    setUser(resp);
   };
 
   const onFailureLogin = (resp) => {
@@ -41,6 +41,7 @@ const GoogleLoginButton = ({
           onSuccess={onSuccessLogin}
           onFailure={onFailureLogin}
           cookiePolicy={'single_host_origin'}
+          isSignedIn={true}
         />
       ) : (
         <GoogleLogout
@@ -60,7 +61,7 @@ const GoogleLoginButton = ({
 };
 
 const mapStateToProps = (state) => {
-  return { user: state.user, isLoggedIn: state.user.isLoggedIn };
+  return { isLoggedIn: state.user.isLoggedIn };
 };
 
 export default connect(mapStateToProps, { setUser, unsetUser, emptyWatchList })(

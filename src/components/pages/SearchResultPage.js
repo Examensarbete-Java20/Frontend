@@ -7,6 +7,10 @@ import { contentAction } from '../../redux/actions';
 const SearchResultPage = ({ searchTitle, contentAction }) => {
   const [title, setTitle] = useState('');
 
+  window.onpopstate = () => {
+    setTitle(window.location.pathname.split('/').pop());
+  };
+
   useEffect(() => {
     setTitle(
       searchTitle ? searchTitle : window.location.pathname.replace('/find/', '')
