@@ -3,8 +3,6 @@ import { SET_USER, UNSET_USER } from '../actions/actionTypes';
 const INITIAL_STATE = {
   user: {
     email: null,
-    familyName: null,
-    givenName: null,
     googleId: null,
     imageUrl: null,
     name: null,

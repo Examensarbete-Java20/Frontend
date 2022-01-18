@@ -5,16 +5,16 @@
 }
 
 .userInformation {
-  padding-left: 1rem;
+  padding-left: 0rem;
   border-radius: 5px;
   background-color: rgb(37, 37, 37);
   color: rgb(255, 192, 203);
   display: grid;
-  grid-template-columns: 0.5fr 1.5fr 0.5fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .profileImage {
-  margin: 1rem 2rem 2rem 2rem;
+  margin: 0rem 2rem 2rem 0rem;
   height: 15rem;
   min-height: 20px;
   min-width: 10px;
@@ -24,14 +24,28 @@
   display: left;
 }
 
-.userName {
+.userUtilities {
   padding-top: 1rem;
   padding-left: 2rem;
   font-size: xx-large;
 }
 
+.userName {
+}
+
 .userInput {
-  display: flex;
-  justify-content: center;
-  justify-self: center;
+  size: 20rem;
+  font-size: 1.5rem;
+}
+
+.userInput label {
+  margin-top: 0.2rem;
+}
+
+.testing {
+  margin-top: 8rem;
+}
+
+.submitButton {
+  height: 1.98rem;
 }

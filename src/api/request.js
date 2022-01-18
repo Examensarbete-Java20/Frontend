@@ -59,6 +59,17 @@ export const logIn = async (googleId) => {
   }
 };
 
+export const createUserReqeust = async (user) => {
+  try {
+    const response = await axios.post(`/user`, user);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return {};
+  }
+};
+
 export const getUserWatchlist = async (googleId) => {
   try {
     const response = await axios.get(`/watchlist/${googleId}`);
