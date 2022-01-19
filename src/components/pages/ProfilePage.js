@@ -1,4 +1,3 @@
-import { set } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
@@ -23,15 +22,7 @@ const ProfilePage = ({
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
     console.log(isLoggedIn);
-  }, [isLoggedIn]);
-
-  useEffect(() => {
-    console.log(watchLists);
-  }, [watchLists]);
-
-  useEffect(() => {
-    console.log(wList);
-  }, [wList]);
+  }, [isLoggedIn, getWatchlist, user]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();

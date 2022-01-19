@@ -15,10 +15,7 @@ const INITIAL_STATE = {
 const watchListReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CREATE_WATCHLIST:
-      const watchLists = state.watchLists;
-      if (action.payload) watchLists.push(action.payload);
-
-      return { ...state, watchLists };
+      return { ...state, watchLists: [...state.watchLists, action.payload] };
     case GET_WATCHLISTS:
       return { ...state, watchLists: action.payload };
     case EMPTY_WATCHLISTS:
