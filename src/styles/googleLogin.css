@@ -15,8 +15,10 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 399px) {
+@media only screen and (max-width: 678px) {
   .btnGoogle {
-    width: 100%;
+    width: 40px;
+    margin-left: 40%;
+    text-align: right;
   }
 }

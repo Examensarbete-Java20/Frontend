@@ -1,20 +1,47 @@
 .searchList {
   background-color: white;
-  position: absolute;
-
+  position: relative;
   text-align: left;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  width: 25.23rem;
-
+  width: 66.9%;
   padding-top: 2px;
-  margin-top: -2px;
-  margin-left: 8.86rem;
+  margin-top: -3px;
+  margin-left: 8.89rem;
 }
 
-@media screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   .searchList {
-    margin-left: 4.2rem;
+    width: 48%;
+    margin-left: 16.5%;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .searchList {
+    width: 47%;
+    margin-left: 15%;
+  }
+}
+
+@media only screen and (max-width: 751px) {
+  .searchList {
+    width: 47.3%;
+    margin-left: 15%;
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .searchList {
+    width: 50%;
+    margin-left: 15%;
+  }
+}
+
+@media only screen and (max-width: 678px) {
+  .searchList {
+    width: 55%;
+    margin-left: 10%;
   }
 }
 

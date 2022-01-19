@@ -31,6 +31,7 @@ const App = () => {
 
   return (
     <div className='ui container'>
+      <div className="image-opacity"></div>
       <Router>
         <div ref={refScrollUp}></div>
         <GoToTopButton showGoTop={showGoTop} onClick={handleScrollUp} />
