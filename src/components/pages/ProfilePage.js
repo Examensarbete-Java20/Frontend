@@ -85,9 +85,9 @@ const ProfilePage = ({
         </div>
         <div>
           {isLoggedIn && !user.username && (
-            <div className='testing'>
-              <h2>Enter a username to create an account</h2>
-              <form className='userInput' onSubmit={onFormSubmit}>
+            <div className='userInput'>
+              <h2 className='inputHeader'>Create an account</h2>
+              <form onSubmit={onFormSubmit}>
                 <input
                   type='text'
                   placeholder='Enter your username'
