@@ -1,4 +1,5 @@
 import {
+  CREATE_WATCHLIST,
   EMPTY_WATCHLISTS,
   GET_WATCHLISTS,
   ADD_TO_WATCHLIST,
@@ -13,10 +14,15 @@ const INITIAL_STATE = {
 
 const watchListReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case CREATE_WATCHLIST:
+      const watchLists = state.watchLists;
+      if (action.payload) watchLists.push(action.payload);
+
+      return { ...state, watchLists };
     case GET_WATCHLISTS:
       return { ...state, watchLists: action.payload };
     case EMPTY_WATCHLISTS:
-      return (state = INITIAL_STATE);
+      return INITIAL_STATE;
     case ADD_TO_WATCHLIST:
       return state;
     case REMOVE_FROM_WATCHLIST:

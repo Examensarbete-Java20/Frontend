@@ -1,7 +1,12 @@
+import { set } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { getWatchlist, createUser } from '../../redux/actions/index';
+import {
+  getWatchlist,
+  createUser,
+  createWatchList,
+} from '../../redux/actions/index';
 import '../../styles/profile.css';
 
 const ProfilePage = ({
@@ -10,8 +15,10 @@ const ProfilePage = ({
   watchLists,
   getWatchlist,
   createUser,
+  createWatchList,
 }) => {
   const [username, setUserName] = useState('');
+  const [wList, setWList] = useState('');
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
@@ -22,6 +29,10 @@ const ProfilePage = ({
     console.log(watchLists);
   }, [watchLists]);
 
+  useEffect(() => {
+    console.log(wList);
+  }, [wList]);
+
   const onFormSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...user, username };
@@ -29,12 +40,32 @@ const ProfilePage = ({
     createUser(newUser);
   };
 
+  const onFormSubmitWatchList = (e) => {
+    e.preventDefault();
+    const newWatchList = { title: wList, users: [], user };
+    console.log(newWatchList);
+    createWatchList(newWatchList);
+    setWList('');
+  };
+
   const movieList = () => {
     if (isLoggedIn) {
       return watchLists.map((watchList) => {
-        return watchList.movies.map((movie) => {
+        return watchList.content.map((movie) => {
           return <h1 key={movie.title}>{movie.title}</h1>;
         });
+      });
+    }
+  };
+
+  const watchListsLists = () => {
+    if (isLoggedIn) {
+      return watchLists.map((watchList) => {
+        return (
+          <div key={watchList.title}>
+            <h2>{watchList.title}</h2>
+          </div>
+        );
       });
     }
   };
@@ -57,7 +88,6 @@ const ProfilePage = ({
             <div className='testing'>
               <h2>Enter a username to create an account</h2>
               <form className='userInput' onSubmit={onFormSubmit}>
-                <label>Username: </label>
                 <input
                   type='text'
                   placeholder='Enter your username'
@@ -73,8 +103,29 @@ const ProfilePage = ({
               </form>
             </div>
           )}
-
-          <div>{isLoggedIn && watchLists && movieList()}</div>
+          {isLoggedIn && user.username && (
+            <div className='userInput'>
+              <h2 className='inputHeader'>Create a watchlist</h2>
+              <form onSubmit={onFormSubmitWatchList}>
+                <input
+                  type='text'
+                  placeholder='Name your watchlist'
+                  value={wList}
+                  onChange={(e) => setWList(e.target.value)}
+                ></input>
+                <button
+                  className='ui icon button small submitButton'
+                  onClick={onFormSubmitWatchList}
+                >
+                  ok
+                </button>
+              </form>
+            </div>
+          )}
+        </div>
+        <div className='listOfWatchLists'>
+          <h1>Watchlists</h1>
+          <h2>{isLoggedIn && watchLists && watchListsLists()}</h2>
         </div>
       </div>
     </div>
@@ -91,6 +142,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getWatchlist, createUser })(
-  ProfilePage
-);
+export default connect(mapStateToProps, {
+  getWatchlist,
+  createUser,
+  createWatchList,
+})(ProfilePage);

@@ -77,7 +77,7 @@ export const createWatchListReqeust = async (watchList) => {
       return response.data;
     }
   } catch (error) {
-    return [];
+    return {};
   }
 };
 

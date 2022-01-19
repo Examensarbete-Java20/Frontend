@@ -3,6 +3,7 @@ import {
   CONTENT_CHANGE,
   SET_USER,
   UNSET_USER,
+  CREATE_WATCHLIST,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
   ADD_TO_WATCHLIST,
@@ -14,6 +15,7 @@ import {
   createUserReqeust,
   addContentToWatchList,
   removeFromWatchList,
+  createWatchListReqeust,
 } from '../../api/request';
 
 export const searchAction = (title) => {
@@ -57,6 +59,19 @@ export const unsetUser = () => {
   return {
     type: UNSET_USER,
   };
+};
+
+export const createWatchList = (watchList) => async (dispatch) => {
+  let newWatchList = {};
+  await createWatchListReqeust(watchList).then((data) => {
+    if (data) {
+      newWatchList = data;
+    }
+  });
+  dispatch({
+    type: CREATE_WATCHLIST,
+    payload: newWatchList,
+  });
 };
 
 export const getWatchlist = (user) => async (dispatch) => {

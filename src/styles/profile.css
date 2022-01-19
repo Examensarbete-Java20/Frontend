@@ -10,7 +10,7 @@
   background-color: rgb(37, 37, 37);
   color: rgb(255, 192, 203);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
 }
 
 .profileImage {
@@ -36,16 +36,20 @@
 .userInput {
   size: 20rem;
   font-size: 1.5rem;
-}
-
-.userInput label {
-  margin-top: 0.2rem;
-}
-
-.testing {
   margin-top: 8rem;
+  margin-left: -8rem;
+}
+
+.inputHeader {
+  margin-left: 2rem;
 }
 
 .submitButton {
   height: 1.98rem;
+}
+
+.listOfWatchLists {
+  margin-top: 1rem;
+  align-content: center;
+  justify-self: center;
 }
