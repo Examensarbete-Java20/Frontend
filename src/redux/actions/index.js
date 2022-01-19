@@ -5,8 +5,16 @@ import {
   UNSET_USER,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
+  ADD_TO_WATCHLIST,
+  REMOVE_FROM_WATCHLIST,
 } from './actionTypes';
-import { getUserWatchlist, logIn, createUserReqeust } from '../../api/request';
+import {
+  getUserWatchlist,
+  logIn,
+  createUserReqeust,
+  addContentToWatchList,
+  removeFromWatchList,
+} from '../../api/request';
 
 export const searchAction = (title) => {
   return { type: SEARCH, payload: title };
@@ -69,3 +77,17 @@ export const emptyWatchList = () => {
     type: EMPTY_WATCHLISTS,
   };
 };
+
+/* export const addToWatchList = (content) => async (dispatch) => {
+  await addContentToWatchList(content);
+  return {
+    type: ADD_TO_WATCHLIST,
+  };
+};
+
+export const removeFromWatchList = (content) => async (dispatch) => {
+  await removeFromWatchList(content);
+  return {
+    type: REMOVE_FROM_WATCHLIST,
+  };
+}; */

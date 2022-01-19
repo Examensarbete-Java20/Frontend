@@ -1,4 +1,9 @@
-import { EMPTY_WATCHLISTS, GET_WATCHLISTS } from '../actions/actionTypes';
+import {
+  EMPTY_WATCHLISTS,
+  GET_WATCHLISTS,
+  ADD_TO_WATCHLIST,
+  REMOVE_FROM_WATCHLIST,
+} from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   currentList: [],
@@ -12,6 +17,10 @@ const watchListReducer = (state = INITIAL_STATE, action) => {
       return { ...state, watchLists: action.payload };
     case EMPTY_WATCHLISTS:
       return (state = INITIAL_STATE);
+    case ADD_TO_WATCHLIST:
+      return state;
+    case REMOVE_FROM_WATCHLIST:
+      return state;
     default:
       return state;
   }
