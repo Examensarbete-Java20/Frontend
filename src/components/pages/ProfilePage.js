@@ -114,7 +114,7 @@ const ProfilePage = ({
             </div>
           )}
         </div>
-        {isLoggedIn && (
+        {isLoggedIn && user.username && (
           <div className='listOfWatchLists'>
             <h1>Watchlists</h1>
             <h2>{watchLists && watchListsLists()}</h2>
