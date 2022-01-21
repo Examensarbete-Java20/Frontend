@@ -2,11 +2,13 @@ import React, { useRef, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './Header';
+
 import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
 import GoToTopButton from './GoToTopButton';
 import ProfilePage from './pages/ProfilePage';
+import { GoogleLogout } from 'react-google-login';
 
 const App = () => {
   const refScrollUp = useRef();
