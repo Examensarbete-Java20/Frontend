@@ -38,6 +38,9 @@ const ContentList = ({ content, type, contentAction }) => {
           showVotes
         />
       </div>
+      <div>
+        <button>Add to watchlist</button>
+      </div>
     </div>
   ));
 };

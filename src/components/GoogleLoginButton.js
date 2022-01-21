@@ -4,10 +4,15 @@ import { connect } from 'react-redux';
 import useWindowSize from '../hooks/useWindowSize';
 
 
-import { setUser, unsetUser } from '../redux/actions';
+import { setUser, unsetUser, emptyWatchList } from '../redux/actions';
 import '../styles/googleLogin.css';
 
-const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
+const GoogleLoginButton = ({
+  isLoggedIn,
+  setUser,
+  unsetUser,
+  emptyWatchList,
+}) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const {width} = useWindowSize();
 
@@ -21,6 +26,7 @@ const GoogleLoginButton = ({ isLoggedIn, setUser, unsetUser }) => {
 
   const onSuccessLogout = () => {
     unsetUser();
+    emptyWatchList();
   };
 
   return (
@@ -61,6 +67,6 @@ const mapStateToProps = (state) => {
   return { isLoggedIn: state.user.isLoggedIn };
 };
 
-export default connect(mapStateToProps, { setUser, unsetUser })(
+export default connect(mapStateToProps, { setUser, unsetUser, emptyWatchList })(
   GoogleLoginButton
 );

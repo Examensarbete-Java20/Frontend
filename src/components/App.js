@@ -6,6 +6,8 @@ import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
 import GoToTopButton from './GoToTopButton';
+import ProfilePage from './pages/ProfilePage';
+import WatchlistPage from './pages/WatchlistPage';
 
 const App = () => {
   const refScrollUp = useRef();
@@ -31,7 +33,7 @@ const App = () => {
 
   return (
     <div className='ui container'>
-      <div className="image-opacity"></div>
+      <div className='image-opacity'></div>
       <Router>
         <div ref={refScrollUp}></div>
         <GoToTopButton showGoTop={showGoTop} onClick={handleScrollUp} />
@@ -40,6 +42,8 @@ const App = () => {
           <Route path='/' exac element={<IndexPage />} />
           <Route path='/show/:content/:id' exac element={<Content />} />
           <Route path='/find/:title' exac element={<SearchResultPage />} />
+          <Route path='/user' exac element={<ProfilePage />} />
+          <Route path='/watchlist/:id' exac element={<WatchlistPage />} />
         </Routes>
       </Router>
     </div>
