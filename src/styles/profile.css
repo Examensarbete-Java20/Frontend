@@ -30,14 +30,14 @@
   font-size: xx-large;
 }
 
-.userName {
-}
-
 .userInput {
   size: 20rem;
   font-size: 1.5rem;
-  margin-top: 8rem;
+  margin-top: 4rem;
   margin-left: -8rem;
+}
+.forms {
+  margin-bottom: 2rem;
 }
 
 .inputHeader {

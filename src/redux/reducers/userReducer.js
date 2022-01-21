@@ -1,4 +1,4 @@
-import { SET_USER, UNSET_USER } from '../actions/actionTypes';
+import { SET_USER, UNSET_USER, SET_NEW_USERNAME } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
   user: {
@@ -16,6 +16,8 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return { ...state, user: action.payload, isLoggedIn: true };
     case UNSET_USER:
       return (state = INITIAL_STATE);
+    case SET_NEW_USERNAME:
+      return { ...state, user: action.payload };
     default:
       return state;
   }
