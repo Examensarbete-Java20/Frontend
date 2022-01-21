@@ -3,10 +3,12 @@ import {
   CONTENT_CHANGE,
   SET_USER,
   UNSET_USER,
+  SET_NEW_USERNAME,
   CREATE_WATCHLIST,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
   ADD_TO_WATCHLIST,
+  GET_CURRENTLIST,
   REMOVE_FROM_WATCHLIST,
 } from './actionTypes';
 import {
@@ -14,7 +16,8 @@ import {
   logIn,
   createUserReqeust,
   addContentToWatchList,
-  removeFromWatchList,
+  getUserSingleWatchlist,
+  removeContentFromWatchList,
   createWatchListReqeust,
 } from '../../api/request';
 
@@ -55,6 +58,19 @@ export const createUser = (user) => async (dispatch) => {
   });
 };
 
+/* export const changeUsername = (user) => async (dispatch) => {
+  let newUsername = {};
+  await changeUsernameRequest(user).then((data) => {
+    if (data) {
+      newUsername = data;
+    }
+  });
+  dispatch({
+    type: SET_NEW_USERNAME,
+    payload: newUser,
+  });
+}; */
+
 export const unsetUser = () => {
   return {
     type: UNSET_USER,
@@ -87,6 +103,40 @@ export const getWatchlist = (user) => async (dispatch) => {
   });
 };
 
+export const setCurrentWatchList = (currentWatchList) => {
+  return {
+    type: GET_CURRENTLIST,
+    payload: currentWatchList,
+  };
+};
+
+export const getSingleWatchlist = (id) => async (dispatch) => {
+  let wathcList = {};
+  await getUserSingleWatchlist(id).then((data) => {
+    if (data) {
+      wathcList = data;
+    }
+  });
+  dispatch({
+    type: GET_CURRENTLIST,
+    payload: wathcList,
+  });
+};
+
+export const removeFromWatchList = (listId, content) => async (dispatch) => {
+  let updateWatchList = {};
+  console.log(content);
+  await removeContentFromWatchList(listId, content).then((data) => {
+    if (data) {
+      updateWatchList = data;
+    }
+  });
+  dispatch({
+    type: REMOVE_FROM_WATCHLIST,
+    payload: updateWatchList,
+  });
+};
+
 export const emptyWatchList = () => {
   return {
     type: EMPTY_WATCHLISTS,
@@ -99,10 +149,4 @@ export const emptyWatchList = () => {
     type: ADD_TO_WATCHLIST,
   };
 };
-
-export const removeFromWatchList = (content) => async (dispatch) => {
-  await removeFromWatchList(content);
-  return {
-    type: REMOVE_FROM_WATCHLIST,
-  };
-}; */
+ */

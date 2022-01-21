@@ -70,6 +70,17 @@ export const createUserReqeust = async (user) => {
   }
 };
 
+/* export const changeUsernameRequest = async (user) => {
+  try {
+    const response = await axios.post(`/user`, user);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return {};
+  }
+}; */
+
 export const createWatchListReqeust = async (watchList) => {
   try {
     const response = await axios.post(`/watchlist`, watchList);
@@ -92,6 +103,17 @@ export const getUserWatchlist = async (googleId) => {
   }
 };
 
+export const getUserSingleWatchlist = async (id) => {
+  try {
+    const response = await axios.get(`/watchlist/single/${id}`);
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return [];
+  }
+};
+
 export const addContentToWatchList = async (type, listId) => {
   try {
     const response = await axios.post(`/${type}/${listId}`);
@@ -103,9 +125,9 @@ export const addContentToWatchList = async (type, listId) => {
   }
 };
 
-export const removeFromWatchList = async (type, listId) => {
+export const removeContentFromWatchList = async (listId, content) => {
   try {
-    const response = await axios.delete(`/${type}/${listId}`);
+    const response = await axios.post(`/watchlist/content/${listId}`, content);
     if (response.status === 200) {
       return response.data;
     }

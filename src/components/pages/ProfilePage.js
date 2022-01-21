@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import {
   getWatchlist,
   createUser,
   createWatchList,
+  setCurrentWatchList,
 } from '../../redux/actions/index';
 import '../../styles/profile.css';
 
@@ -14,14 +16,16 @@ const ProfilePage = ({
   watchLists,
   getWatchlist,
   createUser,
+  setCurrentWatchList,
   createWatchList,
 }) => {
   const [username, setUserName] = useState('');
   const [wList, setWList] = useState('');
+  const [changeUsername, setChangeUsername] = useState('');
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
-    console.log(isLoggedIn);
+    console.log(watchLists);
   }, [isLoggedIn, getWatchlist, user]);
 
   const onFormSubmit = (e) => {
@@ -31,12 +35,20 @@ const ProfilePage = ({
     createUser(newUser);
   };
 
+  const whenClickWatchList = (index) => {
+    setCurrentWatchList(watchLists[index]);
+  };
+
   const onFormSubmitWatchList = (e) => {
     e.preventDefault();
     const newWatchList = { title: wList, users: [], user };
     console.log(newWatchList);
     createWatchList(newWatchList);
     setWList('');
+  };
+
+  const onFormChangeUsername = (e) => {
+    e.preventDefault();
   };
 
   const movieList = () => {
@@ -51,10 +63,16 @@ const ProfilePage = ({
 
   const watchListsLists = () => {
     if (isLoggedIn) {
-      return watchLists.map((watchList) => {
+      return watchLists.map((watchList, index) => {
         return (
           <div key={watchList.title}>
-            <h2>{watchList.title}</h2>
+            <Link
+              className='linkGrid'
+              to={`/watchlist/${watchList.id}`}
+              onClick={() => whenClickWatchList(index)}
+            >
+              <h2>{watchList.title}</h2>
+            </Link>
           </div>
         );
       });
@@ -96,21 +114,40 @@ const ProfilePage = ({
           )}
           {isLoggedIn && user.username && (
             <div className='userInput'>
-              <h2 className='inputHeader'>Create a watchlist</h2>
-              <form onSubmit={onFormSubmitWatchList}>
-                <input
-                  type='text'
-                  placeholder='Name your watchlist'
-                  value={wList}
-                  onChange={(e) => setWList(e.target.value)}
-                ></input>
-                <button
-                  className='ui icon button small submitButton'
-                  onClick={onFormSubmitWatchList}
-                >
-                  ok
-                </button>
-              </form>
+              <div>
+                <h2 className='inputHeader'>Create a watchlist</h2>
+                <form onSubmit={onFormSubmitWatchList}>
+                  <input
+                    type='text'
+                    placeholder='Name your watchlist'
+                    value={wList}
+                    onChange={(e) => setWList(e.target.value)}
+                  ></input>
+                  <button
+                    className='ui icon button small submitButton'
+                    onClick={onFormSubmitWatchList}
+                  >
+                    ok
+                  </button>
+                </form>
+              </div>
+              <div>
+                <h2 className='inputHeader'>Change username</h2>
+                <form onSubmit={onFormSubmitWatchList}>
+                  <input
+                    type='text'
+                    placeholder='Change username'
+                    value={wList}
+                    onChange={(e) => setUserName(e.target.value)}
+                  ></input>
+                  <button
+                    className='ui icon button small submitButton'
+                    onClick={onFormSubmitWatchList}
+                  >
+                    ok
+                  </button>
+                </form>
+              </div>
             </div>
           )}
         </div>
@@ -139,4 +176,5 @@ export default connect(mapStateToProps, {
   getWatchlist,
   createUser,
   createWatchList,
+  setCurrentWatchList,
 })(ProfilePage);
