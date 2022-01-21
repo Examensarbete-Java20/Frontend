@@ -59,7 +59,7 @@ const GoogleLoginButton = ({
       ) : (
         <IconContext.Provider value={{color: 'rgb(255, 192, 203)'}}>
             <Link to='#' className='menu-bars'>
-                <FaIcons.FaBars onClick={showSidebar} />
+                <FaIcons.FaBars style={{ marginTop: '5px' }} onClick={showSidebar} />
             </Link>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items' onClick={showSidebar}>
