@@ -12,8 +12,8 @@
     border-right: 1px solid rgb(0, 0, 0);
     border-bottom: 1px solid rgb(0, 0, 0);
     background-image: url(./img/menu-background.png);
-    width: 190px;
-    height: 35vh;
+    width: 175px;
+    height: 22vh;
     display: flex;
     justify-content:flex;
     position: absolute;
