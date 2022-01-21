@@ -19,6 +19,7 @@ const TopTen = ({ type, title, contentAction }) => {
           content={results}
           type={type}
           contentAction={contentAction}
+          topTen
         />
       )}
     </div>

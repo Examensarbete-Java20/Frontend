@@ -5,7 +5,7 @@ import Rating from './Rating';
 import '../styles/slider.css';
 import notFoundImg from '../styles/img/noimagefound.jpg';
 
-const ImageSlider = ({ content, type, contentAction, topten }) => {
+const ImageSlider = ({ content, type, contentAction, topTen, watchList }) => {
   const [current, setCurrent] = useState(0);
   const [length, setLength] = useState(content.length);
 
@@ -46,7 +46,9 @@ const ImageSlider = ({ content, type, contentAction, topten }) => {
             >
               {index === current || checkIndexAndCurrent(index) ? (
                 <div className={`test${index === 9 ? '3' : ''}`}>
-                  {index !== 9 ? (
+                  {!topTen ? (
+                    ''
+                  ) : index !== 9 ? (
                     <span className='sliderNumber one'>{index + 1}</span>
                   ) : (
                     <div className='sliderNumber two'>
