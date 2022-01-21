@@ -17,6 +17,7 @@ const Rating = ({
   showVotes,
   isLoggedIn,
   userId,
+  noText,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const onRatingChange = (index) => {
@@ -71,8 +72,8 @@ const Rating = ({
         <h1>You need to log in to rate this {type}</h1>
         <GoogleLoginButton />
       </GeneralModal>
-      {title} Rating: {renderRating()}
-      {PEDB || showVotes ? <div>Votes: {votes}</div> : ''}
+      {title} {noText ? '' : 'Rating:'} {renderRating()}
+      {votes ? <div>Votes: {votes}</div> : ''}
     </div>
   );
 };

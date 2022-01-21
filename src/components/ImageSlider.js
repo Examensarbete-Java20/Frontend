@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+import Rating from './Rating';
 import '../styles/slider.css';
 import notFoundImg from '../styles/img/noimagefound.jpg';
 
@@ -59,15 +60,29 @@ const ImageSlider = ({ content, type, contentAction, topten }) => {
                       onClick={() => contentAction(content.imdb_id)}
                       to={`/show/${type}/${content.imdb_id}`}
                     >
-                      <img
-                        src={content.image_url}
-                        className='sliderImage'
-                        alt='No Img'
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = notFoundImg;
-                        }}
-                      />
+                      <div className='slideImg'>
+                        <img
+                          src={content.image_url}
+                          className='sliderImage'
+                          alt='No Img'
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = notFoundImg;
+                          }}
+                        />
+                        <div
+                          className={`slideImg rating${
+                            index === current ? ' focus' : ''
+                          }`}
+                        >
+                          <Rating
+                            PEDB
+                            rating={content.ownRating}
+                            votes={content.totalOfVoters}
+                            noText
+                          />
+                        </div>
+                      </div>
                       <h3 className='sliderTitle'>
                         {content.title.length > 26
                           ? `${content.title.slice(0, 26)}...`

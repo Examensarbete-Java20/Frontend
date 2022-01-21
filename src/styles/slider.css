@@ -70,6 +70,7 @@
 
 .sliderColumn.sides img {
   filter: grayscale(100%);
+  opacity: 0.7;
 }
 
 .sliderNumber {
@@ -112,4 +113,23 @@
 .test3 {
   display: grid;
   grid-template-columns: 0.5fr 0.75fr;
+}
+
+.slideImg.rating {
+  margin-left: 3.4rem;
+  margin-top: -3.5rem;
+  text-align: center;
+  color: yellow;
+  position: absolute;
+  opacity: 0;
+  text-shadow: 0 0 4px #000;
+}
+
+.slideImg:hover .slideImg.rating.focus {
+  margin-left: 3.3rem;
+  margin-top: -2.5rem;
+}
+
+.slideImg:hover .slideImg.rating {
+  opacity: 1;
 }
