@@ -57,10 +57,9 @@ const GoogleLoginButton = ({
           
         </GoogleLogin>
       ) : (
-        <IconContext.Provider value={{color: 'black'}}>
-            
+        <IconContext.Provider value={{color: 'rgb(255, 192, 203)'}}>
             <Link to='#' className='menu-bars'>
-                <FaIcons.FaBars onClick={showSidebar}/>
+                <FaIcons.FaBars onClick={showSidebar} />
             </Link>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items' onClick={showSidebar}>
@@ -78,8 +77,8 @@ const GoogleLoginButton = ({
                 <GoogleLogout
         render={(renderProps) => (
           <button onClick={renderProps.onClick} className='btnGoogleLogout googleText'>
-            <AiIcons.AiOutlineGoogle/>
-            <span style={{ marginLeft: '2px' }}> Logout</span>
+            <AiIcons.AiOutlineGoogle />
+            <span style={{ marginLeft: '7px' }}> Logout</span>
           </button>
         )}
         clientId={clientId}
