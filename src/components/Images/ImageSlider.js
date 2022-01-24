@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-import Rating from './Rating';
-import { contentAction } from '../redux/actions';
-import '../styles/slider.css';
-import notFoundImg from '../styles/img/noimagefound.jpg';
 import { connect } from 'react-redux';
-import { first } from 'lodash';
+
+import { contentAction } from '../../redux/actions';
+import '../../styles/slider.css';
+import empty from '../../styles/img/empty.gif';
+import Poster from './Poster';
 
 const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
   const [current, setCurrent] = useState(0);
@@ -15,9 +14,11 @@ const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
   const prevSlide = () => {
     setCurrent(current === 0 ? length - 1 : current - 1);
   };
+
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
   };
+
   useEffect(() => {
     setLength(content.length);
   }, [content.length]);
@@ -58,6 +59,7 @@ const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
       (index === current - 4 && current === length - 1)
     );
   };
+
   const isLast = (index) => {
     return (
       (index === 4 && current === 0) ||
@@ -66,10 +68,8 @@ const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
       (index === current + 1 && current === length - 2)
     );
   };
-  //TODO: lägg till topten för att rendera siffor lös de bara bruw
-  //TODO: Fixa type check i backend för content
 
-  return (
+  return content && content.length ? (
     <div className='slider'>
       <i className='angle left icon sliderArrow left' onClick={prevSlide} />
       <div className='slider grid'>
@@ -112,27 +112,12 @@ const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
                       }`}
                     >
                       <div className={`slideImg`}>
-                        <img
-                          src={content.image_url}
-                          className={`sliderImage`}
-                          alt='No Img'
-                          onError={(e) => {
-                            e.target.onerror = null;
-                            e.target.src = notFoundImg;
-                          }}
+                        <Poster
+                          content={content}
+                          focus={index === current}
+                          showRating
+                          borderRadius={topTen}
                         />
-                        <div
-                          className={`slideImg rating${
-                            index === current ? ' focus' : ''
-                          }`}
-                        >
-                          <Rating
-                            PEDB
-                            rating={content.ownRating}
-                            votes={content.totalOfVoters}
-                            noText
-                          />
-                        </div>
                       </div>
                       <h3 className={`sliderTitle`}>
                         {content.title.length > 26
@@ -152,6 +137,11 @@ const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
         })}
       </div>
       <i className='angle right icon sliderArrow right' onClick={nextSlide} />
+    </div>
+  ) : (
+    <div className='emptyList'>
+      <h1>This list is empty</h1>
+      <img src={empty} alt='' />
     </div>
   );
 };

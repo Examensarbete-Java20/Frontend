@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import notFoundImg from '../styles/img/noimagefound.jpg';
-import Rating from './Rating';
+import Rating from './Images/Rating';
 
 const ContentList = ({ content, type, contentAction }) => {
   return content.map((result) => (

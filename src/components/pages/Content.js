@@ -5,7 +5,7 @@ import notFoundImg from '../../styles/img/noimagefound.jpg';
 
 import * as helper from '../helpers/contentHelper';
 import '../../styles/content.css';
-import Rating from '../Rating';
+import Rating from '../Images/Rating';
 import DesctriptionReadMore from '../DesctriptionReadMore';
 import TrailerModal from '../modals/TrailerModal';
 import PageNotFound from './PageNotFound';

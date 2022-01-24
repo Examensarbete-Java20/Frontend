@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import '../styles/topTen.css';
+import '../../styles/topTen.css';
 import ImageSlider from './ImageSlider';
-import { getTopTen } from './helpers/contentHelper';
+import { getTopTen } from '../helpers/contentHelper';
 
 const TopTen = ({ type, title }) => {
   const [results, setResults] = useState([]);

@@ -34,6 +34,10 @@
   width: 13.7rem;
 }
 
+.sliderImage.borderRadius {
+  border-radius: 10px;
+}
+
 .sliderTitle {
   color: pink;
   width: 13.7rem;
@@ -160,4 +164,9 @@
 
 .slideImg:hover .slideImg.rating {
   opacity: 1;
+}
+
+.emptyList {
+  text-align: center;
+  margin-bottom: 2rem;
 }

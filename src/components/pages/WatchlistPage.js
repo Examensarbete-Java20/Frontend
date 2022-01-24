@@ -6,8 +6,9 @@ import {
   removeFromWatchList,
   getSingleWatchlist,
 } from '../../redux/actions/index';
-import ImageSlider from '../ImageSlider';
+import ImageSlider from '../Images/ImageSlider';
 import '../../styles/watchlist.css';
+import ShowAllImg from '../Images/ShowAllImg';
 
 const WatchlistPage = ({
   user,
@@ -17,47 +18,40 @@ const WatchlistPage = ({
 }) => {
   const params = useParams();
   const [list, setList] = useState('');
+  const [showList, setShowList] = useState(false);
 
   useEffect(() => {
     if (currentList) setList(currentList);
     else getSingleWatchlist(params.id);
   }, [getSingleWatchlist, user, currentList, params]);
 
-  const watchListsLists = () => {
-    return (
-      list && (
-        <div key={list.title}>
-          <h1>{list.title}</h1>
-          <div>{movieList()}</div>
-        </div>
-      )
-    );
-  };
-
-  const movieList = () => {
-    return list.content.map((movie) => {
-      return (
-        <h2 key={movie.title}>
-          {movie.title}
-          <button
-            className='ui icon button small'
-            onClick={() => {
-              removeFromWatchList(currentList.id, movie);
-            }}
-          >
-            x
-          </button>
-        </h2>
-      );
-    });
-  };
-
   return (
     <div className='contentContainer'>
       {list && (
         <div className='watchListInformation'>
-          <h1>{list.title}</h1>
-          <ImageSlider content={list.content} watchlist />
+          <div className='listTitle'>{list.title}</div>
+          {list.content.length ? (
+            <div className='viewMoreStuff'>
+              <div className=''>
+                <i
+                  className={`${
+                    showList ? 'compress' : 'expand'
+                  } icon pinkIcon`}
+                  onClick={() => setShowList(!showList)}
+                />
+              </div>
+            </div>
+          ) : (
+            ''
+          )}
+          {showList ? (
+            <ShowAllImg content={list.content} />
+          ) : (
+            <ImageSlider content={list.content} watchlist />
+          )}
+          <div className='listTotal'>
+            {list.content.length ? `Total: ${list.content.length}` : ''}
+          </div>
         </div>
       )}
     </div>

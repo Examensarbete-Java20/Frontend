@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import { updateRating } from '../api/request';
-import GeneralModal from './modals/GeneralModal';
-import GoogleLoginButton from './GoogleLoginButton';
+import { updateRating } from '../../api/request';
+import GeneralModal from '../modals/GeneralModal';
+import GoogleLoginButton from '../GoogleLoginButton';
 
 const Rating = ({
   title,
