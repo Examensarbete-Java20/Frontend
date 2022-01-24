@@ -9,6 +9,4 @@
   border-radius: 5px;
   background-color: rgb(37, 37, 37);
   color: rgb(255, 192, 203);
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
 }

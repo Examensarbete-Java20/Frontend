@@ -6,6 +6,7 @@ import {
   removeFromWatchList,
   getSingleWatchlist,
 } from '../../redux/actions/index';
+import ImageSlider from '../ImageSlider';
 import '../../styles/watchlist.css';
 
 const WatchlistPage = ({
@@ -52,12 +53,13 @@ const WatchlistPage = ({
   };
 
   return (
-    <div className='watchListContainer'>
-      <div className='watchListInformation'>
-        <div>
-          <h1>{watchListsLists()}</h1>
+    <div className='contentContainer'>
+      {list && (
+        <div className='watchListInformation'>
+          <h1>{list.title}</h1>
+          <ImageSlider content={list.content} watchlist />
         </div>
-      </div>
+      )}
     </div>
   );
 };
