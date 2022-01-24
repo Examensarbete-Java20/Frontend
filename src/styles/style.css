@@ -1,3 +1,6 @@
+body {
+  overflow-y: scroll;
+}
 #root {
   min-height: 100%;
   padding-bottom: 1rem;
