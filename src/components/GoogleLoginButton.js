@@ -20,9 +20,9 @@ const GoogleLoginButton = ({
   const { width } = useWindowSize();
   const [sidebar, setSidebar] = useState(false);
 
-  const ref = useRef();
+  const dropDown = useRef();
 
-  useShowRef(ref, () => setSidebar(false));
+  useShowRef(dropDown, () => setSidebar(false));
 
   const onSuccessLogin = (resp) => {
     setUser(resp);
@@ -38,6 +38,7 @@ const GoogleLoginButton = ({
   };
 
   const showSidebar = () => setSidebar(!sidebar);
+  const closeSidebar = () => setSidebar(false);
 
   return (
     <>
@@ -59,21 +60,21 @@ const GoogleLoginButton = ({
           isSignedIn={true}
         ></GoogleLogin>
       ) : (
-        <div>
+        <div ref={dropDown}>
           <div id='clickbox' className='menu-bars'>
             <i className='bars icon' onClick={showSidebar} />
           </div>
-          <div ref={ref} className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <div className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <div className='nav-menu-items'>
               <div className='nav-text'>
-                <Link to='/' className='nav-text' onClick={showSidebar}>
+                <Link to='/' className='nav-text' onClick={closeSidebar}>
                   <i className='home icon' />
                   <span>Home</span>
                 </Link>
               </div>
 
               <div className='nav-text'>
-                <Link to='/user' className='nav-text' onClick={showSidebar}>
+                <Link to='/user' className='nav-text' onClick={closeSidebar}>
                   <i className='user circle outline icon' />
                   <span>Profile</span>
                 </Link>
@@ -85,7 +86,7 @@ const GoogleLoginButton = ({
                     <a
                       onClick={() => {
                         renderProps.onClick();
-                        showSidebar();
+                        closeSidebar();
                       }}
                       className='nav-text'
                     >
