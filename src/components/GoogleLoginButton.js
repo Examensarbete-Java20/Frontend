@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import useWindowSize from '../hooks/useWindowSize';
-import { SidebarData } from './SidebarData';
 import '../styles/navbar.css';
 
 import { setUser, unsetUser, emptyWatchList } from '../redux/actions';
 import '../styles/googleLogin.css';
+import useShowRef from '../hooks/useShowRef';
 
 const GoogleLoginButton = ({
   isLoggedIn,
@@ -19,6 +19,10 @@ const GoogleLoginButton = ({
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const { width } = useWindowSize();
   const [sidebar, setSidebar] = useState(false);
+
+  const ref = useRef();
+
+  useShowRef(ref, () => setSidebar(false));
 
   const onSuccessLogin = (resp) => {
     setUser(resp);
@@ -56,20 +60,20 @@ const GoogleLoginButton = ({
         ></GoogleLogin>
       ) : (
         <div>
-          <div style={{ color: 'black' }} className='menu-bars'>
+          <div id='clickbox' className='menu-bars'>
             <i className='bars icon' onClick={showSidebar} />
           </div>
-          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <div className='nav-menu-items' onClick={showSidebar}>
+          <div ref={ref} className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+            <div className='nav-menu-items'>
               <div className='nav-text'>
-                <Link to='/' className='nav-text'>
+                <Link to='/' className='nav-text' onClick={showSidebar}>
                   <i className='home icon' />
                   <span>Home</span>
                 </Link>
               </div>
 
               <div className='nav-text'>
-                <Link to='/user'>
+                <Link to='/user' className='nav-text' onClick={showSidebar}>
                   <i className='user circle outline icon' />
                   <span>Profile</span>
                 </Link>
@@ -77,20 +81,25 @@ const GoogleLoginButton = ({
 
               <GoogleLogout
                 render={(renderProps) => (
-                  <button
-                    onClick={renderProps.onClick}
-                    className='btnGoogleLogout googleText'
-                  >
-                    <i className='google icon' />
-                    <span style={{ marginLeft: '2px' }}> Logout</span>
-                  </button>
+                  <div className='nav-text'>
+                    <a
+                      onClick={() => {
+                        renderProps.onClick();
+                        showSidebar();
+                      }}
+                      className='nav-text'
+                    >
+                      <i className='google icon' />
+                      <span> Logout</span>
+                    </a>
+                  </div>
                 )}
                 clientId={clientId}
                 buttonText='Logout'
                 onLogoutSuccess={onSuccessLogout}
               />
             </div>
-          </nav>
+          </div>
         </div>
       )}
     </>
