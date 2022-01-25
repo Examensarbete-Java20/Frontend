@@ -8,11 +8,7 @@ import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
 import GoToTopButton from './GoToTopButton';
 import ProfilePage from './pages/ProfilePage';
-<<<<<<< HEAD
 import WatchlistPage from './pages/WatchlistPage';
-=======
-import { GoogleLogout } from 'react-google-login';
->>>>>>> 0bdcb35... hamburger menu added
 
 const App = () => {
   const refScrollUp = useRef();
