@@ -38,6 +38,10 @@ const watchListReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         watchLists: [...newWatchList],
+        currentList:
+          state.currentList.id === action.payload.id
+            ? action.payload
+            : state.currentList,
       };
     default:
       return state;

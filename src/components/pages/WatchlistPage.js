@@ -30,7 +30,7 @@ const WatchlistPage = ({
       {list && (
         <div className='watchListInformation'>
           <div className='listTitle'>{list.title}</div>
-          {list.content.length ? (
+          {list.content.length && list.content.length > 5 ? (
             <div className='viewMoreStuff'>
               <div className=''>
                 <i
@@ -44,10 +44,10 @@ const WatchlistPage = ({
           ) : (
             ''
           )}
-          {showList ? (
-            <ShowAllImg content={list.content} />
-          ) : (
+          {!showList && list.content.length > 5 ? (
             <ImageSlider content={list.content} watchlist />
+          ) : (
+            <ShowAllImg content={list.content} />
           )}
           <div className='listTotal'>
             {list.content.length ? `Total: ${list.content.length}` : ''}
