@@ -3,8 +3,12 @@ import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { connect } from 'react-redux';
 import useWindowSize from '../hooks/useWindowSize';
 
-
-import { setUser, unsetUser, emptyWatchList } from '../redux/actions';
+import {
+  setUser,
+  unsetUser,
+  emptyWatchList,
+  getWatchlist,
+} from '../redux/actions';
 import '../styles/googleLogin.css';
 
 const GoogleLoginButton = ({
@@ -12,12 +16,14 @@ const GoogleLoginButton = ({
   setUser,
   unsetUser,
   emptyWatchList,
+  getWatchlist,
 }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
-  const {width} = useWindowSize();
+  const { width } = useWindowSize();
 
   const onSuccessLogin = (resp) => {
     setUser(resp);
+    getWatchlist(resp);
   };
 
   const onFailureLogin = (resp) => {
@@ -36,7 +42,9 @@ const GoogleLoginButton = ({
           render={(renderProps) => (
             <button onClick={renderProps.onClick} className='btnGoogle'>
               <i className='google icon' />
-              <span style={{ marginLeft: '5px' }}>{width>678 ? 'Sign In with Google': null}</span>
+              <span style={{ marginLeft: '5px' }}>
+                {width > 678 ? 'Sign In with Google' : null}
+              </span>
             </button>
           )}
           clientId={clientId}
@@ -51,7 +59,9 @@ const GoogleLoginButton = ({
           render={(renderProps) => (
             <button onClick={renderProps.onClick} className='btnGoogle'>
               <i className='google icon' />
-              <span style={{ marginLeft: '5px' }}>{width>678 ? 'Sign out': null}</span>
+              <span style={{ marginLeft: '5px' }}>
+                {width > 678 ? 'Sign out' : null}
+              </span>
             </button>
           )}
           clientId={clientId}
@@ -67,6 +77,9 @@ const mapStateToProps = (state) => {
   return { isLoggedIn: state.user.isLoggedIn };
 };
 
-export default connect(mapStateToProps, { setUser, unsetUser, emptyWatchList })(
-  GoogleLoginButton
-);
+export default connect(mapStateToProps, {
+  setUser,
+  unsetUser,
+  emptyWatchList,
+  getWatchlist,
+})(GoogleLoginButton);

@@ -114,14 +114,14 @@ export const getUserSingleWatchlist = async (id) => {
   }
 };
 
-export const addContentToWatchList = async (type, listId) => {
+export const addContentToWatchList = async (type, listId, content) => {
   try {
-    const response = await axios.post(`/${type}/${listId}`);
+    const response = await axios.post(`/watchlist/${type}/${listId}`, content);
     if (response.status === 200) {
       return response.data;
     }
   } catch (error) {
-    return [];
+    return {};
   }
 };
 

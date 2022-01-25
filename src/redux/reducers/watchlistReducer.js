@@ -2,9 +2,8 @@ import {
   CREATE_WATCHLIST,
   EMPTY_WATCHLISTS,
   GET_WATCHLISTS,
-  ADD_TO_WATCHLIST,
+  UPDATE_WATCHLIST,
   GET_CURRENTLIST,
-  REMOVE_FROM_WATCHLIST,
 } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
@@ -24,14 +23,11 @@ const watchListReducer = (state = INITIAL_STATE, action) => {
     case EMPTY_WATCHLISTS:
       return INITIAL_STATE;
 
-    case ADD_TO_WATCHLIST:
-      return state;
-
     case GET_CURRENTLIST:
-      console.log(action.payload);
       return { ...state, currentList: action.payload };
 
-    case REMOVE_FROM_WATCHLIST:
+    case UPDATE_WATCHLIST:
+      console.log('shuee');
       let newWatchList = state.watchLists;
       newWatchList.map((watchList, index) => {
         if (watchList.id === action.payload.id) {

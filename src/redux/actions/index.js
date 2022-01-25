@@ -7,9 +7,8 @@ import {
   CREATE_WATCHLIST,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
-  ADD_TO_WATCHLIST,
+  UPDATE_WATCHLIST,
   GET_CURRENTLIST,
-  REMOVE_FROM_WATCHLIST,
 } from './actionTypes';
 import {
   getUserWatchlist,
@@ -133,7 +132,7 @@ export const removeFromWatchList = (listId, content) => async (dispatch) => {
     }
   });
   dispatch({
-    type: REMOVE_FROM_WATCHLIST,
+    type: UPDATE_WATCHLIST,
     payload: updateWatchList,
   });
 };
@@ -144,10 +143,16 @@ export const emptyWatchList = () => {
   };
 };
 
-/* export const addToWatchList = (content) => async (dispatch) => {
-  await addContentToWatchList(content);
-  return {
-    type: ADD_TO_WATCHLIST,
+export const addToWatchList =
+  (type, watchListId, content) => async (dispatch) => {
+    let updateWatchList = {};
+    await addContentToWatchList(type, watchListId, content).then((data) => {
+      if (data) {
+        updateWatchList = data;
+      }
+    });
+    dispatch({
+      type: UPDATE_WATCHLIST,
+      payload: updateWatchList,
+    });
   };
-};
- */

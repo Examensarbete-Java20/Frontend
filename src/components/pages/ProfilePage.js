@@ -64,7 +64,7 @@ const ProfilePage = ({
               to={`/watchlist/${watchList.id}`}
               onClick={() => whenClickWatchList(index)}
             >
-              <h2>{watchList.title}</h2>
+              <h2>{watchList.title.slice(0, 15)}</h2>
             </Link>
           </div>
         );
