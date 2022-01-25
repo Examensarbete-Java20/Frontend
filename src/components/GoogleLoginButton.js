@@ -90,7 +90,8 @@ const GoogleLoginButton = ({
               <GoogleLogout
                 render={(renderProps) => (
                   <div className='nav-text'>
-                    <a
+                    <div
+                      href='#'
                       onClick={() => {
                         renderProps.onClick();
                         closeSidebar();
@@ -99,7 +100,7 @@ const GoogleLoginButton = ({
                     >
                       <i className='google icon' />
                       <span> Logout</span>
-                    </a>
+                    </div>
                   </div>
                 )}
                 clientId={clientId}
