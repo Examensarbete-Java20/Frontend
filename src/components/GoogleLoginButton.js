@@ -56,26 +56,25 @@ const GoogleLoginButton = ({
         ></GoogleLogin>
       ) : (
         <div>
-          <Link to='#' style={{ color: 'black' }} className='menu-bars'>
+          <div style={{ color: 'black' }} className='menu-bars'>
             <i className='bars icon' onClick={showSidebar} />
-          </Link>
+          </div>
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
-            <ul className='nav-menu-items' onClick={showSidebar}>
-              <li className='navbar-toggle'>
-                <Link to='#' style={{ color: 'black' }} className='menu-bars'>
-                  <i className='bars icon' onClick={showSidebar} />
+            <div className='nav-menu-items' onClick={showSidebar}>
+              <div className='nav-text'>
+                <Link to='/' className='nav-text'>
+                  <i className='home icon' />
+                  <span>Home</span>
                 </Link>
-              </li>
-              {SidebarData.map((item, index) => {
-                return (
-                  <li key={index} className={item.className}>
-                    <Link to={item.path}>
-                      {item.icon}
-                      <span>{item.title}</span>
-                    </Link>
-                  </li>
-                );
-              })}
+              </div>
+
+              <div className='nav-text'>
+                <Link to='/user'>
+                  <i className='user circle outline icon' />
+                  <span>Profile</span>
+                </Link>
+              </div>
+
               <GoogleLogout
                 render={(renderProps) => (
                   <button
@@ -90,7 +89,7 @@ const GoogleLoginButton = ({
                 buttonText='Logout'
                 onLogoutSuccess={onSuccessLogout}
               />
-            </ul>
+            </div>
           </nav>
         </div>
       )}
