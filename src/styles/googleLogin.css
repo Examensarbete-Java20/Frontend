@@ -22,3 +22,32 @@
     text-align: right;
   }
 }
+
+.btnGoogleLogout {
+  width: 165px;
+  height: 35px;
+  border-radius: 4px;
+  background: none;
+  color: black;
+  border: 0px transparent;
+  text-align: left;
+}
+
+.googleText{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(255, 192, 203);
+    text-shadow: -2px 1px 0 #000, 1px 1px 0 #000, 1px -2px 0 #000, -2px -2px 0 #000;
+    font-size: 18px;
+    font-weight:bold;
+    width: 83%;
+    height: 40px;
+    padding-left: 4px;
+    
+}
+
+.googleText:hover{
+  background-color: rgb(172, 47, 47); 
+  border: 1px solid rgb(0, 0, 0);
+}

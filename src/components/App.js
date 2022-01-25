@@ -2,10 +2,13 @@ import React, { useRef, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './Header';
+
 import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
 import GoToTopButton from './GoToTopButton';
+import ProfilePage from './pages/ProfilePage';
+import { GoogleLogout } from 'react-google-login';
 
 const App = () => {
   const refScrollUp = useRef();
@@ -40,6 +43,7 @@ const App = () => {
           <Route path='/' exac element={<IndexPage />} />
           <Route path='/show/:content/:id' exac element={<Content />} />
           <Route path='/find/:title' exac element={<SearchResultPage />} />
+          <Route path='/user' exac element={<ProfilePage />} />
         </Routes>
       </Router>
     </div>

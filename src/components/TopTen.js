@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import '../styles/topTen.css';
-import ContentList from './ContentList';
+import ImageSlider from './ImageSlider';
 import { getTopTen } from './helpers/contentHelper';
 
 const TopTen = ({ type, title, contentAction }) => {
@@ -15,7 +15,7 @@ const TopTen = ({ type, title, contentAction }) => {
     <div className='contentContainer'>
       <h1 className='topTitle'>{title}</h1>
       {results && (
-        <ContentList
+        <ImageSlider
           content={results}
           type={type}
           contentAction={contentAction}
