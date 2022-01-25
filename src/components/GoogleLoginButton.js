@@ -1,12 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { connect } from 'react-redux';
-import useWindowSize from '../hooks/useWindowSize';
-import {IconContext} from 'react-icons';
-import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import {SidebarData} from './SidebarData';
+
+import useWindowSize from '../hooks/useWindowSize';
+import { SidebarData } from './SidebarData';
 import '../styles/navbar.css';
 
 import { setUser, unsetUser, emptyWatchList } from '../redux/actions';
@@ -19,8 +17,8 @@ const GoogleLoginButton = ({
   emptyWatchList,
 }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
-  const {width} = useWindowSize();
-  const [sidebar, setSidebar] = useState(false)
+  const { width } = useWindowSize();
+  const [sidebar, setSidebar] = useState(false);
 
   const onSuccessLogin = (resp) => {
     setUser(resp);
@@ -35,7 +33,7 @@ const GoogleLoginButton = ({
     emptyWatchList();
   };
 
-  const showSidebar = () => setSidebar(!sidebar)
+  const showSidebar = () => setSidebar(!sidebar);
 
   return (
     <>
@@ -44,7 +42,9 @@ const GoogleLoginButton = ({
           render={(renderProps) => (
             <button onClick={renderProps.onClick} className='btnGoogle'>
               <i className='google icon' />
-              <span style={{ marginLeft: '5px' }}>{width>678 ? 'Sign In with Google': null}</span>
+              <span style={{ marginLeft: '5px' }}>
+                {width > 678 ? 'Sign In with Google' : null}
+              </span>
             </button>
           )}
           clientId={clientId}
@@ -53,43 +53,46 @@ const GoogleLoginButton = ({
           onFailure={onFailureLogin}
           cookiePolicy={'single_host_origin'}
           isSignedIn={true}
-        >
-          
-        </GoogleLogin>
+        ></GoogleLogin>
       ) : (
-        <IconContext.Provider value={{color: 'rgb(255, 192, 203)'}}>
-            <Link to='#' className='menu-bars'>
-                <FaIcons.FaBars style={{ marginTop: '5px' }} onClick={showSidebar} />
-            </Link>
-            <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+        <div>
+          <Link to='#' style={{ color: 'black' }} className='menu-bars'>
+            <i className='bars icon' onClick={showSidebar} />
+          </Link>
+          <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
             <ul className='nav-menu-items' onClick={showSidebar}>
-                
-                {SidebarData.map((item, index) => {
-                    return (
-                        <li key={index} className={item.className}>
-                            <Link to={item.path}>
-                                {item.icon}
-                                <span>{item.title}</span>
-                            </Link>
-                        </li>
-                    )
-                })}
-                <GoogleLogout
-        render={(renderProps) => (
-          <button onClick={renderProps.onClick} className='btnGoogleLogout googleText'>
-            <AiIcons.AiOutlineGoogle />
-            <span style={{ marginLeft: '7px' }}> Logout</span>
-          </button>
-        )}
-        clientId={clientId}
-        buttonText='Logout'
-        onLogoutSuccess={onSuccessLogout}
-      />
+              <li className='navbar-toggle'>
+                <Link to='#' style={{ color: 'black' }} className='menu-bars'>
+                  <i className='bars icon' onClick={showSidebar} />
+                </Link>
+              </li>
+              {SidebarData.map((item, index) => {
+                return (
+                  <li key={index} className={item.className}>
+                    <Link to={item.path}>
+                      {item.icon}
+                      <span>{item.title}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+              <GoogleLogout
+                render={(renderProps) => (
+                  <button
+                    onClick={renderProps.onClick}
+                    className='btnGoogleLogout googleText'
+                  >
+                    <i className='google icon' />
+                    <span style={{ marginLeft: '2px' }}> Logout</span>
+                  </button>
+                )}
+                clientId={clientId}
+                buttonText='Logout'
+                onLogoutSuccess={onSuccessLogout}
+              />
             </ul>
-        </nav>
-    </IconContext.Provider>
-       
-        
+          </nav>
+        </div>
       )}
     </>
   );
