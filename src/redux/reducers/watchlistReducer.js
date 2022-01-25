@@ -27,18 +27,17 @@ const watchListReducer = (state = INITIAL_STATE, action) => {
       return { ...state, currentList: action.payload };
 
     case UPDATE_WATCHLIST:
-      console.log('shuee');
       let newWatchList = state.watchLists;
-      newWatchList.map((watchList, index) => {
-        if (watchList.id === action.payload.id) {
-          newWatchList.splice(index, 1);
+
+      for (let i = 0; i < newWatchList.length; i++) {
+        if (newWatchList[i].id === action.payload.id) {
+          newWatchList.splice(i, 1);
         }
-      });
+      }
       newWatchList.push(action.payload);
       return {
         ...state,
         watchLists: [...newWatchList],
-        currentList: action.payload,
       };
     default:
       return state;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import GoogleLogin, { GoogleLogout } from 'react-google-login';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,12 @@ import { Link } from 'react-router-dom';
 import useWindowSize from '../hooks/useWindowSize';
 import '../styles/navbar.css';
 
-import { setUser, unsetUser, emptyWatchList } from '../redux/actions';
+import {
+  setUser,
+  unsetUser,
+  emptyWatchList,
+  getWatchlist,
+} from '../redux/actions';
 import '../styles/googleLogin.css';
 import useShowRef from '../hooks/useShowRef';
 
