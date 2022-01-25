@@ -1,0 +1,48 @@
+.watchListButton {
+  overflow-y: scroll;
+  list-style: none;
+  position: absolute;
+  min-height: 10vh;
+  overflow: hidden;
+  max-width: 290px;
+  z-index: 9;
+  width: 10.2rem;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(37, 37, 37);
+  border-radius: 5px;
+  margin-bottom: 3rem;
+  margin-right: 0.3%;
+}
+
+.hamButton {
+  display: flex;
+  align-items: end;
+  justify-content: end;
+}
+
+.watchListButton.hide {
+  display: none;
+}
+
+.mouseOnList {
+  grid-template-columns: 1fr 0.25fr;
+  display: grid;
+  text-align: start;
+  margin-left: 0.5rem;
+}
+
+.updateWatchListButton {
+  border-radius: 10px;
+  border-color: white;
+  border-width: 1px;
+  border: none;
+  color: rgb(255, 192, 203);
+  background-color: rgb(37, 37, 37);
+}
+
+.updateWatchListButton:hover {
+  size: 1rem;
+  background-color: rgb(255, 192, 203);
+  color: rgb(37, 37, 37);
+  cursor: pointer;
+}

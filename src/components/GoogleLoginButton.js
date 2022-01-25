@@ -15,6 +15,7 @@ const GoogleLoginButton = ({
   setUser,
   unsetUser,
   emptyWatchList,
+  getWatchlist,
 }) => {
   const clientId = process.env.REACT_APP_CLIENT_ID;
   const { width } = useWindowSize();
@@ -26,6 +27,7 @@ const GoogleLoginButton = ({
 
   const onSuccessLogin = (resp) => {
     setUser(resp);
+    getWatchlist(resp);
   };
 
   const onFailureLogin = (resp) => {
@@ -111,6 +113,9 @@ const mapStateToProps = (state) => {
   return { isLoggedIn: state.user.isLoggedIn };
 };
 
-export default connect(mapStateToProps, { setUser, unsetUser, emptyWatchList })(
-  GoogleLoginButton
-);
+export default connect(mapStateToProps, {
+  setUser,
+  unsetUser,
+  emptyWatchList,
+  getWatchlist,
+})(GoogleLoginButton);

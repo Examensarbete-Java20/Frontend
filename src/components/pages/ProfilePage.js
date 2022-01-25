@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import {
   getWatchlist,
   createUser,
+  changeUsername,
   createWatchList,
   setCurrentWatchList,
 } from '../../redux/actions/index';
@@ -16,12 +17,12 @@ const ProfilePage = ({
   watchLists,
   getWatchlist,
   createUser,
+  changeUsername,
   setCurrentWatchList,
   createWatchList,
 }) => {
   const [username, setUserName] = useState('');
   const [wList, setWList] = useState('');
-  const [changeUsername, setChangeUsername] = useState('');
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
@@ -49,16 +50,8 @@ const ProfilePage = ({
 
   const onFormChangeUsername = (e) => {
     e.preventDefault();
-  };
-
-  const movieList = () => {
-    if (isLoggedIn) {
-      return watchLists.map((watchList) => {
-        return watchList.content.map((movie) => {
-          return <h1 key={movie.title}>{movie.title}</h1>;
-        });
-      });
-    }
+    changeUsername(user.googleId, username);
+    setUserName('');
   };
 
   const watchListsLists = () => {
@@ -71,7 +64,7 @@ const ProfilePage = ({
               to={`/watchlist/${watchList.id}`}
               onClick={() => whenClickWatchList(index)}
             >
-              <h2>{watchList.title}</h2>
+              <h2>{watchList.title.slice(0, 15)}</h2>
             </Link>
           </div>
         );
@@ -114,7 +107,7 @@ const ProfilePage = ({
           )}
           {isLoggedIn && user.username && (
             <div className='userInput'>
-              <div>
+              <div className='forms'>
                 <h2 className='inputHeader'>Create a watchlist</h2>
                 <form onSubmit={onFormSubmitWatchList}>
                   <input
@@ -133,16 +126,16 @@ const ProfilePage = ({
               </div>
               <div>
                 <h2 className='inputHeader'>Change username</h2>
-                <form onSubmit={onFormSubmitWatchList}>
+                <form onSubmit={onFormChangeUsername}>
                   <input
                     type='text'
                     placeholder='Change username'
-                    value={wList}
+                    value={username}
                     onChange={(e) => setUserName(e.target.value)}
                   ></input>
                   <button
                     className='ui icon button small submitButton'
-                    onClick={onFormSubmitWatchList}
+                    onClick={onFormChangeUsername}
                   >
                     ok
                   </button>
@@ -175,6 +168,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getWatchlist,
   createUser,
+  changeUsername,
   createWatchList,
   setCurrentWatchList,
 })(ProfilePage);
