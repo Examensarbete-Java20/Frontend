@@ -117,6 +117,7 @@ const ImageSlider = ({ content, type, contentAction, topTen, watchlist }) => {
                           focus={index === current}
                           showRating
                           borderRadius={topTen}
+                          removeButton={watchlist}
                         />
                       </div>
                       <h3 className={`sliderTitle`}>

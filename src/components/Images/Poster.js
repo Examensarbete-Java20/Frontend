@@ -1,9 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Rating from './Rating';
 import notFoundImg from '../../styles/img/noimagefound.jpg';
+import { removeFromWatchList } from '../../redux/actions';
 
-const Poster = ({ content, focus, showRating, borderRadius }) => {
+const Poster = ({
+  content,
+  focus,
+  showRating,
+  borderRadius,
+  removeFromWatchList,
+  removeButton,
+  watchListId,
+}) => {
+  const onRemoveClick = (event) => {
+    event.preventDefault();
+    removeFromWatchList(watchListId, content);
+  };
+
   return (
     <div>
       <img
@@ -25,8 +40,21 @@ const Poster = ({ content, focus, showRating, borderRadius }) => {
           />
         </div>
       )}
+      {removeButton && (
+        <div className={`slideImg remove${focus ? ' focus' : ''}`}>
+          <i className='minus square icon' onClick={onRemoveClick} />
+        </div>
+      )}
     </div>
   );
 };
 
-export default Poster;
+const mapStateToProps = (state) => {
+  return {
+    watchListId: state.watchList.currentList
+      ? state.watchList.currentList.id
+      : '',
+  };
+};
+
+export default connect(mapStateToProps, { removeFromWatchList })(Poster);

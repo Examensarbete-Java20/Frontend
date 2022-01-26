@@ -2,20 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import {
-  removeFromWatchList,
-  getSingleWatchlist,
-} from '../../redux/actions/index';
+import { getSingleWatchlist } from '../../redux/actions';
 import ImageSlider from '../Images/ImageSlider';
 import '../../styles/watchlist.css';
 import ShowAllImg from '../Images/ShowAllImg';
 
-const WatchlistPage = ({
-  user,
-  getSingleWatchlist,
-  removeFromWatchList,
-  currentList,
-}) => {
+const WatchlistPage = ({ user, getSingleWatchlist, currentList }) => {
   const params = useParams();
   const [list, setList] = useState('');
   const [showList, setShowList] = useState(false);
@@ -67,6 +59,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  removeFromWatchList,
   getSingleWatchlist,
 })(WatchlistPage);

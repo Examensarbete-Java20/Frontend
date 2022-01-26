@@ -165,6 +165,24 @@
 .slideImg:hover .slideImg.rating {
   opacity: 1;
 }
+.slideImg.remove {
+  margin-left: 11rem;
+  margin-top: -19.5rem;
+  color: rgb(255, 192, 203);
+  position: absolute;
+  opacity: 0;
+  text-shadow: 0 0 5px rgb(0, 0, 0);
+  font-size: 2rem;
+}
+
+.slideImg:hover .slideImg.remove.focus {
+  margin-left: 11.3rem;
+  margin-top: -20.5rem;
+}
+
+.slideImg:hover .slideImg.remove {
+  opacity: 1;
+}
 
 .emptyList {
   text-align: center;

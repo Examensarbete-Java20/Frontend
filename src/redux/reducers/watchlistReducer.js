@@ -28,18 +28,17 @@ const watchListReducer = (state = INITIAL_STATE, action) => {
 
     case UPDATE_WATCHLIST:
       let newWatchList = state.watchLists;
-
       for (let i = 0; i < newWatchList.length; i++) {
         if (newWatchList[i].id === action.payload.id) {
           newWatchList.splice(i, 1);
         }
       }
-      newWatchList.push(action.payload);
+      if (action.payload.id) newWatchList.push(action.payload);
       return {
         ...state,
         watchLists: [...newWatchList],
         currentList:
-          state.currentList.id === action.payload.id
+          state.currentList && state.currentList.id === action.payload.id
             ? action.payload
             : state.currentList,
       };

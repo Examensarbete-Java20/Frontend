@@ -18,7 +18,12 @@ const ShowAllImg = ({ content }) => {
               to={`/show/${content.type}/${content.imdb_id}`}
             >
               <div className={`slideImg`}>
-                <Poster content={content} showRating borderRadius />
+                <Poster
+                  content={content}
+                  showRating
+                  borderRadius
+                  removeButton
+                />
               </div>
               <h3 className={`sliderTitle`}>
                 {content.title.length > 26
