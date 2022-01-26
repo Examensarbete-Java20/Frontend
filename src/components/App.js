@@ -8,7 +8,6 @@ import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
 import GoToTopButton from './GoToTopButton';
 import ProfilePage from './pages/ProfilePage';
-import { GoogleLogout } from 'react-google-login';
 
 const App = () => {
   const refScrollUp = useRef();

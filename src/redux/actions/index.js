@@ -6,15 +6,11 @@ import {
   CREATE_WATCHLIST,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
-  ADD_TO_WATCHLIST,
-  REMOVE_FROM_WATCHLIST,
 } from './actionTypes';
 import {
   getUserWatchlist,
   logIn,
   createUserReqeust,
-  addContentToWatchList,
-  removeFromWatchList,
   createWatchListReqeust,
 } from '../../api/request';
 
@@ -31,8 +27,8 @@ export const setUser = (userInfo) => async (dispatch) => {
     googleId: userInfo.profileObj.googleId,
     email: userInfo.profileObj.email,
   };
-  await logIn(userInfo.googleId).then((data) => {
-    if (data) {
+  await logIn(userInfo.profileObj.googleId).then((data) => {
+    if (data.id) {
       user = data;
     }
   });

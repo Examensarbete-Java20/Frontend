@@ -39,16 +39,6 @@ const ProfilePage = ({
     setWList('');
   };
 
-  const movieList = () => {
-    if (isLoggedIn) {
-      return watchLists.map((watchList) => {
-        return watchList.content.map((movie) => {
-          return <h1 key={movie.title}>{movie.title}</h1>;
-        });
-      });
-    }
-  };
-
   const watchListsLists = () => {
     if (isLoggedIn) {
       return watchLists.map((watchList) => {
