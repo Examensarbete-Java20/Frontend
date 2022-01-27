@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { addToWatchList, removeFromWatchList } from '../redux/actions/index';
 import '../styles/addToWatchListButton.css';
+import userShowRef from '../hooks/useShowRef';
 
 const AddToWatchListButton = ({
   watchLists,
@@ -11,8 +12,11 @@ const AddToWatchListButton = ({
   content,
   addToWatchList,
   removeFromWatchList,
+  contentPage,
 }) => {
   const [openButton, setOpenButton] = useState(false);
+  const ref = useRef();
+  userShowRef(ref, () => setOpenButton(false));
 
   const handleToggle = (e) => {
     setOpenButton(!openButton);
@@ -71,8 +75,12 @@ const AddToWatchListButton = ({
   return (
     <div>
       {isLoggedIn && (
-        <div className='hamButton'>
-          <div className={`watchListPanel ${!openButton ? ' hide' : ''}`}>
+        <div ref={ref} className='hamButton'>
+          <div
+            className={`watchListPanel ${contentPage ? 'contentPage' : ''} ${
+              !openButton ? ' hide' : ''
+            }`}
+          >
             <div className='testing'>{watchList()} </div>
           </div>
           <i

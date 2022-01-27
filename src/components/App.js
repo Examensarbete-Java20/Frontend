@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import Header from './Header';
+
 import IndexPage from './pages/IndexPage';
 import Content from './pages/Content';
 import SearchResultPage from './pages/SearchResultPage';
@@ -33,7 +34,7 @@ const App = () => {
 
   return (
     <div className='ui container'>
-      <div className='image-opacity'></div>
+      <div className='image-opacity' />
       <Router>
         <div ref={refScrollUp}></div>
         <GoToTopButton showGoTop={showGoTop} onClick={handleScrollUp} />

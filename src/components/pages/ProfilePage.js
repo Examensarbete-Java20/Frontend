@@ -26,7 +26,6 @@ const ProfilePage = ({
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
-    console.log(watchLists);
   }, [isLoggedIn, getWatchlist, user]);
 
   const onFormSubmit = (e) => {

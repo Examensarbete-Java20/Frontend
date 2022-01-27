@@ -124,8 +124,7 @@ export const getSingleWatchlist = (id) => async (dispatch) => {
 };
 
 export const removeFromWatchList = (listId, content) => async (dispatch) => {
-  let updateWatchList = {};
-  console.log(content);
+  let updateWatchList = { id: '' };
   await removeContentFromWatchList(listId, content).then((data) => {
     if (data) {
       updateWatchList = data;

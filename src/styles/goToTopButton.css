@@ -3,6 +3,7 @@
 }
 
 .goTop {
+  z-index: 57;
   display: block;
   position: fixed;
   background: rgba(129, 124, 124, 0.8);

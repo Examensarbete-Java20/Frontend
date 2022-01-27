@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import notFoundImg from '../styles/img/noimagefound.jpg';
-import Rating from './Rating';
+import Rating from './Images/Rating';
 import AddToWatchListButton from './AddToWatchListButton';
 import '../styles/addToWatchListButton.css';
 
@@ -39,7 +39,7 @@ const ContentList = ({ content, type, contentAction }) => {
           showVotes
         />
       </div>
-      <div></div>
+
       <div className='addToWatchListButton'>
         <AddToWatchListButton type={type} content={result} />
       </div>
