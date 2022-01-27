@@ -28,7 +28,6 @@ const ProfilePage = ({
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
     else navigate('/');
-    console.log('hej');
   }, [isLoggedIn, getWatchlist, user, navigate]);
 
   const onFormSubmit = (e) => {
