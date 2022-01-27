@@ -3,6 +3,8 @@
   list-style: none;
   position: absolute;
   overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   min-height: 8rem;
   max-width: 290px;
   max-height: 8rem;
@@ -13,6 +15,10 @@
   border-radius: 5px;
   margin-bottom: -8.5rem;
   margin-right: -0.7rem;
+}
+
+.watchListPanel::-webkit-scrollbar {
+  display: none;
 }
 
 .watchListPanel.contentPage {
