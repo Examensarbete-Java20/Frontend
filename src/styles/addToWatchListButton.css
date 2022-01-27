@@ -3,7 +3,7 @@
   list-style: none;
   position: absolute;
   overflow: auto;
-  min-height: 3vh;
+  min-height: 8rem;
   max-width: 290px;
   max-height: 8rem;
   z-index: 9;

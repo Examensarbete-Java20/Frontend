@@ -34,7 +34,8 @@ const AddToWatchListButton = ({
 
   const checkIfContentExist = (list) => {
     for (let index = 0; index < list.length; index++) {
-      if (content.id === list[index].id) {
+      if (content.imdb_id === list[index].imdb_id) {
+        content.id = list[index].id;
         return true;
       }
     }
