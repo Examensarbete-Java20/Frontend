@@ -13,7 +13,7 @@
 
 .card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0fr 0.1fr;
   border-radius: 3px;
   border: 1.5px solid;
 
