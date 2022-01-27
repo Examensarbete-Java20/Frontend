@@ -53,4 +53,12 @@
   margin-bottom: 1rem;
   align-content: center;
   justify-self: center;
+  max-height: 18rem;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.listOfWatchLists::-webkit-scrollbar {
+  display: none;
 }

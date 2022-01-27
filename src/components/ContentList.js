@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import notFoundImg from '../styles/img/noimagefound.jpg';
 import Rating from './Images/Rating';
+import AddToWatchListButton from './AddToWatchListButton';
+import '../styles/addToWatchListButton.css';
 
 const ContentList = ({ content, type, contentAction }) => {
   return content.map((result) => (
@@ -29,7 +31,6 @@ const ContentList = ({ content, type, contentAction }) => {
         </Link>
       </div>
       <div className='ranking'>
-        {/* <Rating title="IMDB" color="yellow" rating={result.rating} /> */}
         <Rating
           title='PEDB'
           color='yellow'
@@ -38,8 +39,9 @@ const ContentList = ({ content, type, contentAction }) => {
           showVotes
         />
       </div>
-      <div>
-        <button>Add to watchlist</button>
+
+      <div className='addToWatchListButton'>
+        <AddToWatchListButton type={type} content={result} />
       </div>
     </div>
   ));

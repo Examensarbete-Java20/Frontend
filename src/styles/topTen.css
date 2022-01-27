@@ -13,7 +13,7 @@
 
 .card {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 0.1fr;
   border-radius: 3px;
   border: 1.5px solid;
 
@@ -49,6 +49,9 @@
 .ranking {
   margin: 0.5rem;
   text-align: end;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   color: rgb(255, 192, 203);
 }
 

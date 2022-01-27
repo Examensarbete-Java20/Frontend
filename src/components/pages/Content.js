@@ -106,7 +106,7 @@ const Content = ({ contentId }) => {
           </div>
 
           <div className='contentBtn'>
-            <AddToWatchListButton type={type} content={content} />
+            <AddToWatchListButton type={type} content={content} contentPage />
           </div>
         </div>
       ) : (
