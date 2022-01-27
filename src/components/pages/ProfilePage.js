@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   getWatchlist,
@@ -23,15 +23,17 @@ const ProfilePage = ({
 }) => {
   const [username, setUserName] = useState('');
   const [wList, setWList] = useState('');
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
-  }, [isLoggedIn, getWatchlist, user]);
+    else navigate('/');
+    console.log('hej');
+  }, [isLoggedIn, getWatchlist, user, navigate]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...user, username };
-    console.log(newUser);
     createUser(newUser);
   };
 
@@ -42,7 +44,6 @@ const ProfilePage = ({
   const onFormSubmitWatchList = (e) => {
     e.preventDefault();
     const newWatchList = { title: wList, users: [], user };
-    console.log(newWatchList);
     createWatchList(newWatchList);
     setWList('');
   };

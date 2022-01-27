@@ -109,6 +109,7 @@
   z-index: 55;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-style: italic;
+  width: 170px;
 }
 
 .sliderNumber.one {
@@ -122,24 +123,26 @@
   display: flex;
   font-size: 15rem;
   height: 25rem;
+  transform: scale(1.3, 1);
 }
 
 .sliderNumber.first {
+  margin-left: 3rem;
   padding-top: 5.5rem;
 }
 
 .sliderNumber.secound {
   padding-top: 13rem;
-  margin-left: -7.5rem;
-}
-
-.test2 {
-  z-index: 56;
+  margin-left: -13.5rem;
 }
 
 .test {
   display: grid;
   grid-template-columns: 0.5fr 0.75fr;
+}
+
+.test2 {
+  z-index: 56;
 }
 
 .test3 {
@@ -165,6 +168,7 @@
 .slideImg:hover .slideImg.rating {
   opacity: 1;
 }
+
 .slideImg.remove {
   margin-left: 11rem;
   margin-top: -19.5rem;

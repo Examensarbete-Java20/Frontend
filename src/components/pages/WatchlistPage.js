@@ -1,16 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { getSingleWatchlist } from '../../redux/actions';
 import ImageSlider from '../Images/ImageSlider';
 import '../../styles/watchlist.css';
 import ShowAllImg from '../Images/ShowAllImg';
 
-const WatchlistPage = ({ user, getSingleWatchlist, currentList }) => {
+const WatchlistPage = ({
+  user,
+  getSingleWatchlist,
+  currentList,
+  isLoggedIn,
+}) => {
   const params = useParams();
   const [list, setList] = useState('');
   const [showList, setShowList] = useState(false);
+
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) navigate('/');
+    console.log('hej');
+  }, [isLoggedIn, , user, navigate]);
 
   useEffect(() => {
     if (currentList) setList(currentList);
@@ -55,6 +67,7 @@ const mapStateToProps = (state) => {
     user: state.user.user,
     watchLists: state.watchList.watchLists,
     currentList: state.watchList.currentList,
+    isLoggedIn: state.user.isLoggedIn,
   };
 };
 
