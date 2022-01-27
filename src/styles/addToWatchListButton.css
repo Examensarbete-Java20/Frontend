@@ -2,10 +2,10 @@
   overflow-y: scroll;
   list-style: none;
   position: absolute;
-  min-height: 10vh;
   overflow: auto;
+  min-height: 3vh;
   max-width: 290px;
-  height: 8rem;
+  max-height: 8rem;
   z-index: 9;
   width: 10.2rem;
   border: 1px solid rgb(255, 255, 255);
