@@ -50,7 +50,7 @@ const ProfilePage = ({
   const onFormChangeUsername = (e) => {
     e.preventDefault();
     changeUsername(user.googleId, username);
-    setUserName('');
+    setUserNsame('');
   };
 
   const watchListsLists = () => {
