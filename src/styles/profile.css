@@ -62,3 +62,15 @@
 .listOfWatchLists::-webkit-scrollbar {
   display: none;
 }
+
+.errorTxt {
+  color: red;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.errorTxtWatchlistExist {
+  color: red;
+  margin-left: 1.8rem;
+  font-size: 1.2rem;
+}
