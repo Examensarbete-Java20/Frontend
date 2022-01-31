@@ -1,5 +1,7 @@
 import axios from './axios';
 
+const token = localStorage.getItem('token');
+
 export const search = async (type, title) => {
   try {
     const response = await axios.get(`/public/${type}/title/${title}`);
@@ -50,12 +52,23 @@ export const updateRating = async (type, content, googleId, rating) => {
 
 export const logIn = async (googleId) => {
   try {
-    const response = await axios.get(`/user/${googleId}`);
+    const response = await axios.get(`/public/${googleId}`);
     if (response.status === 200) {
       return response.data;
     }
   } catch (error) {
-    return {};
+    return 'error';
+  }
+};
+
+export const getToken = async (user) => {
+  try {
+    const response = await axios.post(`/login?username=${user.googleId}`, user);
+    if (response.status === 200) {
+      return response.data.jwt_token;
+    }
+  } catch (error) {
+    return 'error';
   }
 };
 
@@ -66,14 +79,17 @@ export const createUserReqeust = async (user) => {
       return response.data;
     }
   } catch (error) {
-    console.log({ error });
     return {};
   }
 };
 
 export const changeUsernameRequest = async (googleId, newUsername) => {
   try {
-    const response = await axios.get(`/user/${googleId}/${newUsername}`);
+    const response = await axios.get(`/user/${googleId}/${newUsername}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
     if (response.status === 200) {
       return response.data;
     }
@@ -84,7 +100,12 @@ export const changeUsernameRequest = async (googleId, newUsername) => {
 
 export const createWatchListReqeust = async (watchList) => {
   try {
-    const response = await axios.post(`/user/watchlist`, watchList);
+    console.log(watchList);
+    const response = await axios.post(`/user/watchlist`, watchList, {
+      headers: {
+        Authorization: token,
+      },
+    });
     if (response.status === 200) {
       return response.data;
     }
@@ -95,7 +116,11 @@ export const createWatchListReqeust = async (watchList) => {
 
 export const getUserWatchlist = async (googleId) => {
   try {
-    const response = await axios.get(`/user/watchlist/${googleId}`);
+    const response = await axios.get(`/user/watchlist/${googleId}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
     if (response.status === 200) {
       return response.data;
     }
@@ -106,7 +131,11 @@ export const getUserWatchlist = async (googleId) => {
 
 export const getUserSingleWatchlist = async (id) => {
   try {
-    const response = await axios.post(`/user/watchlist/${id}`);
+    const response = await axios.get(`/user/single/${id}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
     if (response.status === 200) {
       return response.data;
     }
@@ -117,7 +146,15 @@ export const getUserSingleWatchlist = async (id) => {
 
 export const addContentToWatchList = async (type, listId, content) => {
   try {
-    const response = await axios.post(`/watchlist/${type}/${listId}`, content);
+    const response = await axios.post(
+      `/user/watchlist/${type}/${listId}`,
+      content,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
     if (response.status === 200) {
       return response.data;
     }
@@ -128,7 +165,15 @@ export const addContentToWatchList = async (type, listId, content) => {
 
 export const removeContentFromWatchList = async (listId, content) => {
   try {
-    const response = await axios.delete(`/user/watchlist//${listId}`, content);
+    const response = await axios.post(
+      `/user/watchlist/content/${listId}`,
+      content,
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
     if (response.status === 200) {
       return response.data;
     }

@@ -21,7 +21,7 @@ const WatchlistPage = ({
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
-    else navigate('/');
+    else if (!localStorage.getItem('token')) navigate('/');
   }, [isLoggedIn, user, navigate]);
 
   useEffect(() => {

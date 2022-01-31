@@ -27,7 +27,7 @@ const ProfilePage = ({
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
-    else navigate('/');
+    else if (!localStorage.getItem('token')) navigate('/');
   }, [isLoggedIn, getWatchlist, user, navigate]);
 
   const onFormSubmit = (e) => {
@@ -42,7 +42,7 @@ const ProfilePage = ({
 
   const onFormSubmitWatchList = (e) => {
     e.preventDefault();
-    const newWatchList = { title: wList, users: [], user };
+    const newWatchList = { title: wList, user: { googleId: user.googleId } };
     createWatchList(newWatchList);
     setWList('');
   };

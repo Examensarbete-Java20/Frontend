@@ -7,14 +7,22 @@ const INITIAL_STATE = {
     imageUrl: null,
     name: null,
   },
+  token: localStorage.getItem('token'),
   isLoggedIn: false,
 };
 
 const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SET_USER:
-      return { ...state, user: action.payload, isLoggedIn: true };
+      localStorage.setItem('token', action.payload.token);
+      return {
+        ...state,
+        user: action.payload.user,
+        token: action.payload.token,
+        isLoggedIn: true,
+      };
     case UNSET_USER:
+      localStorage.removeItem('token');
       return (state = INITIAL_STATE);
     case SET_NEW_USERNAME:
       return { ...state, user: action.payload };

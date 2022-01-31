@@ -19,6 +19,7 @@ import {
   getUserSingleWatchlist,
   removeContentFromWatchList,
   createWatchListReqeust,
+  getToken,
 } from '../../api/request';
 
 export const searchAction = (title) => {
@@ -34,14 +35,21 @@ export const setUser = (userInfo) => async (dispatch) => {
     googleId: userInfo.profileObj.googleId,
     email: userInfo.profileObj.email,
   };
+  let token = null;
   await logIn(userInfo.profileObj.googleId).then((data) => {
-    if (data.id) {
+    if (data !== 'error') {
       user = data;
     }
   });
+
+  if (user.username) {
+    await getToken(user).then((data) => {
+      token = data;
+    });
+  }
   dispatch({
     type: SET_USER,
-    payload: user,
+    payload: { user, token },
   });
 };
 
@@ -54,7 +62,7 @@ export const createUser = (user) => async (dispatch) => {
   });
   dispatch({
     type: SET_USER,
-    payload: newUser,
+    payload: { user: newUser },
   });
 };
 
