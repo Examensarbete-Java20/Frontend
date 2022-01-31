@@ -100,7 +100,6 @@ export const changeUsernameRequest = async (googleId, newUsername) => {
 
 export const createWatchListReqeust = async (watchList) => {
   try {
-    console.log(watchList);
     const response = await axios.post(`/user/watchlist`, watchList, {
       headers: {
         Authorization: token,
