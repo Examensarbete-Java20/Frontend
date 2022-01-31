@@ -10,6 +10,8 @@ import {
   setCurrentWatchList,
 } from '../../redux/actions/index';
 import '../../styles/profile.css';
+import { validateInput, validateWatchList } from '../helpers/valdiateHelper';
+import { ErrorTxt } from '../ErrorTxt';
 
 const ProfilePage = ({
   user,
@@ -23,6 +25,8 @@ const ProfilePage = ({
 }) => {
   const [username, setUserName] = useState('');
   const [wList, setWList] = useState('');
+  const [isUserNameValid, setIsUsernameValid] = useState('');
+  const [isWatchListValid, setIsWatchListValid] = useState('');
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -33,7 +37,12 @@ const ProfilePage = ({
   const onFormSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...user, username };
-    createUser(newUser);
+
+    if (validateInput(username)) {
+      createUser(newUser);
+      setIsUsernameValid('');
+    } else setIsUsernameValid('input');
+    setUserName('');
   };
 
   const whenClickWatchList = (index) => {
@@ -42,14 +51,25 @@ const ProfilePage = ({
 
   const onFormSubmitWatchList = (e) => {
     e.preventDefault();
-    const newWatchList = { title: wList, users: [], user };
-    createWatchList(newWatchList);
+    if (!validateInput(wList)) {
+      setIsWatchListValid('input');
+    } else if (!validateWatchList(wList, watchLists)) {
+      setIsWatchListValid('alreadyExist');
+    } else {
+      const newWatchList = { title: wList, users: [], user };
+      createWatchList(newWatchList);
+      setIsWatchListValid('');
+    }
+
     setWList('');
   };
 
   const onFormChangeUsername = (e) => {
     e.preventDefault();
-    changeUsername(user.googleId, username);
+    if (validateInput(username)) {
+      setIsUsernameValid('');
+      changeUsername(user.googleId, username);
+    } else setIsUsernameValid('input');
     setUserName('');
   };
 
@@ -102,6 +122,7 @@ const ProfilePage = ({
                   ok
                 </button>
               </form>
+              {isUserNameValid && <ErrorTxt type={isUserNameValid} />}
             </div>
           )}
           {isLoggedIn && user.username && (
@@ -122,6 +143,7 @@ const ProfilePage = ({
                     ok
                   </button>
                 </form>
+                {isWatchListValid && <ErrorTxt type={isWatchListValid} />}
               </div>
               <div>
                 <h2 className='inputHeader'>Change username</h2>
@@ -139,6 +161,7 @@ const ProfilePage = ({
                     ok
                   </button>
                 </form>
+                {isUserNameValid && <ErrorTxt type={isUserNameValid} />}
               </div>
             </div>
           )}
