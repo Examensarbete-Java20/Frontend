@@ -106,7 +106,7 @@ export const getUserWatchlist = async (googleId) => {
 
 export const getUserSingleWatchlist = async (id) => {
   try {
-    const response = await axios.post(`/user/watchlist/${type}/${listId}`);
+    const response = await axios.post(`/user/watchlist/${id}`);
     if (response.status === 200) {
       return response.data;
     }
@@ -128,7 +128,7 @@ export const addContentToWatchList = async (type, listId, content) => {
 
 export const removeContentFromWatchList = async (listId, content) => {
   try {
-    const response = await axios.delete(`/user/watchlist/${type}/${listId}`);
+    const response = await axios.delete(`/user/watchlist//${listId}`, content);
     if (response.status === 200) {
       return response.data;
     }

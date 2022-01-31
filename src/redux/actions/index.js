@@ -7,23 +7,17 @@ import {
   CREATE_WATCHLIST,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
-<<<<<<< HEAD
   UPDATE_WATCHLIST,
   GET_CURRENTLIST,
-=======
->>>>>>> origin/changing-endpoints
 } from './actionTypes';
 import {
   getUserWatchlist,
   logIn,
   createUserReqeust,
-<<<<<<< HEAD
   changeUsernameRequest,
   addContentToWatchList,
   getUserSingleWatchlist,
   removeContentFromWatchList,
-=======
->>>>>>> origin/changing-endpoints
   createWatchListReqeust,
 } from '../../api/request';
 
