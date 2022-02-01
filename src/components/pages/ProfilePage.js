@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 import {
   getWatchlist,
   createUser,
+  changeUsername,
   createWatchList,
+  setCurrentWatchList,
 } from '../../redux/actions/index';
 import '../../styles/profile.css';
+import { validateInput, validateWatchList } from '../helpers/valdiateHelper';
+import { ErrorTxt } from '../ErrorTxt';
 
 const ProfilePage = ({
   user,
@@ -14,37 +19,72 @@ const ProfilePage = ({
   watchLists,
   getWatchlist,
   createUser,
+  changeUsername,
+  setCurrentWatchList,
   createWatchList,
 }) => {
   const [username, setUserName] = useState('');
   const [wList, setWList] = useState('');
+  const [isUserNameValid, setIsUsernameValid] = useState('');
+  const [isWatchListValid, setIsWatchListValid] = useState('');
+  let navigate = useNavigate();
 
   useEffect(() => {
     if (isLoggedIn) getWatchlist(user);
-    console.log(isLoggedIn);
-  }, [isLoggedIn, getWatchlist, user]);
+    else if (!localStorage.getItem('token')) navigate('/');
+  }, [isLoggedIn, getWatchlist, user, navigate]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     const newUser = { ...user, username };
-    console.log(newUser);
-    createUser(newUser);
+
+    if (validateInput(username)) {
+      createUser(newUser);
+      setIsUsernameValid('');
+    } else setIsUsernameValid('input');
+    setUserName('');
+  };
+
+  const whenClickWatchList = (index) => {
+    setCurrentWatchList(watchLists[index]);
   };
 
   const onFormSubmitWatchList = (e) => {
     e.preventDefault();
-    const newWatchList = { title: wList, users: [], user };
-    console.log(newWatchList);
-    createWatchList(newWatchList);
+    if (!validateInput(wList)) {
+      setIsWatchListValid('input');
+    } else if (!validateWatchList(wList, watchLists)) {
+      setIsWatchListValid('alreadyExist');
+    } else {
+      const newWatchList = { title: wList, user: { googleId: user.googleId } };
+      createWatchList(newWatchList);
+      setIsWatchListValid('');
+    }
+
     setWList('');
+  };
+
+  const onFormChangeUsername = (e) => {
+    e.preventDefault();
+    if (validateInput(username)) {
+      setIsUsernameValid('');
+      changeUsername(user.googleId, username);
+    } else setIsUsernameValid('input');
+    setUserName('');
   };
 
   const watchListsLists = () => {
     if (isLoggedIn) {
-      return watchLists.map((watchList) => {
+      return watchLists.map((watchList, index) => {
         return (
           <div key={watchList.title}>
-            <h2>{watchList.title}</h2>
+            <Link
+              className='linkGrid'
+              to={`/watchlist/${watchList.id}`}
+              onClick={() => whenClickWatchList(index)}
+            >
+              <h2>{watchList.title.slice(0, 15)}</h2>
+            </Link>
           </div>
         );
       });
@@ -82,32 +122,54 @@ const ProfilePage = ({
                   ok
                 </button>
               </form>
+              {isUserNameValid && <ErrorTxt type={isUserNameValid} />}
             </div>
           )}
           {isLoggedIn && user.username && (
             <div className='userInput'>
-              <h2 className='inputHeader'>Create a watchlist</h2>
-              <form onSubmit={onFormSubmitWatchList}>
-                <input
-                  type='text'
-                  placeholder='Name your watchlist'
-                  value={wList}
-                  onChange={(e) => setWList(e.target.value)}
-                ></input>
-                <button
-                  className='ui icon button small submitButton'
-                  onClick={onFormSubmitWatchList}
-                >
-                  ok
-                </button>
-              </form>
+              <div className='forms'>
+                <h2 className='inputHeader'>Create a watchlist</h2>
+                <form onSubmit={onFormSubmitWatchList}>
+                  <input
+                    type='text'
+                    placeholder='Name your watchlist'
+                    value={wList}
+                    onChange={(e) => setWList(e.target.value)}
+                  ></input>
+                  <button
+                    className='ui icon button small submitButton'
+                    onClick={onFormSubmitWatchList}
+                  >
+                    ok
+                  </button>
+                </form>
+                {isWatchListValid && <ErrorTxt type={isWatchListValid} />}
+              </div>
+              <div>
+                <h2 className='inputHeader'>Change username</h2>
+                <form onSubmit={onFormChangeUsername}>
+                  <input
+                    type='text'
+                    placeholder='Change username'
+                    value={username}
+                    onChange={(e) => setUserName(e.target.value)}
+                  ></input>
+                  <button
+                    className='ui icon button small submitButton'
+                    onClick={onFormChangeUsername}
+                  >
+                    ok
+                  </button>
+                </form>
+                {isUserNameValid && <ErrorTxt type={isUserNameValid} />}
+              </div>
             </div>
           )}
         </div>
         {isLoggedIn && user.username && (
           <div className='listOfWatchLists'>
             <h1>Watchlists</h1>
-            <h2>{watchLists && watchListsLists()}</h2>
+            <div>{watchLists && watchListsLists()}</div>
           </div>
         )}
       </div>
@@ -128,5 +190,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getWatchlist,
   createUser,
+  changeUsername,
   createWatchList,
+  setCurrentWatchList,
 })(ProfilePage);

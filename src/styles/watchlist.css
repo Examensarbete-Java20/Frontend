@@ -1,0 +1,44 @@
+.watchListContainer {
+  border: 1px solid rgb(255, 192, 203);
+  border-radius: 5px;
+  margin-top: 1%;
+}
+
+.watchListInformation {
+  border-radius: 5px;
+  background-color: rgb(37, 37, 37);
+  color: rgb(255, 192, 203);
+}
+
+.listTitle {
+  margin-left: 1rem;
+  margin-bottom: 2.5rem;
+  margin-top: 1rem;
+  font-size: 3rem;
+}
+
+.listTotal {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  font-size: large;
+  text-align: end;
+}
+
+.viewMoreStuff {
+  margin-top: -4rem;
+  margin-bottom: 2.5rem;
+  margin-right: 1rem;
+  text-align: end;
+}
+
+.pinkIcon {
+  color: pink;
+  cursor: pointer;
+}
+
+.imagesGrid {
+  align-items: top;
+  margin-left: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}

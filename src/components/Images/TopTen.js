@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import '../styles/topTen.css';
+import '../../styles/topTen.css';
 import ImageSlider from './ImageSlider';
-import { getTopTen } from './helpers/contentHelper';
+import { getTopTen } from '../helpers/contentHelper';
 
-const TopTen = ({ type, title, contentAction }) => {
+const TopTen = ({ type, title }) => {
   const [results, setResults] = useState([]);
 
   useEffect(() => {
@@ -14,13 +14,7 @@ const TopTen = ({ type, title, contentAction }) => {
   return (
     <div className='contentContainer'>
       <h1 className='topTitle'>{title}</h1>
-      {results && (
-        <ImageSlider
-          content={results}
-          type={type}
-          contentAction={contentAction}
-        />
-      )}
+      {results && <ImageSlider content={results} type={type} topTen />}
     </div>
   );
 };

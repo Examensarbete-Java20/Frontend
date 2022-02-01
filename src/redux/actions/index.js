@@ -3,15 +3,23 @@ import {
   CONTENT_CHANGE,
   SET_USER,
   UNSET_USER,
+  SET_NEW_USERNAME,
   CREATE_WATCHLIST,
   GET_WATCHLISTS,
   EMPTY_WATCHLISTS,
+  UPDATE_WATCHLIST,
+  GET_CURRENTLIST,
 } from './actionTypes';
 import {
   getUserWatchlist,
   logIn,
   createUserReqeust,
+  changeUsernameRequest,
+  addContentToWatchList,
+  getUserSingleWatchlist,
+  removeContentFromWatchList,
   createWatchListReqeust,
+  getToken,
 } from '../../api/request';
 
 export const searchAction = (title) => {
@@ -27,14 +35,21 @@ export const setUser = (userInfo) => async (dispatch) => {
     googleId: userInfo.profileObj.googleId,
     email: userInfo.profileObj.email,
   };
+  let token = null;
   await logIn(userInfo.profileObj.googleId).then((data) => {
-    if (data.id) {
+    if (data !== 'error') {
       user = data;
     }
   });
+
+  if (user.username) {
+    await getToken(user).then((data) => {
+      token = data;
+    });
+  }
   dispatch({
     type: SET_USER,
-    payload: user,
+    payload: { user, token },
   });
 };
 
@@ -47,7 +62,20 @@ export const createUser = (user) => async (dispatch) => {
   });
   dispatch({
     type: SET_USER,
-    payload: newUser,
+    payload: { user: newUser },
+  });
+};
+
+export const changeUsername = (googleId, newUsername) => async (dispatch) => {
+  let changeUsername = {};
+  await changeUsernameRequest(googleId, newUsername).then((data) => {
+    if (data) {
+      changeUsername = data;
+    }
+  });
+  dispatch({
+    type: SET_NEW_USERNAME,
+    payload: changeUsername,
   });
 };
 
@@ -83,22 +111,55 @@ export const getWatchlist = (user) => async (dispatch) => {
   });
 };
 
+export const setCurrentWatchList = (currentWatchList) => {
+  return {
+    type: GET_CURRENTLIST,
+    payload: currentWatchList,
+  };
+};
+
+export const getSingleWatchlist = (id) => async (dispatch) => {
+  let wathcList = {};
+  await getUserSingleWatchlist(id).then((data) => {
+    if (data) {
+      wathcList = data;
+    }
+  });
+  dispatch({
+    type: GET_CURRENTLIST,
+    payload: wathcList,
+  });
+};
+
+export const removeFromWatchList = (listId, content) => async (dispatch) => {
+  let updateWatchList = { id: '' };
+  await removeContentFromWatchList(listId, content).then((data) => {
+    if (data) {
+      updateWatchList = data;
+    }
+  });
+  dispatch({
+    type: UPDATE_WATCHLIST,
+    payload: updateWatchList,
+  });
+};
+
 export const emptyWatchList = () => {
   return {
     type: EMPTY_WATCHLISTS,
   };
 };
 
-/* export const addToWatchList = (content) => async (dispatch) => {
-  await addContentToWatchList(content);
-  return {
-    type: ADD_TO_WATCHLIST,
+export const addToWatchList =
+  (type, watchListId, content) => async (dispatch) => {
+    let updateWatchList = {};
+    await addContentToWatchList(type, watchListId, content).then((data) => {
+      if (data) {
+        updateWatchList = data;
+      }
+    });
+    dispatch({
+      type: UPDATE_WATCHLIST,
+      payload: updateWatchList,
+    });
   };
-};
-
-export const removeFromWatchList = (content) => async (dispatch) => {
-  await removeFromWatchList(content);
-  return {
-    type: REMOVE_FROM_WATCHLIST,
-  };
-}; */

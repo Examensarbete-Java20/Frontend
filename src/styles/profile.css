@@ -30,14 +30,14 @@
   font-size: xx-large;
 }
 
-.userName {
-}
-
 .userInput {
   size: 20rem;
   font-size: 1.5rem;
-  margin-top: 8rem;
+  margin-top: 4rem;
   margin-left: -8rem;
+}
+.forms {
+  margin-bottom: 2rem;
 }
 
 .inputHeader {
@@ -50,6 +50,27 @@
 
 .listOfWatchLists {
   margin-top: 1rem;
+  margin-bottom: 1rem;
   align-content: center;
   justify-self: center;
+  max-height: 18rem;
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.listOfWatchLists::-webkit-scrollbar {
+  display: none;
+}
+
+.errorTxt {
+  color: red;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.errorTxtWatchlistExist {
+  color: red;
+  margin-left: 1.8rem;
+  font-size: 1.2rem;
 }

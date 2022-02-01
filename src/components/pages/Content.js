@@ -5,10 +5,11 @@ import notFoundImg from '../../styles/img/noimagefound.jpg';
 
 import * as helper from '../helpers/contentHelper';
 import '../../styles/content.css';
-import Rating from '../Rating';
+import Rating from '../Images/Rating';
 import DesctriptionReadMore from '../DesctriptionReadMore';
 import TrailerModal from '../modals/TrailerModal';
 import PageNotFound from './PageNotFound';
+import AddToWatchListButton from '../AddToWatchListButton';
 
 const Content = ({ contentId }) => {
   const [imdbId, setImdbId] = useState('');
@@ -90,7 +91,11 @@ const Content = ({ contentId }) => {
             </div>
             <div className='contentText'>
               <h2>Description</h2>
-              <DesctriptionReadMore className='' text={content.description} />
+              <DesctriptionReadMore
+                className=''
+                text={content.description}
+                cutLength={300}
+              />
               <div style={{ marginTop: '1rem' }}>
                 Length: {content.movie_length} min
               </div>
@@ -99,13 +104,10 @@ const Content = ({ contentId }) => {
               </div>
             </div>
           </div>
-          {content.exist ? (
-            ''
-          ) : (
-            <div className='contentBtn'>
-              <button className=' ui button '>Save to db</button>
-            </div>
-          )}
+
+          <div className='contentBtn'>
+            <AddToWatchListButton type={type} content={content} contentPage />
+          </div>
         </div>
       ) : (
         <PageNotFound />

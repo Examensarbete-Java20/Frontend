@@ -8,7 +8,7 @@
 }
 
 .slider.grid {
-  grid-template: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .sliderArrow {
@@ -31,14 +31,12 @@
 .sliderImage {
   border: 1px solid pink;
   height: 20rem;
-  border-radius: 10px;
   width: 13.7rem;
 }
 
-/* .slideStuff :hover {
-  height: 22rem;
-  width: 14.7rem;
-} */
+.sliderImage.borderRadius {
+  border-radius: 10px;
+}
 
 .sliderTitle {
   color: pink;
@@ -72,11 +70,46 @@
   filter: grayscale(100%);
   opacity: 0.7;
 }
+.sliderColumnWatchlist.sides {
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+.sliderColumnWatchlist.active {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.sliderColumnWatchlist.active img {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.1);
+  border-radius: 10px;
+}
+
+.sliderColumnWatchlist.active h3 {
+  margin-top: 0.7rem;
+}
+
+.sliderColumnWatchlist.sides img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.sliderColumnWatchlist.first.sides img {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.sliderColumnWatchlist.last.sides img {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
 
 .sliderNumber {
+  text-shadow: 0 0 4px #000;
   z-index: 55;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-style: italic;
+  width: 170px;
 }
 
 .sliderNumber.one {
@@ -90,24 +123,26 @@
   display: flex;
   font-size: 15rem;
   height: 25rem;
+  transform: scale(1.3, 1);
 }
 
 .sliderNumber.first {
+  margin-left: 3rem;
   padding-top: 5.5rem;
 }
 
 .sliderNumber.secound {
   padding-top: 13rem;
-  margin-left: -7.5rem;
-}
-
-.test2 {
-  z-index: 56;
+  margin-left: -13.5rem;
 }
 
 .test {
   display: grid;
   grid-template-columns: 0.5fr 0.75fr;
+}
+
+.test2 {
+  z-index: 56;
 }
 
 .test3 {
@@ -132,4 +167,28 @@
 
 .slideImg:hover .slideImg.rating {
   opacity: 1;
+}
+
+.slideImg.remove {
+  margin-left: 11rem;
+  margin-top: -19.5rem;
+  color: rgb(255, 192, 203);
+  position: absolute;
+  opacity: 0;
+  text-shadow: 0 0 5px rgb(0, 0, 0);
+  font-size: 2rem;
+}
+
+.slideImg:hover .slideImg.remove.focus {
+  margin-left: 11.3rem;
+  margin-top: -20.5rem;
+}
+
+.slideImg:hover .slideImg.remove {
+  opacity: 1;
+}
+
+.emptyList {
+  text-align: center;
+  margin-bottom: 2rem;
 }
