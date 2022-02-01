@@ -7,6 +7,7 @@ import '../styles/header.css';
 
 import { contentAction, searchAction } from '../redux/actions';
 import * as helper from './helpers/headerHelper';
+import { validateInput } from './helpers/valdiateHelper';
 import SearchBox from './SearchBox';
 import GoogleLoginButton from './GoogleLoginButton';
 
@@ -24,7 +25,7 @@ const Header = ({ contentAction, searchAction }) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    if (searchQuery) {
+    if (validateInput(searchQuery)) {
       if (event.target.children[1]) {
         event.target.children[0].children[0].blur();
       }
@@ -49,10 +50,11 @@ const Header = ({ contentAction, searchAction }) => {
 
   useEffect(() => {
     if (!debounceQuery) setSearchResult([]);
-    else
+    else if (validateInput(debounceQuery)) {
       helper
         .getTitles(content, debounceQuery)
         .then((data) => setSearchResult(data));
+    }
   }, [debounceQuery, content]);
 
   const onFocusHandler = () => {

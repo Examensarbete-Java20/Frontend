@@ -10,7 +10,11 @@ import {
   setCurrentWatchList,
 } from '../../redux/actions/index';
 import '../../styles/profile.css';
-import { validateInput, validateWatchList } from '../helpers/valdiateHelper';
+import {
+  validateInput,
+  validateInputUsername,
+  validateWatchList,
+} from '../helpers/valdiateHelper';
 import { ErrorTxt } from '../ErrorTxt';
 
 const ProfilePage = ({
@@ -38,7 +42,7 @@ const ProfilePage = ({
     e.preventDefault();
     const newUser = { ...user, username };
 
-    if (validateInput(username)) {
+    if (validateInputUsername(username)) {
       createUser(newUser);
       setIsUsernameValid('');
     } else setIsUsernameValid('input');
@@ -52,11 +56,14 @@ const ProfilePage = ({
   const onFormSubmitWatchList = (e) => {
     e.preventDefault();
     if (!validateInput(wList)) {
-      setIsWatchListValid('input');
+      setIsWatchListValid('newWatchList');
     } else if (!validateWatchList(wList, watchLists)) {
       setIsWatchListValid('alreadyExist');
     } else {
-      const newWatchList = { title: wList, user: { googleId: user.googleId } };
+      const newWatchList = {
+        title: wList.trim(),
+        user: { googleId: user.googleId },
+      };
       createWatchList(newWatchList);
       setIsWatchListValid('');
     }
@@ -66,7 +73,7 @@ const ProfilePage = ({
 
   const onFormChangeUsername = (e) => {
     e.preventDefault();
-    if (validateInput(username)) {
+    if (validateInputUsername(username)) {
       setIsUsernameValid('');
       changeUsername(user.googleId, username);
     } else setIsUsernameValid('input');

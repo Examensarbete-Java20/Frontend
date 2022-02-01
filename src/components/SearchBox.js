@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import '../styles/searchBox.css';
+import { ErrorTxt } from './ErrorTxt';
+import { validateInput } from './helpers/valdiateHelper';
 
 const SearchBox = ({
   searchResult,
@@ -11,6 +13,14 @@ const SearchBox = ({
   setSearchQuery,
   contentAction,
 }) => {
+  const emptyInputMessage = (
+    <p className='listItem'>
+      Found nothing{searchQuery ? ` on ${searchQuery}` : ''}
+    </p>
+  );
+
+  useEffect(() => {}, [searchQuery]);
+
   const onClickHelper = (imdbId) => {
     contentAction(imdbId, content);
     setSearchQuery('');
@@ -20,9 +30,13 @@ const SearchBox = ({
       return (
         <>
           <p className='divider' />
-          <p className='listItem'>
-            Found nothing{searchQuery ? ` on ${searchQuery}` : ''}
-          </p>
+          {!searchQuery ? (
+            emptyInputMessage
+          ) : !validateInput(searchQuery) ? (
+            <ErrorTxt type='notValidHeaderInput' />
+          ) : (
+            emptyInputMessage
+          )}
         </>
       );
     }

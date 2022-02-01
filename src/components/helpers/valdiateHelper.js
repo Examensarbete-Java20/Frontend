@@ -1,5 +1,13 @@
+export const validateInputUsername = (text) => {
+  if (!text.match(/^\d*[a-zA-Z][a-zA-Z\d]*$/)) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 export const validateInput = (text) => {
-  if (!text.match(/^[a-zA-Z]+$/)) {
+  if (!text.match(/^\d*[a-zA-Z0-9 ][a-zA-Z0-9 \d]*$/)) {
     return false;
   } else {
     return true;
