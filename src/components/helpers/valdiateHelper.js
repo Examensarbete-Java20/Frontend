@@ -1,5 +1,5 @@
 export const validateInput = (text) => {
-  if (!text.match(/^[a-zA-Z]+$/)) {
+  if (!text.match(/^[a-zA-Z0-9 ]+$/)) {
     return false;
   } else {
     return true;

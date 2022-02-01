@@ -4,6 +4,7 @@ import {
   GET_WATCHLISTS,
   UPDATE_WATCHLIST,
   GET_CURRENTLIST,
+  REMOVE_WATCHLIST,
 } from '../actions/actionTypes';
 
 const INITIAL_STATE = {
@@ -42,6 +43,21 @@ const watchListReducer = (state = INITIAL_STATE, action) => {
         currentList:
           state.currentList && state.currentList.id === action.payload.id
             ? action.payload
+            : state.currentList,
+      };
+    case REMOVE_WATCHLIST:
+      let watchListToUpdate = state.watchLists;
+      for (let i = 0; i < watchListToUpdate.length; i++) {
+        if (watchListToUpdate[i].id === action.payload.id) {
+          watchListToUpdate.splice(i, 1);
+        }
+      }
+      return {
+        ...state,
+        watchLists: [...watchListToUpdate],
+        currentList:
+          state.currentList && state.currentList.id === action.payload.id
+            ? null
             : state.currentList,
       };
     default:

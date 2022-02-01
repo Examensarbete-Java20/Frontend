@@ -143,6 +143,21 @@ export const getUserSingleWatchlist = async (id) => {
   }
 };
 
+export const removeWatchList = async (list) => {
+  try {
+    const response = await axios.delete(`/user/watchlist/remove/${list.id}`, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    if (response.status === 200) {
+      return response.data;
+    }
+  } catch (error) {
+    return [];
+  }
+};
+
 export const addContentToWatchList = async (type, listId, content) => {
   try {
     const response = await axios.post(
