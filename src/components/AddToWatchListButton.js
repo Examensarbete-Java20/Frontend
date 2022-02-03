@@ -24,12 +24,10 @@ const AddToWatchListButton = ({
 
   const clickToAddWatchList = (watchList) => {
     addToWatchList(type, watchList.id, content);
-    console.log('content added');
   };
 
   const clickToRemoveWatchList = (watchList) => {
     removeFromWatchList(watchList.id, content);
-    console.log('content removed');
   };
 
   const checkIfContentExist = (list) => {
