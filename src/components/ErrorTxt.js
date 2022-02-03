@@ -7,7 +7,7 @@ export const ErrorTxt = ({ type }) => {
     <div>
       {type === 'input' ? (
         <p className='errorTxt'>
-          * No special characters or blank<br></br> spaces and mst contain
+          * No special characters or blank<br></br> spaces and must contain
           letters*
         </p>
       ) : type === 'alreadyExist' ? (
