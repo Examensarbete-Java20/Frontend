@@ -9,6 +9,7 @@ import {
   EMPTY_WATCHLISTS,
   UPDATE_WATCHLIST,
   GET_CURRENTLIST,
+  REMOVE_WATCHLIST,
 } from './actionTypes';
 import {
   getUserWatchlist,
@@ -20,6 +21,7 @@ import {
   removeContentFromWatchList,
   createWatchListReqeust,
   getToken,
+  removeWatchList,
 } from '../../api/request';
 
 export const searchAction = (title) => {
@@ -163,3 +165,16 @@ export const addToWatchList =
       payload: updateWatchList,
     });
   };
+
+export const removeWatchListAction = (list) => async (dispatch) => {
+  let watchListToRemove = {};
+  await removeWatchList(list).then((data) => {
+    if (data) {
+      watchListToRemove = data;
+    }
+  });
+  dispatch({
+    type: REMOVE_WATCHLIST,
+    payload: watchListToRemove,
+  });
+};

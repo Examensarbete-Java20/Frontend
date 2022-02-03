@@ -8,6 +8,7 @@ import {
   changeUsername,
   createWatchList,
   setCurrentWatchList,
+  removeWatchListAction,
 } from '../../redux/actions/index';
 import '../../styles/profile.css';
 import {
@@ -26,6 +27,7 @@ const ProfilePage = ({
   changeUsername,
   setCurrentWatchList,
   createWatchList,
+  removeWatchListAction,
 }) => {
   const [username, setUserName] = useState('');
   const [wList, setWList] = useState('');
@@ -84,14 +86,26 @@ const ProfilePage = ({
     if (isLoggedIn) {
       return watchLists.map((watchList, index) => {
         return (
-          <div key={watchList.title}>
+          <div key={watchList.title} className='linkGridTwo'>
             <Link
-              className='linkGrid'
+              className='linkText'
               to={`/watchlist/${watchList.id}`}
               onClick={() => whenClickWatchList(index)}
             >
-              <h2>{watchList.title.slice(0, 15)}</h2>
+              <h3>{watchList.title.slice(0, 20)}</h3>
             </Link>
+            <div className='linkIcon'>
+              <i
+                className='ban icon'
+                style={{
+                  paddingTop: '1.3px',
+                  paddingRight: '0.3px',
+                  height: '22px',
+                  width: '22px',
+                }}
+                onClick={() => removeWatchListAction(watchList)}
+              />
+            </div>
           </div>
         );
       });
@@ -150,7 +164,11 @@ const ProfilePage = ({
                     ok
                   </button>
                 </form>
-                {isWatchListValid && <ErrorTxt type={isWatchListValid} />}
+                {isWatchListValid ? (
+                  <ErrorTxt type={isWatchListValid} />
+                ) : (
+                  <div style={{ height: '23.98px' }} />
+                )}
               </div>
               <div>
                 <h2 className='inputHeader'>Change username</h2>
@@ -200,4 +218,5 @@ export default connect(mapStateToProps, {
   changeUsername,
   createWatchList,
   setCurrentWatchList,
+  removeWatchListAction,
 })(ProfilePage);

@@ -36,9 +36,6 @@
   margin-top: 4rem;
   margin-left: -8rem;
 }
-.forms {
-  margin-bottom: 2rem;
-}
 
 .inputHeader {
   margin-left: 2rem;
@@ -68,8 +65,36 @@
   font-size: 1.2rem;
 }
 
+.errorTxt2 {
+  color: red;
+  margin-left: 2.3rem;
+  font-size: 1.2rem;
+}
+
 .errorTxtWatchlistExist {
   color: red;
   margin-left: 1.8rem;
   font-size: 1.2rem;
+}
+
+.linkGridTwo {
+  display: grid;
+  grid-template-columns: 1fr 0.25fr;
+}
+
+.linkText {
+  color: pink;
+}
+.linkText:hover {
+  color: rgb(104, 80, 84);
+}
+
+.linkIcon {
+  font-size: large;
+}
+.linkIcon :hover {
+  border-radius: 100px;
+  background-color: pink;
+  color: rgb(37, 37, 37);
+  cursor: pointer;
 }

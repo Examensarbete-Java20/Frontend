@@ -13,7 +13,7 @@ export const ErrorTxt = ({ type }) => {
       ) : type === 'alreadyExist' ? (
         <p className='errorTxtWatchlistExist'>* Watchlist already exist *</p>
       ) : type === 'newWatchList' || type === 'notValidHeaderInput' ? (
-        <p className='errorTxt'>* No special characters *</p>
+        <p className='errorTxt2'>* No special characters *</p>
       ) : (
         ''
       )}
