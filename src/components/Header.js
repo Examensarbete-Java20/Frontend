@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import logo from '../styles/img/pedb.png';
+import logo from '../styles/img/mwf-icon.png';
 import '../styles/header.css';
 
 import { contentAction, searchAction } from '../redux/actions';
@@ -75,7 +75,7 @@ const Header = ({ contentAction, searchAction }) => {
     <div className='header'>
       <div style={{ paddingTop: '0.3rem' }} className='header-div'>
         <Link to='/'>
-          <img className='header-img' src={logo} alt='PEDB' height={41} />
+          <img className='header-img' src={logo} alt='MWF' height={41} />
         </Link>
       </div>
       <form className='header-div' onSubmit={(e) => onSubmit(e)}>
@@ -83,7 +83,7 @@ const Header = ({ contentAction, searchAction }) => {
           <input
             list='search'
             type='text'
-            placeholder='Butman...'
+            placeholder='Search...'
             value={searchQuery}
             onChange={(e) => inputHandler(e)}
             onFocus={() => onFocusHandler()}

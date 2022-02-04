@@ -79,14 +79,14 @@ const Content = ({ contentId }) => {
               />
               <Rating title='IMDB' color='yellow' rating={content.rating} />
               <Rating
-                title='PEDB'
+                title='MWF'
                 color='yellow'
                 rating={content.ownRating}
                 votes={content.totalOfVoters}
                 content={content}
                 setContent={setContent}
                 type={type}
-                PEDB
+                MWF
               />
             </div>
             <div className='contentText'>
