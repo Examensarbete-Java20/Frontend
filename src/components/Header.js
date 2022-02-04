@@ -75,7 +75,7 @@ const Header = ({ contentAction, searchAction }) => {
     <div className='header'>
       <div style={{ paddingTop: '0.3rem' }} className='header-div'>
         <Link to='/'>
-          <img className='header-img' src={logo} alt='MWF' height={41} />
+          <img src={logo} alt='MWF' height={41} />
         </Link>
       </div>
       <form className='header-div' onSubmit={(e) => onSubmit(e)}>
