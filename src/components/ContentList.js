@@ -32,7 +32,7 @@ const ContentList = ({ content, type, contentAction }) => {
       </div>
       <div className='ranking'>
         <Rating
-          title='PEDB'
+          title='MWF'
           color='yellow'
           rating={result.ownRating}
           votes={result.totalOfVoters}

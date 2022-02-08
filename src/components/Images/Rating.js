@@ -11,7 +11,7 @@ const Rating = ({
   rating,
   type,
   votes,
-  PEDB,
+  MWF,
   content,
   setContent,
   showVotes,
@@ -21,13 +21,13 @@ const Rating = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const onRatingChange = (index) => {
-    if (PEDB && isLoggedIn) {
+    if (MWF && isLoggedIn) {
       const newContent = updateRating(type, content, userId, index);
       if (newContent)
         newContent.then((data) => {
           if (data) setContent(data);
         });
-    } else if (PEDB && !isLoggedIn) {
+    } else if (MWF && !isLoggedIn) {
       setShowModal(true);
     }
   };
@@ -40,13 +40,13 @@ const Rating = ({
 
   const renderRating = () => {
     const array = [];
-    const amountOfFullStars = PEDB || showVotes ? rating : rating / 2;
+    const amountOfFullStars = MWF || showVotes ? rating : rating / 2;
     for (let i = 0; i < amountOfFullStars; i++) {
       array.push(
         <i
           onClick={() => onRatingChange(i + 1)}
           key={i}
-          className={`star icon ${PEDB ? 'ratingPedb' : ''}`}
+          className={`star icon ${MWF ? 'ratingMWF' : ''}`}
           style={{ color: color }}
         />
       );
@@ -57,7 +57,7 @@ const Rating = ({
         <i
           onClick={() => onRatingChange(i + 1)}
           key={i}
-          className={`star outline icon ${PEDB ? 'ratingPedb' : ''}`}
+          className={`star outline icon ${MWF ? 'ratingMWF' : ''}`}
           style={{ color: color }}
         />
       );

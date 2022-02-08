@@ -33,7 +33,7 @@ const Poster = ({
       {showRating && (
         <div className={`slideImg rating${focus ? ' focus' : ''}`}>
           <Rating
-            PEDB
+            MWF
             rating={content.ownRating}
             votes={content.totalOfVoters}
             noText
