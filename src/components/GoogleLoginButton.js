@@ -32,7 +32,9 @@ const GoogleLoginButton = ({
 
   const onSuccessLogin = (resp) => {
     setUser(resp);
-    getWatchlist(resp);
+    setTimeout(() => {
+      getWatchlist(resp.profileObj);
+    }, 200);
   };
 
   const onFailureLogin = (resp) => {

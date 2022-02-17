@@ -1,7 +1,5 @@
 import axios from './axios';
 
-const token = localStorage.getItem('token');
-
 export const search = async (type, title) => {
   try {
     const response = await axios.get(`/public/${type}/title/${title}`);
@@ -87,7 +85,7 @@ export const changeUsernameRequest = async (googleId, newUsername) => {
   try {
     const response = await axios.get(`/user/${googleId}/${newUsername}`, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
       },
     });
     if (response.status === 200) {
@@ -102,7 +100,7 @@ export const createWatchListReqeust = async (watchList) => {
   try {
     const response = await axios.post(`/user/watchlist`, watchList, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
       },
     });
     if (response.status === 200) {
@@ -117,7 +115,7 @@ export const getUserWatchlist = async (googleId) => {
   try {
     const response = await axios.get(`/user/watchlist/${googleId}`, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
       },
     });
     if (response.status === 200) {
@@ -132,7 +130,7 @@ export const getUserSingleWatchlist = async (id) => {
   try {
     const response = await axios.get(`/user/single/${id}`, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
       },
     });
     if (response.status === 200) {
@@ -147,7 +145,7 @@ export const removeWatchList = async (list) => {
   try {
     const response = await axios.delete(`/user/watchlist/remove/${list.id}`, {
       headers: {
-        Authorization: token,
+        Authorization: localStorage.getItem('token'),
       },
     });
     if (response.status === 200) {
@@ -165,7 +163,7 @@ export const addContentToWatchList = async (type, listId, content) => {
       content,
       {
         headers: {
-          Authorization: token,
+          Authorization: localStorage.getItem('token'),
         },
       }
     );
@@ -184,7 +182,7 @@ export const removeContentFromWatchList = async (listId, content) => {
       content,
       {
         headers: {
-          Authorization: token,
+          Authorization: localStorage.getItem('token'),
         },
       }
     );
