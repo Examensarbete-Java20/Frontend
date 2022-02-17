@@ -34,7 +34,7 @@ const GoogleLoginButton = ({
     setUser(resp);
     setTimeout(() => {
       getWatchlist(resp.profileObj);
-    }, 200);
+    }, 400);
   };
 
   const onFailureLogin = (resp) => {
